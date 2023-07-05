@@ -165,11 +165,15 @@ public class CategoriesController {
     @FXML
     public void afficheListCategorie(){
         ObservableList<Categories> data_categories = getCategories();
-        col_categorie_id.setCellValueFactory(new PropertyValueFactory<>("id_category"));
-        col_categorie_titre.setCellValueFactory(new PropertyValueFactory<>("nom_category"));
-        col_categorie_poids_min.setCellValueFactory(new PropertyValueFactory<>("poids_min"));
-        col_categorie_poids_max.setCellValueFactory(new PropertyValueFactory<>("poids_max"));
-        categories_table_data.setItems(data_categories);
+        if (data_categories.size() == 0) {
+            appUtils.warningAlertDialog("AVERTISSEMENT","AUCUNE DONNEES");
+        } else {
+            col_categorie_id.setCellValueFactory(new PropertyValueFactory<>("id_category"));
+            col_categorie_titre.setCellValueFactory(new PropertyValueFactory<>("nom_category"));
+            col_categorie_poids_min.setCellValueFactory(new PropertyValueFactory<>("poids_min"));
+            col_categorie_poids_max.setCellValueFactory(new PropertyValueFactory<>("poids_max"));
+            categories_table_data.setItems(data_categories);
+        }
     }
 
 }

@@ -23,6 +23,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class EmplacementController {
 
@@ -85,7 +87,7 @@ public class EmplacementController {
                 fermerAjoutEmplacement();
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            Logger.getLogger(EmplacementController.class.getName()).log(Level.WARNING, "ERREUR",e);
         }
     }
 
@@ -117,10 +119,14 @@ public class EmplacementController {
      */
     public void getListeEmplacement(){
         ObservableList<Emplacement> liste_emplacement = getListEmplacement();
-        col_id_emplacement.setCellValueFactory(new PropertyValueFactory<>("id_emplacement"));
-        col_nom_emplacement.setCellValueFactory(new PropertyValueFactory<>("nom_emplacement"));
-        col_couleur_tatami.setCellValueFactory(new PropertyValueFactory<>("couleur_tatami"));
-        tableview_emplacement.setItems(liste_emplacement);
+        if (liste_emplacement.size() == 0){
+            appUtils.warningAlertDialog("AVERTISSEMENT","AUCUNE DONNEES");
+        } else {
+            col_id_emplacement.setCellValueFactory(new PropertyValueFactory<>("id_emplacement"));
+            col_nom_emplacement.setCellValueFactory(new PropertyValueFactory<>("nom_emplacement"));
+            col_couleur_tatami.setCellValueFactory(new PropertyValueFactory<>("couleur_tatami"));
+            tableview_emplacement.setItems(liste_emplacement);
+        }
     }
 
     /**

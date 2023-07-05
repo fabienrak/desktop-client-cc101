@@ -50,25 +50,9 @@ public class LoginController {
     /**
      * Verification utilisateur
      */
-    public void verificationManager(ActionEvent actionEvent){
-        String manager_query = "SELECT * FROM manager WHERE username = ? AND password = ?";
-        if (verifyInfo() == true){
-            try{
-                preparedStatement = connection.prepareStatement(manager_query);
-                preparedStatement.setString(1,username_field.getText());
-                preparedStatement.setString(2,mdp_field.getText());
-                resultSet = preparedStatement.executeQuery();
-
-                if (resultSet.next()){
-                    appUtils.successAlertDialog("SUCCESS","Information valide");
-                } else {
-                    appUtils.erreurAlertDialog("ERREUR","Information de connexion invalide");
-                }
-
-            } catch (SQLException e) {
-                e.getMessage();
-            }
-        }
+    private void verificationManager(ActionEvent actionEvent){
+        String manager_query = "SELECT username, password FROM manager";
+        
     }
 
     /**

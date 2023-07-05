@@ -22,9 +22,10 @@ public class DatabaseConnection {
         try {
             String url_db = "jdbc:sqlite::resource:db-cc101.db";
             connection = DriverManager.getConnection(url_db);
-            Logger.getLogger(connection.getClass().getName()).log(Level.INFO, "[+] DB CONNECT SUCCESS", "DATABASE CONNECTION SUCCESS !!");
+            System.out.println("URL DB : " + url_db);
+            Logger.getLogger(connection.getClass().getName()).log(Level.INFO, "[+] DB CONNECT SUCCESS", url_db);
         } catch (SQLException exception) {
-            Logger.getLogger(connection.getClass().getName()).log(Level.SEVERE, "DATABASE ERROR", exception.getMessage());
+            Logger.getLogger(connection.getClass().getName()).log(Level.SEVERE, "[-] DATABASE ERROR", exception.getMessage());
         }
     }
 

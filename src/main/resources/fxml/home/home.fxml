@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -125,6 +126,78 @@
                </padding>
             </Button>
          </children></VBox>
-      <AnchorPane fx:id="content_pane" layoutX="177.0" layoutY="15.0" prefHeight="672.0" prefWidth="810.0" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="177.0" AnchorPane.topAnchor="15.0" />
+      <AnchorPane fx:id="content_pane" layoutX="177.0" layoutY="15.0" prefHeight="672.0" prefWidth="810.0" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="177.0" AnchorPane.topAnchor="15.0">
+         <children>
+            <Label layoutX="47.0" layoutY="249.0" prefHeight="31.0" prefWidth="153.0" text="Menu Combattant : " textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="197.0" layoutY="249.0" prefHeight="31.0" prefWidth="388.0" text="Gestion des combattant, Ajout - Affichage - Tri" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="47.0" layoutY="299.0" prefHeight="31.0" prefWidth="153.0" text="Menu Competition : " textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="197.0" layoutY="299.0" prefHeight="31.0" prefWidth="601.0" text="Gestion des competition, Renseignement a propos du competition, Ajout - Affichage" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="47.0" layoutY="349.0" prefHeight="31.0" prefWidth="153.0" text="Menu Club : " textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="197.0" layoutY="349.0" prefHeight="31.0" prefWidth="601.0" text="Gestion des club, Enregistrement Club, Ajout - Affichage" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="47.0" layoutY="399.0" prefHeight="31.0" prefWidth="153.0" text="Menu Categories : " textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="197.0" layoutY="399.0" prefHeight="31.0" prefWidth="601.0" text="Gestion des categories, Renseignement Categories des poids, Ajout - Affichage" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="47.0" layoutY="449.0" prefHeight="31.0" prefWidth="153.0" text="Menu Emplacement : " textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="197.0" layoutY="449.0" prefHeight="31.0" prefWidth="601.0" text="Gestion des emplacement Match, Ajout - Affichage" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="47.0" layoutY="499.0" prefHeight="31.0" prefWidth="153.0" text="Menu Scoreboard : " textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="197.0" layoutY="499.0" prefHeight="31.0" prefWidth="601.0" text="Controle du tableau de score" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="307.0" layoutY="189.0" prefHeight="31.0" prefWidth="193.0" text="Fonctionnement" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="63.0" fitWidth="66.0" layoutX="380.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/user-guide.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
    </children>
 </AnchorPane>

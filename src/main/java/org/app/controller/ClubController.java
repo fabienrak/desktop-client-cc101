@@ -152,9 +152,13 @@ public class ClubController {
     @FXML
     public void afficheListeClub(){
         ObservableList<Club> data_club = getListClub();
-        col_id.setCellValueFactory(new PropertyValueFactory<>("id_club"));
-        col_nom.setCellValueFactory(new PropertyValueFactory<>("nom_club"));
-        col_adresse.setCellValueFactory(new PropertyValueFactory<>("adresse_club"));
-        club_tableview.setItems(data_club);
+        if (data_club.size() == 0){
+            appUtils.warningAlertDialog("AVERTISSEMENT","Aucune donnees");
+        } else {
+            col_id.setCellValueFactory(new PropertyValueFactory<>("id_club"));
+            col_nom.setCellValueFactory(new PropertyValueFactory<>("nom_club"));
+            col_adresse.setCellValueFactory(new PropertyValueFactory<>("adresse_club"));
+            club_tableview.setItems(data_club);
+        }
     }
 }

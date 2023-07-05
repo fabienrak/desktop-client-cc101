@@ -157,11 +157,15 @@ public class CompetitionController {
     @FXML
     private void afficheListeCompetition(){
         ObservableList<Competition> data_competition = getListCompetition();
-        col_id_competition.setCellValueFactory(new PropertyValueFactory<>("id_competition"));
-        col_nom_competition.setCellValueFactory(new PropertyValueFactory<>("nom_competition"));
-        col_date_debut_competition.setCellValueFactory(new PropertyValueFactory<>("date_debut"));
-        col_date_fin_competition.setCellValueFactory(new PropertyValueFactory<>("date_fin"));
-        col_lieu_competition.setCellValueFactory(new PropertyValueFactory<>("lieu_competition"));
-        competition_tableview.setItems(data_competition);
+        if (data_competition.size() == 0){
+            appUtils.warningAlertDialog("AVERTISSEMENT","aucune donnees");
+        } else {
+            col_id_competition.setCellValueFactory(new PropertyValueFactory<>("id_competition"));
+            col_nom_competition.setCellValueFactory(new PropertyValueFactory<>("nom_competition"));
+            col_date_debut_competition.setCellValueFactory(new PropertyValueFactory<>("date_debut"));
+            col_date_fin_competition.setCellValueFactory(new PropertyValueFactory<>("date_fin"));
+            col_lieu_competition.setCellValueFactory(new PropertyValueFactory<>("lieu_competition"));
+            competition_tableview.setItems(data_competition);
+        }
     }
 }

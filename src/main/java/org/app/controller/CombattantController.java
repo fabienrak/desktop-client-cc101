@@ -254,40 +254,44 @@ public class CombattantController implements Initializable {
     @FXML
     public void afficheListeCombattant(){
         ObservableList<Combattant> liste_combattant = getCombattantsList();
-        col_id_combattant.setCellValueFactory(new PropertyValueFactory<>("id_combattant"));
-        col_nom_combattant.setCellValueFactory(new PropertyValueFactory<>("nom_combattant"));
-        col_prenom_combattant.setCellValueFactory(new PropertyValueFactory<>("prenom_combattant"));
-        col_date_naissance_combattant.setCellValueFactory(new PropertyValueFactory<>("date_naissance_combattant"));
-        col_genre_combattant.setCellValueFactory(new PropertyValueFactory<>("genre_combattant"));
-        col_club_combattant.setCellValueFactory(new PropertyValueFactory<>("nom_club_combattant"));
-        col_grade_combattant.setCellValueFactory(new PropertyValueFactory<>("grade_combattant"));
-        col_categorie_combattant.setCellValueFactory(new PropertyValueFactory<>("nom_categorie_combattant"));
-        table_combattant.setItems(liste_combattant);
+        if (liste_combattant.size() == 0){
+            appUtils.warningAlertDialog("AVERTISSEMENT","Aucune donnees");
+        } else {
+            col_id_combattant.setCellValueFactory(new PropertyValueFactory<>("id_combattant"));
+            col_nom_combattant.setCellValueFactory(new PropertyValueFactory<>("nom_combattant"));
+            col_prenom_combattant.setCellValueFactory(new PropertyValueFactory<>("prenom_combattant"));
+            col_date_naissance_combattant.setCellValueFactory(new PropertyValueFactory<>("date_naissance_combattant"));
+            col_genre_combattant.setCellValueFactory(new PropertyValueFactory<>("genre_combattant"));
+            col_club_combattant.setCellValueFactory(new PropertyValueFactory<>("nom_club_combattant"));
+            col_grade_combattant.setCellValueFactory(new PropertyValueFactory<>("grade_combattant"));
+            col_categorie_combattant.setCellValueFactory(new PropertyValueFactory<>("nom_categorie_combattant"));
+            table_combattant.setItems(liste_combattant);
 
-        FilteredList<Combattant> filteredList = new FilteredList<>(liste_combattant, b -> true);
-        txt_search.textProperty().addListener((observableValue, oldValue, newValue) -> {
-            filteredList.setPredicate(Combattant -> {
-                if (newValue.isEmpty() || newValue.isBlank() || newValue == null) {
-                    return true;
-                }
-                String mot_cle_recherche = newValue.toLowerCase();
+            FilteredList<Combattant> filteredList = new FilteredList<>(liste_combattant, b -> true);
+            txt_search.textProperty().addListener((observableValue, oldValue, newValue) -> {
+                filteredList.setPredicate(Combattant -> {
+                    if (newValue.isEmpty() || newValue.isBlank() || newValue == null) {
+                        return true;
+                    }
+                    String mot_cle_recherche = newValue.toLowerCase();
 
-                if (Combattant.getNom_combattant().toLowerCase().indexOf(mot_cle_recherche) > -1) {
-                    return true;
-                } else if (Combattant.getPrenom_combattant().toLowerCase().indexOf(mot_cle_recherche) > -1) {
-                    return true;
-                } else if(Combattant.getNom_club_combattant().toLowerCase().indexOf(mot_cle_recherche) > -1) {
-                    return true;
-                }else if(Combattant.getGenre_combattant().toLowerCase().indexOf(mot_cle_recherche) > -1) {
-                    return true;
-                } else {
-                    return false;
-                }
+                    if (Combattant.getNom_combattant().toLowerCase().indexOf(mot_cle_recherche) > -1) {
+                        return true;
+                    } else if (Combattant.getPrenom_combattant().toLowerCase().indexOf(mot_cle_recherche) > -1) {
+                        return true;
+                    } else if(Combattant.getNom_club_combattant().toLowerCase().indexOf(mot_cle_recherche) > -1) {
+                        return true;
+                    }else if(Combattant.getGenre_combattant().toLowerCase().indexOf(mot_cle_recherche) > -1) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                });
             });
-        });
-        SortedList<Combattant> sortedList = new SortedList<>(filteredList);
-        sortedList.comparatorProperty().bind(table_combattant.comparatorProperty());
-        table_combattant.setItems(sortedList);
+            SortedList<Combattant> sortedList = new SortedList<>(filteredList);
+            sortedList.comparatorProperty().bind(table_combattant.comparatorProperty());
+            table_combattant.setItems(sortedList);
+        }
     }
 
     @Override

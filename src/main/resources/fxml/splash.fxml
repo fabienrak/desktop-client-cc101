@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="fxml.Splash"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="350.0" prefWidth="600.0" style="-fx-background-color: #34495e;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.Splash">
+   <children>
+      <ImageView fitHeight="205.0" fitWidth="235.0" layoutX="198.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/logo_cc101.png" />
+         </image>
+      </ImageView>
+      <ProgressBar fx:id="progress_process" layoutY="326.0" prefHeight="25.0" prefWidth="600.0" />
+      <Label fx:id="lbl_process" layoutX="4.0" layoutY="299.0" prefHeight="17.0" prefWidth="302.0" text="Chargement ..." textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </Label>
+   </children>
 </AnchorPane>
