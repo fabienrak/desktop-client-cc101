@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #2c3e50;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.app.controller.HomeController">
+   <children>
+      <VBox alignment="CENTER" prefHeight="700.0" prefWidth="165.0" style="-fx-background-color: #34495e;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="95.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/logo_cc101.png" />
+               </image></ImageView>
+            <Button id="btn_menu_combattant" fx:id="btn_menu_combattant" alignment="CENTER" contentDisplay="TOP" graphicTextGap="5.0" mnemonicParsing="false" onAction="#sceneCombattant" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #34495e;" text="Combattant" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/karate.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="10.0" top="25.0" />
+               </padding>
+            </Button>
+            <Button id="btn_menu_reglage" fx:id="btn_menu_competition" alignment="CENTER" contentDisplay="TOP" graphicTextGap="5.0" layoutX="10.0" layoutY="254.0" mnemonicParsing="false" onAction="#sceneCompetition" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #34495e;" text="Competition" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/success.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="10.0" top="5.0" />
+               </padding>
+            </Button>
+            <Button id="btn_menu_about" fx:id="btn_menu_club" alignment="CENTER" contentDisplay="TOP" graphicTextGap="5.0" layoutX="10.0" layoutY="333.0" lineSpacing="5.0" mnemonicParsing="false" onAction="#sceneClub" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #34495e;" text="Club" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/club.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="10.0" top="5.0" />
+               </padding>
+            </Button>
+            <Button id="btn_menu_about" fx:id="btn_menu_categorie" alignment="CENTER" contentDisplay="TOP" graphicTextGap="5.0" layoutX="13.0" layoutY="488.0" lineSpacing="5.0" mnemonicParsing="false" onAction="#sceneCategory" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #34495e;" text="Categories" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/grid.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="10.0" top="5.0" />
+               </padding>
+            </Button>
+            <Button id="btn_menu_about" fx:id="btn_menu_emplacement" alignment="CENTER" contentDisplay="TOP" graphicTextGap="5.0" layoutX="13.0" layoutY="526.0" lineSpacing="5.0" mnemonicParsing="false" onAction="#sceneEmplacement" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #34495e;" text="Emplacement" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/tatami.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="10.0" top="5.0" />
+               </padding>
+            </Button>
+            <Button id="btn_menu_about" fx:id="btn_menu_emplacement1" alignment="CENTER" contentDisplay="TOP" graphicTextGap="5.0" layoutX="13.0" layoutY="526.0" lineSpacing="5.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #34495e;" text="Scoreboard" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/scoreboard.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="10.0" top="5.0" />
+               </padding>
+            </Button>
+         </children></VBox>
+      <AnchorPane fx:id="content_pane" layoutX="177.0" layoutY="15.0" prefHeight="672.0" prefWidth="810.0" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="177.0" AnchorPane.topAnchor="15.0" />
+   </children>
+</AnchorPane>

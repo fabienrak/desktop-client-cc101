@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.app.controller.ClubController">
+   <children>
+      <Pane prefHeight="80.0" prefWidth="800.0">
+         <children>
+            <Button fx:id="btn_ajout_club" layoutX="24.0" layoutY="15.0" mnemonicParsing="false" onAction="#showAddClubForm" prefHeight="50.0" prefWidth="219.0" text="Ajouter nouveau Club">
+               <graphic>
+                  <ImageView fitHeight="41.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/club.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btn_load_list" layoutX="545.0" layoutY="15.0" mnemonicParsing="false" onAction="#afficheListeClub" prefHeight="50.0" prefWidth="219.0" text="Charger liste">
+               <graphic>
+                  <ImageView fitHeight="41.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/list.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <TableView fx:id="club_tableview" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="506.0" prefWidth="800.0">
+         <columns>
+            <TableColumn fx:id="col_id" prefWidth="75.0" text="NUMERO" />
+            <TableColumn fx:id="col_nom" prefWidth="75.0" text="NOM" />
+            <TableColumn fx:id="col_adresse" prefWidth="75.0" text="ADRESSE" />
+         </columns>
+      </TableView>
+   </children>
+</VBox>

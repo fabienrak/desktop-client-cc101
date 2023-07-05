@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="250.0" prefWidth="700.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../../css/login.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.app.controller.LoginController">
+    <children>
+          <Pane prefHeight="250.0" prefWidth="700.0" style="-fx-background-color: #34495e;">
+              <children>
+                  <TextField fx:id="username_field" layoutX="407.0" layoutY="69.0" prefHeight="30.0" prefWidth="280.0" style="-fx-border-radius: 20;" styleClass="input_username" stylesheets="@../../css/style.css">
+                      <font>
+                          <Font name="Arial Bold" size="14.0" />
+                      </font>
+                  </TextField>
+                  <PasswordField fx:id="mdp_field" layoutX="407.0" layoutY="128.0" prefHeight="30.0" prefWidth="280.0">
+                      <font>
+                          <Font name="Arial Bold" size="14.0" />
+                      </font>
+                  </PasswordField>
+                  <Label layoutX="243.0" layoutY="64.0" prefHeight="39.0" prefWidth="164.0" text="Nom d'utilisateur :" textFill="WHITE">
+                      <font>
+                          <Font name="Arial Bold" size="14.0" />
+                      </font>
+                  </Label>
+                  <Label layoutX="243.0" layoutY="128.0" prefHeight="30.0" prefWidth="137.0" text="Mot de Passe :" textFill="#fffefe">
+                      <font>
+                          <Font name="Arial Bold" size="14.0" />
+                      </font>
+                  </Label>
+                  <Button id="btn_login" fx:id="btn_login" layoutX="543.0" layoutY="181.0" mnemonicParsing="false" onAction="#switchToDashboard" prefHeight="25.0" prefWidth="144.0" style="-fx-background-color: C80B1B; -fx-background-radius: 20;" text="Se Connecter" textFill="#eee8e8">
+                      <font>
+                          <Font name="Arial Bold" size="14.0" />
+                      </font>
+                  </Button>
+                  <Label layoutX="232.0" layoutY="232.0" prefHeight="17.0" prefWidth="291.0" text="Made with          By Isha Fabian - Copyright  CC101 2023" textFill="WHITE">
+                      <font>
+                          <Font name="Arial" size="10.0" />
+                      </font>
+                  </Label>
+                  <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="281.0" layoutY="230.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                          <Image url="@../../images/heart.png" />
+                      </image>
+                  </ImageView>
+                <ImageView fitHeight="169.0" fitWidth="172.0" layoutX="14.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../images/logo_cc101.png" />
+                    </image>
+                </ImageView>
+            <Separator layoutX="200.0" layoutY="28.0" orientation="VERTICAL" prefHeight="200.0" style="-fx-background-color: C80B1B;" />
+              </children>
+          </Pane>
+    </children>
+</AnchorPane>
