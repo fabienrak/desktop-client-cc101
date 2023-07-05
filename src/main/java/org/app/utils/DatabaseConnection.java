@@ -10,6 +10,8 @@ import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DatabaseConnection {
 
@@ -20,9 +22,9 @@ public class DatabaseConnection {
         try {
             String url_db = "jdbc:sqlite::resource:db-cc101.db";
             connection = DriverManager.getConnection(url_db);
+            Logger.getLogger(connection.getClass().getName()).log(Level.INFO, "[+] DB CONNECT SUCCESS", "DATABASE CONNECTION SUCCESS !!");
         } catch (SQLException exception) {
-            exception.printStackTrace();
-            exception.getMessage();
+            Logger.getLogger(connection.getClass().getName()).log(Level.SEVERE, "DATABASE ERROR", exception.getMessage());
         }
     }
 
