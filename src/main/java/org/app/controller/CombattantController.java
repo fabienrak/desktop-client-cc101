@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import org.app.model.Combattant;
 import org.app.utils.DatabaseConnection;
 import org.app.utils.Utils;
+import org.w3c.dom.Document;
 
 import java.io.IOException;
 import java.net.URL;
@@ -292,6 +293,10 @@ public class CombattantController implements Initializable {
             sortedList.comparatorProperty().bind(table_combattant.comparatorProperty());
             table_combattant.setItems(sortedList);
         }
+    }
+
+    public void exportPDF(){
+        Document 
     }
 
     @Override
