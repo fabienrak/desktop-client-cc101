@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.app.controller.CompetitionController">
+<VBox fx:id="root_layout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.app.controller.CompetitionController">
     <children>
         <Pane prefHeight="80.0" prefWidth="800.0">
             <children>
@@ -26,9 +26,9 @@
                         <Font name="Arial Bold" size="14.0" />
                     </font>
                 </Button>
-                <Button fx:id="btn_load_list_competition" layoutX="601.0" layoutY="15.0" mnemonicParsing="false" onAction="#afficheListeCompetition" prefHeight="50.0" prefWidth="163.0" text="Charger liste">
+                <Button fx:id="btn_load_list_competition" layoutX="621.0" layoutY="15.0" mnemonicParsing="false" onAction="#afficheListeCompetition" prefHeight="50.0" prefWidth="163.0" text="Charger liste">
                     <graphic>
-                        <ImageView fitHeight="41.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="41.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../../images/list.png" />
                             </image>
@@ -38,10 +38,10 @@
                         <Font name="Arial Bold" size="14.0" />
                     </font>
                 </Button>
-            <ProgressIndicator fx:id="tableview_progress" layoutX="537.0" layoutY="14.0" />
+            <ProgressBar fx:id="progressBar" layoutX="339.0" layoutY="30.0" prefHeight="20.0" prefWidth="235.0" progress="0.0" visible="false" />
             </children>
         </Pane>
-        <TableView fx:id="competition_tableview" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="506.0" prefWidth="800.0">
+        <TableView fx:id="competition_tableview" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="509.0" prefWidth="800.0">
             <columns>
                 <TableColumn fx:id="col_id_competition" prefWidth="89.0" text="ID" />
                 <TableColumn fx:id="col_nom_competition" prefWidth="136.0" text="NOM COMPETITION" />
