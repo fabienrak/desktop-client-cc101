@@ -4,6 +4,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,6 +22,7 @@ import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class CompetitionController {
 
@@ -52,6 +54,8 @@ public class CompetitionController {
     private Button btn_enregistrer_competition;
     @FXML
     private Button btn_annuler_ajout_competition;
+    @FXML
+    private ProgressIndicator tableview_progress;
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
     Connection connection = DatabaseConnection.getConnection();
@@ -156,7 +160,8 @@ public class CompetitionController {
      */
     @FXML
     private void afficheListeCompetition(){
-        ObservableList<Competition> data_competition = getListCompetition();
+        /*======================== MANDEHA ============================*/
+        /*ObservableList<Competition> data_competition = getListCompetition();
         if (data_competition.size() == 0){
             appUtils.warningAlertDialog("AVERTISSEMENT","aucune donnees");
         } else {
@@ -166,6 +171,45 @@ public class CompetitionController {
             col_date_fin_competition.setCellValueFactory(new PropertyValueFactory<>("date_fin"));
             col_lieu_competition.setCellValueFactory(new PropertyValueFactory<>("lieu_competition"));
             competition_tableview.setItems(data_competition);
-        }
+        }*/
+
+        Task<ObservableList<Competition>> get_competition_task = new Task<>() {
+            @Override
+            protected ObservableList<Competition> call() {
+                final int TIME_MAX = 100;
+                ObservableList<Competition> list_competition = FXCollections.observableArrayList();
+                String liste_competition_query = "SELECT * FROM competition";
+                try {
+                    preparedStatement = connection.prepareStatement(liste_competition_query);
+                    resultSet = preparedStatement.executeQuery();
+                    while (resultSet.next()) {
+                        Competition competition = new Competition();
+                        competition.setId_competition(resultSet.getInt("id_cpt"));
+                        competition.setNom_competition(resultSet.getString("nom_competition"));
+                        competition.setDate_debut(resultSet.getString("date_debut"));
+                        competition.setDate_fin(resultSet.getString("date_fin"));
+                        competition.setLieu_competition(resultSet.getString("lieu_competition"));
+                        list_competition.add(competition);
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                for (int i = 1; i < TIME_MAX; i++) {
+                    updateProgress(i, TIME_MAX);
+                }
+                return list_competition;
+            }
+        };
+
+        get_competition_task.setOnSucceeded(e -> competition_tableview.getItems().setAll(get_competition_task.getValue()));
+        get_competition_task.setOnFailed(e -> get_competition_task.getException().printStackTrace());
+        tableview_progress.progressProperty().bind(get_competition_task.progressProperty());
+        new Thread(get_competition_task).start();
+
+        col_id_competition.setCellValueFactory(new PropertyValueFactory<>("id_competition"));
+        col_nom_competition.setCellValueFactory(new PropertyValueFactory<>("nom_competition"));
+        col_date_debut_competition.setCellValueFactory(new PropertyValueFactory<>("date_debut"));
+        col_date_fin_competition.setCellValueFactory(new PropertyValueFactory<>("date_fin"));
+        col_lieu_competition.setCellValueFactory(new PropertyValueFactory<>("lieu_competition"));
     }
 }
