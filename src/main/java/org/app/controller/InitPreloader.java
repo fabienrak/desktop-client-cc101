@@ -12,6 +12,7 @@ import org.app.utils.DatabaseConnection;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,8 +36,12 @@ public class InitPreloader implements Initializable {
             try {
                 Thread.sleep(3000);
                 Connection connection = DatabaseConnection.getConnection();
+                connection.getClientInfo();
+                message[0] = "CLIENT : " + connection.getClientInfo();
                 //Thread.currentThread();
             } catch (InterruptedException e) {
+                Logger.getLogger(InitPreloader.class.getName()).log(Level.SEVERE, "ERREUR",e);
+            } catch (SQLException e) {
                 Logger.getLogger(InitPreloader.class.getName()).log(Level.SEVERE, "ERREUR",e);
             }
         });

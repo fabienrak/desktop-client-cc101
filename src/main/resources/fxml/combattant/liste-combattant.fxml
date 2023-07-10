@@ -17,7 +17,7 @@
    <children>
       <Pane prefHeight="79.0" prefWidth="721.0" style="-fx-background-color: #bdc3c7;">
          <children>
-            <Button fx:id="btn_ajout_combattant" alignment="CENTER" layoutX="52.0" layoutY="19.0" mnemonicParsing="false" onAction="#afficheAjoutForm" prefHeight="41.0" prefWidth="135.0" text="Ajouter">
+            <Button fx:id="btn_ajout_combattant" alignment="CENTER" layoutX="52.0" layoutY="19.0" mnemonicParsing="false" onAction="#afficheAjoutForm" prefHeight="41.0" prefWidth="135.0" style="-fx-background-radius: 20;" text="Ajouter">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
@@ -34,7 +34,7 @@
                   <Font name="Arial" size="14.0" />
                </font>
             </TextField>
-            <Button alignment="CENTER" layoutX="582.0" layoutY="19.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="135.0" text="Recherche">
+            <Button alignment="CENTER" layoutX="582.0" layoutY="19.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="135.0" style="-fx-background-radius: 20;" text="Recherche">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
@@ -48,13 +48,14 @@
             </Button>
          </children>
       </Pane>
-      <TableView fx:id="table_combattant" prefHeight="200.0" prefWidth="200.0">
+      <TableView fx:id="table_combattant" prefHeight="498.0" prefWidth="780.0">
          <columns>
             <TableColumn fx:id="col_id_combattant" prefWidth="75.0" text="NUMERO" />
             <TableColumn fx:id="col_nom_combattant" prefWidth="75.0" text="NOM" />
             <TableColumn fx:id="col_prenom_combattant" prefWidth="75.0" text="PRENOM" />
             <TableColumn fx:id="col_date_naissance_combattant" prefWidth="165.0" text="DATE  DE  NAISSANCE" />
-            <TableColumn fx:id="col_genre_combattant" prefWidth="99.0" text="GENRE" />
+            <TableColumn fx:id="col_poids_combattant" prefWidth="112.0" text="POIDS ACTUEL" />
+            <TableColumn fx:id="col_genre_combattant" prefWidth="152.0" text="GENRE" />
             <TableColumn fx:id="col_club_combattant" prefWidth="99.0" text="CLUB" />
             <TableColumn fx:id="col_grade_combattant" prefWidth="104.0" text="GRADE" />
             <TableColumn fx:id="col_categorie_combattant" prefWidth="160.0" text="CATEGORIE" />
@@ -63,7 +64,7 @@
             <Insets left="5.0" right="5.0" top="15.0" />
          </padding>
       </TableView>
-      <Pane prefHeight="72.0" prefWidth="722.0" style="-fx-background-color: #bdc3c7;">
+      <Pane prefHeight="80.0" prefWidth="780.0" style="-fx-background-color: #bdc3c7;">
          <children>
             <Label layoutX="61.0" layoutY="28.0" prefHeight="17.0" prefWidth="64.0" text="Tri :">
                <font>
@@ -90,7 +91,7 @@
                   <Image url="@../../images/swap.png" />
                </image>
             </ImageView>
-            <Button fx:id="btn_load_list_combattant" alignment="CENTER" layoutX="603.0" layoutY="13.0" mnemonicParsing="false" onAction="#afficheListeCombattant" prefHeight="41.0" prefWidth="158.0" text="Charger liste">
+            <Button fx:id="btn_load_list_combattant" alignment="CENTER" layoutX="603.0" layoutY="13.0" mnemonicParsing="false" onAction="#afficheListeCombattant" prefHeight="41.0" prefWidth="142.0" style="-fx-background-radius: 20;" text="Charger liste">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
@@ -102,7 +103,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btn_export_pdf" alignment="CENTER" layoutX="393.0" layoutY="13.0" mnemonicParsing="false" onAction="#afficheListeCombattant" prefHeight="41.0" prefWidth="158.0" text="Exporter PDF">
+            <Button fx:id="btn_export_pdf" alignment="CENTER" layoutX="393.0" layoutY="13.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="148.0" style="-fx-background-radius: 20;" text="Exporter PDF">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>

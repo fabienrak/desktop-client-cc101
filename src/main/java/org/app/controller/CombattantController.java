@@ -67,6 +67,8 @@ public class CombattantController implements Initializable {
     @FXML
     private TableColumn<Combattant, StringProperty> col_date_naissance_combattant;
     @FXML
+    private TableColumn<Combattant, IntegerProperty> col_poids_combattant;
+    @FXML
     private TableColumn<Combattant, StringProperty> col_genre_combattant;
     @FXML
     private TableColumn<Combattant, StringProperty> col_club_combattant;
@@ -258,15 +260,32 @@ public class CombattantController implements Initializable {
         if (liste_combattant.size() == 0){
             appUtils.warningAlertDialog("AVERTISSEMENT","Aucune donnees");
         } else {
+
+            ContextMenu menu = new ContextMenu();
+            MenuItem menu_edit = new MenuItem("EDITER");
+            MenuItem menu_supprimer = new MenuItem("SUPPRIMER");
+
+            menu.getItems().addAll(menu_edit, menu_supprimer);
+            table_combattant.setContextMenu(menu);
+
+            menu_supprimer.setOnAction(actionEvent -> {
+                table_combattant.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+                Combattant combattant_selectionner = (Combattant) table_combattant.getSelectionModel().getSelectedItem();
+                deleteCombattant(combattant_selectionner.getId_combattant());
+            });
+
             col_id_combattant.setCellValueFactory(new PropertyValueFactory<>("id_combattant"));
             col_nom_combattant.setCellValueFactory(new PropertyValueFactory<>("nom_combattant"));
             col_prenom_combattant.setCellValueFactory(new PropertyValueFactory<>("prenom_combattant"));
             col_date_naissance_combattant.setCellValueFactory(new PropertyValueFactory<>("date_naissance_combattant"));
+            col_poids_combattant.setCellValueFactory(new PropertyValueFactory<>("poids_combattant"));
             col_genre_combattant.setCellValueFactory(new PropertyValueFactory<>("genre_combattant"));
             col_club_combattant.setCellValueFactory(new PropertyValueFactory<>("nom_club_combattant"));
             col_grade_combattant.setCellValueFactory(new PropertyValueFactory<>("grade_combattant"));
             col_categorie_combattant.setCellValueFactory(new PropertyValueFactory<>("nom_categorie_combattant"));
             table_combattant.setItems(liste_combattant);
+
+            table_combattant.refresh();
 
             FilteredList<Combattant> filteredList = new FilteredList<>(liste_combattant, b -> true);
             txt_search.textProperty().addListener((observableValue, oldValue, newValue) -> {
@@ -295,8 +314,50 @@ public class CombattantController implements Initializable {
         }
     }
 
-    public void exportPDF(){
-        Document 
+    /**
+     * Supprimer combattant
+     * @param id_combattant
+     */
+    public void deleteCombattant(int id_combattant) {
+        String delete_combattant_query = "DELETE FROM combattant WHERE id_cb = ?";
+        try{
+            preparedStatement = connection.prepareStatement(delete_combattant_query);
+            preparedStatement.setInt(1, id_combattant);
+            if (preparedStatement.executeUpdate() == 0){
+                appUtils.warningAlertDialog("AVERTISSEMENT","Veuillez reessayer");
+            } else {
+                appUtils.successAlertDialog("SUCCESS","Combattant " + id_combattant + " Supprimer");
+                table_combattant.refresh();
+            }
+        } catch (SQLException exception){
+            exception.printStackTrace();
+        }
+    }
+
+    /**
+     * Editer Combattant
+     */
+    public void editerCombattant(int id_combattant){
+
+        /*
+        String edit_combattant_query = "UPDATE nom, prenom, date_naissance, genre, poids, grade, nom_club, nom_categorie " +
+                "FROM combattant " +
+                "INNER JOIN club ON combattant.club_id=id_clb " +
+                "INNER JOIN categorie_poids ON combattant.categorie_id=id_cp";*/
+
+        String edit_combattant_query = "UPDATE nom, prenom, date_naissance, genre, poids, grade, nom_club, nom_categorie " +
+                "SET nom = ?, prenom = ?, date_naissance =  ?, genre = ?, poids = ?, grade = ?, nom_club = ?, nom_categorie = ? WHERE id_cb = ?";
+        try {
+            preparedStatement = connection.prepareStatement(edit_combattant_query);
+            preparedStatement.executeUpdate();
+            if (preparedStatement.executeUpdate() == 0){
+                appUtils.warningAlertDialog("AVERTISSEMENT","Veuillez reessayer");
+            }  else {
+                appUtils.successAlertDialog("SUCCES","Donner editeravec success");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
