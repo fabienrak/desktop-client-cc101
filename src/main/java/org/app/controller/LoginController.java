@@ -39,14 +39,14 @@ public class LoginController {
      * @throws IOException
      */
     @FXML
-    private void switchToDashboard() throws IOException {
-        //if (event.getSource() == btn_login){
+    private void switchToDashboard(ActionEvent actionEvent) throws IOException {
+        if (actionEvent.getSource() == btn_login){
             stage = (Stage) btn_login.getScene().getWindow();
             parent = FXMLLoader.load(getClass().getResource("/fxml/home/home.fxml"));
             Scene scene = new Scene(parent);
             stage.setScene(scene);
             stage.show();
-        //}
+        }
     }
 
     /**
@@ -55,14 +55,14 @@ public class LoginController {
     @FXML
     private void verificationManager(){
         String manager_query = "SELECT username, password FROM manager";
-        if (verifyInfo() == true){
+        if (verifyInfo()){
             try{
                 preparedStatement = connection.prepareStatement(manager_query);
                 resultSet = preparedStatement.executeQuery();
                 if(resultSet.next()){
                     if (username_field.getText().equals(resultSet.getString("username"))){
                         if (mdp_field.getText().equals(resultSet.getString("password"))){
-                            switchToDashboard();
+                            //switchToDashboard(actionEvent);
                         } else {
                             appUtils.erreurAlertDialog("ERREUR","Mot de passe non valide");
                         }
@@ -71,8 +71,6 @@ public class LoginController {
                     }
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
                 e.printStackTrace();
             }
         }

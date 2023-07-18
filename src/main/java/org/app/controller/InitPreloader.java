@@ -39,13 +39,11 @@ public class InitPreloader implements Initializable {
                 connection.getClientInfo();
                 message[0] = "CLIENT : " + connection.getClientInfo();
                 //Thread.currentThread();
-            } catch (InterruptedException e) {
-                Logger.getLogger(InitPreloader.class.getName()).log(Level.SEVERE, "ERREUR",e);
-            } catch (SQLException e) {
+            } catch (InterruptedException | SQLException e) {
                 Logger.getLogger(InitPreloader.class.getName()).log(Level.SEVERE, "ERREUR",e);
             }
         });
-
+    /*
         Thread thread_function_b = new Thread(() -> {
             message[0] = "Fonction Faharoa";
             Platform.runLater(() -> lbl_loading.setText(message[0]));
@@ -54,37 +52,37 @@ public class InitPreloader implements Initializable {
             } catch (InterruptedException e) {
                 Logger.getLogger(InitPreloader.class.getName()).log(Level.SEVERE, "ERREUR",e);
             }
-        });
+        });*/
 
         Thread thread_function_login = new Thread(() -> {
             message[0] = "Page de connexion ...";
             Platform.runLater(
-                    () -> {
-                        lbl_loading.setText(message[0]);
-                        try {
-                            Thread.sleep(2000);
-                            Stage stage = new Stage();
-                            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/auth/login.fxml"));
-                            Scene scene = new Scene(fxmlLoader.load());
-                            scene.getStylesheets().add(this.getClass().getResource("/css/style.css").toExternalForm());
-                            stage.setTitle("COMBAT CLUB 101");
-                            stage.setResizable(false);
-                            stage.setScene(scene);
-                            stage.show();
-                        } catch (InterruptedException e) {
-                            Logger.getLogger(InitPreloader.class.getName()).log(Level.SEVERE, "ERREUR THREAD",e);
-                        } catch (IOException e) {
-                            Logger.getLogger(InitPreloader.class.getName()).log(Level.SEVERE, "ERREUR IO",e);
-                        }
+                () -> {
+                    lbl_loading.setText(message[0]);
+                    try {
+                        Thread.sleep(2000);
+                        Stage stage = new Stage();
+                        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/auth/login.fxml"));
+                        Scene scene = new Scene(fxmlLoader.load());
+                        scene.getStylesheets().add(this.getClass().getResource("/css/style.css").toExternalForm());
+                        stage.setTitle("COMBAT CLUB 101");
+                        stage.setResizable(false);
+                        stage.setScene(scene);
+                        stage.show();
+                    } catch (InterruptedException e) {
+                        Logger.getLogger(InitPreloader.class.getName()).log(Level.SEVERE, "ERREUR THREAD",e);
+                    } catch (IOException e) {
+                        Logger.getLogger(InitPreloader.class.getName()).log(Level.SEVERE, "ERREUR IO",e);
                     }
+                }
             );
         });
 
         try {
             thread_function_load_database.start();
             thread_function_load_database.join();
-            thread_function_b.start();
-            thread_function_b.join();
+            /*thread_function_b.start();
+            thread_function_b.join();*/
             thread_function_login.start();
             thread_function_login.join();
         } catch (InterruptedException e) {

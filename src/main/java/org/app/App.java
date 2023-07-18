@@ -28,8 +28,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         App.primaryStage = stage;
-
-        //Connection connection = DatabaseConnection.getConnection();
-
+        stage.setX(200);
+        stage.setY(200);
     }
 }

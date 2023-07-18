@@ -33,7 +33,7 @@ public class HomeController {
     private void sceneCombattant(ActionEvent actionEvent) throws IOException {
         Node node_source = (Node) actionEvent.getSource();
         stage = (Stage) node_source.getScene().getWindow();
-        Parent parent = FXMLLoader.load(getClass().getResource("/fxml/combattant/liste-combattant.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("/fxml/combattant/combattants.fxml"));
         stage.setTitle("GESTION COMBATTANT");
         content_pane.getChildren().removeAll();
         content_pane.getChildren().setAll(parent);
@@ -43,7 +43,7 @@ public class HomeController {
     private void sceneCategory(ActionEvent actionEvent) throws IOException {
         Node node_source = (Node) actionEvent.getSource();
         stage = (Stage) node_source.getScene().getWindow();
-        Parent parent = FXMLLoader.load(getClass().getResource("/fxml/categories/liste-categories.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("/fxml/categories/categorie.fxml"));
         stage.setTitle("GESTION CATEGORIES");
         content_pane.getChildren().removeAll();
         content_pane.getChildren().setAll(parent);
@@ -53,7 +53,7 @@ public class HomeController {
     private void sceneCompetition(ActionEvent actionEvent) throws IOException {
         Node node_source = (Node) actionEvent.getSource();
         stage = (Stage) node_source.getScene().getWindow();
-        Parent parent = FXMLLoader.load(getClass().getResource("/fxml/competition/liste-competition.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("/fxml/competition/competition.fxml"));
         stage.setTitle("GESTION COMPETITION");
         content_pane.getChildren().removeAll();
         content_pane.getChildren().setAll(parent);
@@ -63,7 +63,7 @@ public class HomeController {
     private void sceneClub(ActionEvent actionEvent) throws IOException {
         Node node_source = (Node) actionEvent.getSource();
         stage = (Stage) node_source.getScene().getWindow();
-        Parent parent = FXMLLoader.load(getClass().getResource("/fxml/club/liste-club.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("/fxml/club/club.fxml"));
         stage.setTitle("GESTION CLUB");
         content_pane.getChildren().removeAll();
         content_pane.getChildren().setAll(parent);
@@ -73,7 +73,7 @@ public class HomeController {
     private void sceneEmplacement(ActionEvent actionEvent) throws IOException {
         Node node_source = (Node) actionEvent.getSource();
         stage = (Stage) node_source.getScene().getWindow();
-        Parent parent = FXMLLoader.load(getClass().getResource("/fxml/emplacement/liste-emplacement.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("/fxml/emplacement/emplacement.fxml"));
         stage.setTitle("GESTION EMPLACEMENT");
         content_pane.getChildren().removeAll();
         content_pane.getChildren().setAll(parent);
