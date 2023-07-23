@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.app.controller.ScoreboardController">
+   <children>
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: red;">
+         <children>
+            <Label fx:id="label_combattant_1" layoutX="39.0" layoutY="32.0" prefHeight="131.0" prefWidth="195.0" text="Combattant 1" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: blue;">
+         <children>
+            <Label fx:id="label_combattant_2" layoutX="37.0" layoutY="35.0" prefHeight="131.0" prefWidth="195.0" text="Combattant 2" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="10.0" layoutY="210.0" prefHeight="220.0" prefWidth="1050.0" style="-fx-background-color: yellow;">
+         <children>
+            <Label layoutX="41.0" layoutY="45.0" prefHeight="131.0" prefWidth="195.0" text="TEMPS :">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</VBox>

@@ -25,8 +25,9 @@ public class CombattantService {
                 return new Task<>() {
                     @Override
                     protected List<Combattants> call() {
-                        String liste_combattant_query = "SELECT id_cb, nom, prenom, date_naissance, genre, poids, grade, nom_club, nom_categorie FROM combattant INNER JOIN club ON combattant.club_id=id_clb INNER JOIN categorie_poids ON combattant.categorie_id=id_cp";
+                        String liste_combattant_query = "SELECT id_cb, nom, prenom, date_naissance, genre, poids, grade, nom_club, categorie FROM combattant INNER JOIN club ON combattant.club_id=id_clb INNER JOIN categorie_poids ON combattant.categorie_id=id_cp";
                         List<Combattants> liste_combattants = new ArrayList<>();
+
                         try {
                             preparedStatement = connection.prepareStatement(liste_combattant_query);
                             resultSet = preparedStatement.executeQuery();
@@ -40,7 +41,7 @@ public class CombattantService {
                                         resultSet.getInt("poids"),
                                         resultSet.getString("grade"),
                                         resultSet.getString("nom_club"),
-                                        resultSet.getString("nom_categorie"));
+                                        resultSet.getString("categorie"));
                                 liste_combattants.add(combattant);
                             }
 
@@ -67,10 +68,10 @@ public class CombattantService {
                         try {
                             preparedStatement = connection.prepareStatement(last_id_combattant_query);
                             resultSet = preparedStatement.executeQuery();
-                            while (resultSet.next()){
+                            while (resultSet.next()) {
                                 _return_value = resultSet.getInt("seq");
                             }
-                        } catch (SQLException sqlException){
+                        } catch (SQLException sqlException) {
                             sqlException.printStackTrace();
                         }
                         return _return_value;
@@ -86,26 +87,26 @@ public class CombattantService {
             protected Task<Boolean> createTask() {
                 return new Task<Boolean>() {
                     @Override
-                    protected Boolean call() throws Exception {
+                    protected Boolean call() {
                         String ajout_combattant_query = "INSERT INTO combattant (nom, prenom, date_naissance, genre, poids, grade, club_id, categorie_id) VALUES(?,?,?,?,?,?,?,?)";
 
                         try {
-                            preparedStatement  = connection.prepareStatement(ajout_combattant_query);
-                            preparedStatement.setString(1,combattants.getNom_combattant());
-                            preparedStatement.setString(2,combattants.getPrenom_combattant());
-                            preparedStatement.setString(3,combattants.getDate_naissance_combattant());
-                            preparedStatement.setString(4,combattants.getGenre_combattant());
-                            preparedStatement.setInt(5,combattants.getPoids_combattant());
-                            preparedStatement.setString(6,combattants.getGrade_combattant());
+                            preparedStatement = connection.prepareStatement(ajout_combattant_query);
+                            preparedStatement.setString(1, combattants.getNom_combattant());
+                            preparedStatement.setString(2, combattants.getPrenom_combattant());
+                            preparedStatement.setString(3, combattants.getDate_naissance_combattant());
+                            preparedStatement.setString(4, combattants.getGenre_combattant());
+                            preparedStatement.setInt(5, combattants.getPoids_combattant());
+                            preparedStatement.setString(6, combattants.getGrade_combattant());
                             preparedStatement.setInt(7, combattants.getId_club_combattant());
-                            preparedStatement.setInt(8,combattants.getId_category_combattant());
+                            preparedStatement.setInt(8, combattants.getId_category_combattant());
 
                             preparedStatement.executeUpdate();
                             return true;
-                        } catch (SQLException sqlException){
+                        } catch (SQLException sqlException) {
                             sqlException.printStackTrace();
+                            return false;
                         }
-                        return false;
                     }
                 };
             }
@@ -113,22 +114,22 @@ public class CombattantService {
     }
 
     public Service<Boolean> deleteCombattant(Combattants combattants){
-        return new Service<Boolean>(){
+        return new Service<>() {
             @Override
             protected Task<Boolean> createTask() {
-                return new Task<Boolean>() {
+                return new Task<>() {
                     @Override
-                    protected Boolean call() throws Exception {
+                    protected Boolean call() {
                         String delete_combattant_query = "DELETE FROM combattant WHERE id_cb = ?";
                         try {
                             preparedStatement = connection.prepareStatement(delete_combattant_query);
-                            preparedStatement.setInt(1,combattants.getId_combattant());
+                            preparedStatement.setInt(1, combattants.getId_combattant());
                             preparedStatement.executeUpdate();
                             return true;
-                        } catch (SQLException sqlException){
+                        } catch (SQLException sqlException) {
                             sqlException.printStackTrace();
+                            return false;
                         }
-                        return false;
                     }
                 };
             }

@@ -107,7 +107,7 @@
                   <Insets left="10.0" top="5.0" />
                </padding>
             </Button>
-            <Button id="btn_menu_about" fx:id="btn_menu_emplacement1" alignment="CENTER" contentDisplay="TOP" graphicTextGap="5.0" layoutX="13.0" layoutY="526.0" lineSpacing="5.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #34495e;" text="Scoreboard" textFill="WHITE">
+            <Button id="btn_menu_about" fx:id="btn_menu_emplacement1" alignment="CENTER" contentDisplay="TOP" graphicTextGap="5.0" layoutX="13.0" layoutY="526.0" lineSpacing="5.0" mnemonicParsing="false" onAction="#sceneScoreboardManager" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #34495e;" text="Scoreboard" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>

@@ -20,11 +20,9 @@ import org.app.utils.DatabaseConnection;
 import org.app.utils.Utils;
 import org.controlsfx.control.MaskerPane;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -82,11 +80,10 @@ public class CombattantsController implements Initializable {
         if(txt_nom_combattant.getText().isEmpty() ||
                 txt_prenom_combattant.getText().isEmpty() ||
                 txt_poids_combattant.getText().isEmpty() ||
-                txt_search_combattant.getText().isEmpty() ||
-                combobox_genre_combattant.getItems().isEmpty() ||
-                combobox_club_combattant.getItems().isEmpty() ||
-                combobox_categorie_combattant.getItems().isEmpty() ||
-                combobox_grade_combattant.getItems().isEmpty()
+                combobox_genre_combattant.getValue().toString().isEmpty() ||
+                combobox_club_combattant.getValue().toString().isEmpty() ||
+                combobox_categorie_combattant.getValue().toString().isEmpty() ||
+                combobox_grade_combattant.getValue().toString().isEmpty()
         ){
             appUtils.warningAlertDialog("AVERTISSEMENT","Veuillez completer tous les champs");
             return false;
@@ -96,11 +93,11 @@ public class CombattantsController implements Initializable {
     public void clearForm(){
         txt_nom_combattant.clear();
         txt_prenom_combattant.clear();
-        combobox_genre_combattant.getItems().clear();
+        combobox_genre_combattant.setValue(null);
         txt_poids_combattant.clear();
-        combobox_grade_combattant.getItems().clear();
-        combobox_club_combattant.getItems().clear();
-        combobox_categorie_combattant.getItems().clear();
+        combobox_grade_combattant.setValue(null);
+        combobox_club_combattant.setValue(null);
+        combobox_categorie_combattant.setValue(null);
     }
     public void handleAddCombattantButton(){
         if (handleValidateForm()){
@@ -114,7 +111,6 @@ public class CombattantsController implements Initializable {
                     getIdClubCombattant(),
                     getIdCategorieCombattant()
             );
-
             Service<Boolean> addNewCombattantService = combattantService.addNewCombattant(nouveau_combattants);
             addNewCombattantService.setOnSucceeded(onSucceededEvent -> {
                 if(addNewCombattantService.getValue()){
@@ -123,16 +119,23 @@ public class CombattantsController implements Initializable {
                         nouveau_combattants.setId_combattant(getLastIdCombattant.getValue());
                         nouveau_combattants.setClub_combattant(getNomClubCombattant());
                         nouveau_combattants.setCategories_combattant(getNomCategorieCombattant());
-                        tableview_combattant.getItems().add(nouveau_combattants);
+                        System.out.println("CLUB CBT : " + getNomClubCombattant() + " CATEGORIE CBT : " + getNomCategorieCombattant());
+                        try{
+                            tableview_combattant.getItems().add(nouveau_combattants);
+                        } catch (Exception e){
+                            e.printStackTrace();
+                        }
                         appUtils.successAlertDialog("SUCCESS"," " + nouveau_combattants.getPrenom_combattant()+" Ajouter");
                         clearForm();
+                    });
+                    getLastIdCombattant.setOnFailed((t) -> {
+                        getLastIdCombattant.getException().printStackTrace();
+                        System.out.println("ERREUR DELETE CBT");
                     });
                     getLastIdCombattant.start();
                 }
             });
-            addNewCombattantService.setOnFailed(onFailedEvent -> {
-                addNewCombattantService.getException().printStackTrace();
-            });
+            addNewCombattantService.setOnFailed((onFailedEvent) -> addNewCombattantService.getException().printStackTrace());
             addNewCombattantService.start();
         }
     }
@@ -152,7 +155,7 @@ public class CombattantsController implements Initializable {
     }
 
     public int getIdCategorieCombattant() {
-        String get_id_categorie_query = "SELECT id_cp FROM categorie_poids WHERE nom_categorie=\'" + combobox_categorie_combattant.getValue().toString() + "\'";
+        String get_id_categorie_query = "SELECT id_cp FROM categorie_poids WHERE categorie=\'" + combobox_categorie_combattant.getValue().toString() + "\'";
         int id_categorie = 0;
         try {
             preparedStatement = connection.prepareStatement(get_id_categorie_query);
@@ -179,12 +182,12 @@ public class CombattantsController implements Initializable {
     }
 
     public String getNomCategorieCombattant() {
-        String get_categorie_query = "SELECT nom_categorie FROM categorie_poids WHERE id_cp=\'" + getIdCategorieCombattant() + "\'";
+        String get_categorie_query = "SELECT categorie FROM categorie_poids WHERE id_cp=\'" + getIdCategorieCombattant() + "\'";
         String nom_categorie = "";
         try {
             preparedStatement = connection.prepareStatement(get_categorie_query);
             resultSet = preparedStatement.executeQuery();
-            nom_categorie = resultSet.getString("nom_categorie");
+            nom_categorie = resultSet.getString("categorie");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -195,13 +198,21 @@ public class CombattantsController implements Initializable {
     public void handleDeleteMenu(){
         Combattants combattants_effacer = tableview_combattant.getSelectionModel().getSelectedItem();
         Service<Boolean> deleteCombattantService = combattantService.deleteCombattant(combattants_effacer);
-        deleteCombattantService.setOnSucceeded(setOnSucceed -> {
+        deleteCombattantService.setOnSucceeded((setOnSucceed) -> {
             if (deleteCombattantService.getValue()){
-                tableview_combattant.getItems().remove(combattants_effacer);
+                // TODO Debug here : tableview_combattant remove deleted data in list
+                try{
+                    tableview_combattant.getItems().remove(combattants_effacer);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 appUtils.successAlertDialog("SUCCESS","Combattant "+combattants_effacer.getPrenom_combattant()+ " Effacer");
             } else {
                 appUtils.erreurAlertDialog("ERREUR","Erreur lors de la suppression, veuillez reessayer");
             }
+        });
+        deleteCombattantService.setOnFailed(setOnFailed -> {
+            deleteCombattantService.getException().getMessage();
         });
         deleteCombattantService.start();
     }
@@ -311,6 +322,9 @@ public class CombattantsController implements Initializable {
 
                 masker_tableview.setDisable(true);
                 masker_tableview.toBack();
+            });
+            serviceCombattant.setOnFailed((setOnFailed) -> {
+                serviceCombattant.getException().getMessage();
             });
             serviceCombattant.start();
         });

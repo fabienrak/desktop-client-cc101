@@ -6,8 +6,8 @@ module org.app.combatclub101 {
     requires org.controlsfx.controls;
     requires java.sql;
 
-    opens org.app to javafx.fxml, javafx.graphics;
-    opens org.app.controller to javafx.fxml;
+    opens org.app to javafx.fxml, javafx.graphics, java.base;
+    opens org.app.controller to javafx.fxml, javafx.base;
     opens org.app.model to javafx.base;
     exports org.app;
 

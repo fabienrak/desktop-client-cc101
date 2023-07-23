@@ -88,6 +88,9 @@ public class ClubsController implements Initializable {
                 appUtils.erreurAlertDialog("ERREUR","Erreur lors de la suppression du club " + clubs_a_effacer.getNom_club());
             }
         });
+        deleteClubService.setOnFailed(setOnFailedEvent -> {
+            deleteClubService.getException().getMessage();
+        });
         deleteClubService.start();
     }
 

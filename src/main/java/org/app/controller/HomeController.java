@@ -79,4 +79,14 @@ public class HomeController {
         content_pane.getChildren().setAll(parent);
     }
 
+    @FXML
+    private void sceneScoreboardManager(ActionEvent actionEvent) throws IOException {
+        Node node_source = (Node) actionEvent.getSource();
+        stage = (Stage) node_source.getScene().getWindow();
+        Parent parent = FXMLLoader.load(getClass().getResource("/fxml/scoreboard/scoreboard-manager.fxml"));
+        stage.setTitle("SCOREBOARD");
+        content_pane.getChildren().removeAll();
+        content_pane.getChildren().setAll(parent);
+    }
+
 }
