@@ -6,25 +6,38 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.concurrent.Service;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.app.model.Categorie;
-import org.app.model.Clubs;
-import org.app.model.Combattants;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.TilePane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import org.app.model.*;
 import org.app.services.CategorieService;
 import org.app.services.ClubService;
 import org.app.services.CombattantService;
+import org.app.services.EmplacementService;
 import org.app.utils.DatabaseConnection;
 import org.app.utils.Utils;
 import org.controlsfx.control.MaskerPane;
 import java.net.URL;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.time.LocalDate;
+import java.util.*;
 
 public class CombattantsController implements Initializable {
 
@@ -71,6 +84,7 @@ public class CombattantsController implements Initializable {
     @FXML
     private MaskerPane masker_tableview;
     CombattantService combattantService = new CombattantService();
+    EmplacementService emplacementService = new EmplacementService();
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
     Connection connection = DatabaseConnection.getConnection();
@@ -139,7 +153,6 @@ public class CombattantsController implements Initializable {
             addNewCombattantService.start();
         }
     }
-
     public int getIdClubCombattant() {
         String get_club_query = "SELECT id_clb FROM club WHERE nom_club=\'" + combobox_club_combattant.getValue().toString() + "\'";
         int id_club = 0;
@@ -153,7 +166,6 @@ public class CombattantsController implements Initializable {
         }
         return id_club;
     }
-
     public int getIdCategorieCombattant() {
         String get_id_categorie_query = "SELECT id_cp FROM categorie_poids WHERE categorie=\'" + combobox_categorie_combattant.getValue().toString() + "\'";
         int id_categorie = 0;
@@ -166,7 +178,6 @@ public class CombattantsController implements Initializable {
         }
         return id_categorie;
     }
-
     public String getNomClubCombattant() {
         String get_club_query = "SELECT nom_club FROM club WHERE id_clb=\'" + getIdClubCombattant() + "\'";
         String nom_club = "";
@@ -180,7 +191,6 @@ public class CombattantsController implements Initializable {
         }
         return nom_club;
     }
-
     public String getNomCategorieCombattant() {
         String get_categorie_query = "SELECT categorie FROM categorie_poids WHERE id_cp=\'" + getIdCategorieCombattant() + "\'";
         String nom_categorie = "";
@@ -194,7 +204,6 @@ public class CombattantsController implements Initializable {
         }
         return nom_categorie;
     }
-
     public void handleDeleteMenu(){
         Combattants combattants_effacer = tableview_combattant.getSelectionModel().getSelectedItem();
         Service<Boolean> deleteCombattantService = combattantService.deleteCombattant(combattants_effacer);
@@ -217,6 +226,141 @@ public class CombattantsController implements Initializable {
         deleteCombattantService.start();
     }
 
+    public void getSelectedCoombattant(){
+        ObservableList<Combattants> liste_selected = tableview_combattant.getSelectionModel().getSelectedItems();
+        ArrayList<Combattants> cbt_match = new ArrayList<>();
+        if(liste_selected.size() > 2){
+            appUtils.warningAlertDialog("AVERTISSEMENT","Choisir au moins 2 combattant");
+        } else {
+            for (Combattants cbt : liste_selected) {
+                System.out.println("SELECTED : " + cbt.getPrenom_combattant() + " - CLUB : " + cbt.getClub_combattant());
+                cbt_match.add(cbt);
+            }
+            System.out.println("CBT 1 : " + cbt_match.get(0).getPrenom_combattant() + " - CLUB : " + cbt_match.get(0).getClub_combattant());
+            System.out.println("CBT 2 : " + cbt_match.get(1).getPrenom_combattant() + " - CLUB : " + cbt_match.get(1).getClub_combattant());
+            /*
+            String tour_match[] = {
+                    "DEMI-FINALE","FINALE","OPEN","MORT SUBIT","ABSOLUTE"
+            };
+
+            ChoiceDialog choiceDialog = new ChoiceDialog(tour_match[1], tour_match);
+            choiceDialog.setHeaderText("Choix type match");
+            choiceDialog.setContentText("TYPE MATCH : ");
+
+            GridPane gridPane = new GridPane();
+            gridPane.setHgap(10);
+            gridPane.setVgap(10);
+            gridPane.setPadding(new Insets(20, 150, 10, 10));
+
+            Label label = new Label("Duree match :");
+            TextField textField = new TextField();
+            gridPane.add(label, 0, 0);
+            gridPane.add(textField, 1, 0);
+            choiceDialog.getDialogPane().setContent(gridPane);
+
+
+            Optional<String> result = choiceDialog.showAndWait();
+
+            System.out.println("TYPE MATCH SELECTED : " + choiceDialog.getSelectedItem().toString());*/
+            Dialog<Match> dialog = new Dialog<>();
+            dialog.setTitle("Creer Match");
+            dialog.setHeaderText("Creer un match");
+            dialog.setHeight(400);
+            dialog.setWidth(400);
+            dialog.setResizable(true);
+            GridPane gridPane = new GridPane();
+            gridPane.setHgap(10);
+            gridPane.setVgap(10);
+            gridPane.setPadding(new Insets(20, 150, 10, 10));
+            Label label_type = new Label("Type match :");
+            ObservableList<TypeMatch> options =
+                    FXCollections.observableArrayList(TypeMatch.values());
+            ComboBox<TypeMatch> type_match = new ComboBox<>(options);
+
+            Label label_duree = new Label("Duree match :");
+            TextField duree_match = new TextField();
+
+            Label label_tatami = new Label("Emplacement match :");
+            ComboBox tatami_match = new ComboBox();
+
+            Service<List<Emplacement>> emplacement = emplacementService.getEmplacementDataService();
+            emplacement.setOnSucceeded(s -> {
+                List<String> emplacement_data = new ArrayList<>();
+                for (Emplacement tatami : emplacement.getValue()){
+                    emplacement_data.add(tatami.getNom_emplacement());
+                }
+                tatami_match.getItems().addAll(emplacement_data);
+                for (int i = 0; i < emplacement_data.size(); i++) {
+                    System.out.println("TATAMI DATA : " + emplacement_data.get(i) + " ID : "+i);
+                }
+            });
+            emplacement.start();
+
+            gridPane.add(label_duree, 0, 0);
+            gridPane.add(duree_match, 1, 0);
+
+            gridPane.add(label_type, 0,1);
+            gridPane.add(type_match, 1,1);
+
+            gridPane.add(label_tatami, 0,2);
+            gridPane.add(tatami_match,1,2);
+
+            dialog.getDialogPane().setContent(gridPane);
+            dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+            dialog.setResultConverter((ButtonType btn) -> {
+                if (btn == ButtonType.OK){
+                    System.out.println("DATA 1 : " + getTatamiById(tatami_match.getValue().toString()));
+                    int id_tatami = getTatamiById(tatami_match.getValue().toString());
+                    createMatch(
+                            cbt_match.get(0).getId_combattant(),
+                            cbt_match.get(1).getId_combattant(),
+                            type_match.getValue().toString(),
+                            Integer.valueOf(duree_match.getText()),
+                            id_tatami
+                    );
+                }
+                return null;
+            });
+            Optional<Match> optional = dialog.showAndWait();
+            optional.ifPresent((Match new_match) -> {
+                System.out.println("DATA : " + new_match.getDuree_match()  + " - " + new_match.getTour_match());
+            });
+        }
+    }
+    public int getTatamiById(String tatami){
+        String get_tatami_id = "SELECT id_tatami FROM emplacement WHERE nom_emplacement=\'"+ tatami +"\'";
+        int _tatami_id = 0;
+        try {
+            preparedStatement = connection.prepareStatement(get_tatami_id);
+            //preparedStatement.setString(1,tatami);
+            resultSet = preparedStatement.executeQuery();
+            _tatami_id = resultSet.getInt("id_tatami");
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return _tatami_id;
+    }
+    public void createMatch(Integer cbt_id_1, Integer cbt_id_2, String type_match, Integer duree_match, Integer tatami_id){
+        String add_combattant_query = "INSERT INTO match ('combattant_1_id', 'combattant_2_id', 'tour_match', 'duree_match','tatami_id') VALUES (?,?,?,?,?)";
+        try {
+            preparedStatement = connection.prepareStatement(add_combattant_query);
+            preparedStatement.setInt(1,cbt_id_1);
+            preparedStatement.setInt(2,cbt_id_2);
+            preparedStatement.setString(3, type_match);
+            preparedStatement.setInt(4, duree_match);
+            preparedStatement.setInt(5, tatami_id);
+            if (preparedStatement.executeUpdate() == 0){
+                appUtils.erreurAlertDialog("ERREUR","Veuillez reessayer");
+            } else {
+                appUtils.successAlertDialog("SUCCESS","Combattant ajouter au Match");
+            }
+        } catch (SQLException sqlException){
+            sqlException.printStackTrace();
+        }
+    }
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ClubService clubService = new ClubService();
@@ -233,14 +377,19 @@ public class CombattantsController implements Initializable {
         col_categorie_combattant.setCellValueFactory(new PropertyValueFactory<>("categories_combattant"));
 
         ContextMenu contextMenu = new ContextMenu();
-        MenuItem edit_menu = new MenuItem("EDITER");
+        MenuItem match_menu = new MenuItem("MATCH");
         MenuItem delete_menu = new MenuItem("EFFACER");
-        contextMenu.getItems().addAll(edit_menu, delete_menu);
+        contextMenu.getItems().addAll(match_menu, delete_menu);
         tableview_combattant.setContextMenu(contextMenu);
 
         delete_menu.setOnAction((event) -> {
             handleDeleteMenu();
         });
+
+        match_menu.setOnAction((event) -> {
+            getSelectedCoombattant();
+        });
+
 
         Platform.runLater(() -> {
 
@@ -291,6 +440,7 @@ public class CombattantsController implements Initializable {
             Service<List<Combattants>> serviceCombattant = combattantService.getCombattantsData();
             serviceCombattant.setOnSucceeded(onSucceededEvent -> {
                 tableview_combattant.getItems().setAll(serviceCombattant.getValue());
+                tableview_combattant.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
                 ObservableList<Combattants> liste_combattants = FXCollections.observableList(serviceCombattant.getValue());
 
                 FilteredList<Combattants> filteredList = new FilteredList<>(liste_combattants, b -> true);
@@ -326,8 +476,8 @@ public class CombattantsController implements Initializable {
             serviceCombattant.setOnFailed((setOnFailed) -> {
                 serviceCombattant.getException().getMessage();
             });
+
             serviceCombattant.start();
         });
-
     }
 }
