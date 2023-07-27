@@ -10,7 +10,16 @@ public class ScoreboardController {
     private Label label_combattant_1;
     @FXML
     private Label label_combattant_2;
-    private Stage ScoreboardStage;
+
+    private static ScoreboardController instance;
+
+    public ScoreboardController(){
+        instance = this;
+    }
+
+    public static ScoreboardController getInstance(){
+        return instance;
+    }
 
     public void afficheCombattant_1(String combattant_1){
         label_combattant_1.setText(combattant_1);
@@ -19,6 +28,8 @@ public class ScoreboardController {
     public void afficheCombattant_2(String combattant_2){
         label_combattant_2.setText(combattant_2);
     }
+
+
 
 
 

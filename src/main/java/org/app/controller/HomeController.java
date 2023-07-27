@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -24,6 +25,8 @@ public class HomeController {
     private Button btn_menu_competition;
     @FXML
     private Button btn_menu_emplacement;
+    @FXML
+    private Button btn_open_scoreboard;
     @FXML
     private VBox content_home;
     @FXML
@@ -87,6 +90,20 @@ public class HomeController {
         stage.setTitle("SCOREBOARD");
         content_pane.getChildren().removeAll();
         content_pane.getChildren().setAll(parent);
+    }
+
+    @FXML
+    private void openScoreBoard(){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/fxml/scoreboard/scoreboard.fxml"));
+            Scene scoreboardScene = new Scene(fxmlLoader.load(), 1050, 650);
+            Stage scoreboardStage = new Stage();
+            scoreboardStage.setScene(scoreboardScene);
+            scoreboardStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

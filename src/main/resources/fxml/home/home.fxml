@@ -125,6 +125,24 @@
                   <Insets left="10.0" top="5.0" />
                </padding>
             </Button>
+            <Button id="btn_menu_about" fx:id="btn_open_scoreboard" alignment="CENTER" contentDisplay="TOP" graphicTextGap="5.0" layoutX="10.0" layoutY="613.0" lineSpacing="5.0" mnemonicParsing="false" onAction="#openScoreBoard" prefHeight="90.0" prefWidth="112.0" style="-fx-background-color: #34495e;" text="Ouvrir Board" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="56.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/race.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="10.0" top="55.0" />
+               </padding>
+            </Button>
          </children></VBox>
       <AnchorPane fx:id="content_pane" layoutX="125.0" layoutY="15.0" prefHeight="772.0" prefWidth="1064.0" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="125.0" AnchorPane.topAnchor="15.0">
          <children>
