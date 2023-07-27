@@ -106,11 +106,11 @@ public class ScoreboardController {
 
     public void pauseChrono(){
         if (timeline != null) {
-            FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), label_time);
+            /*FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), label_time);
             fadeTransition.setFromValue(1.0);
             fadeTransition.setToValue(0.0);
             fadeTransition.setCycleCount(Animation.INDEFINITE);
-            fadeTransition.play();
+            fadeTransition.play();*/
             timeline.pause();
         }
         isPaused = true;
