@@ -90,6 +90,11 @@ public class CombattantsController implements Initializable {
     Connection connection = DatabaseConnection.getConnection();
     Utils appUtils = new Utils();
 
+
+    /**
+     * Validate form
+     * @return boolean
+     */
     public Boolean handleValidateForm(){
         if(txt_nom_combattant.getText().isEmpty() ||
                 txt_prenom_combattant.getText().isEmpty() ||
@@ -104,6 +109,10 @@ public class CombattantsController implements Initializable {
         }
         return true;
     }
+
+    /**
+     * Clear form after submit
+     */
     public void clearForm(){
         txt_nom_combattant.clear();
         txt_prenom_combattant.clear();
@@ -113,6 +122,11 @@ public class CombattantsController implements Initializable {
         combobox_club_combattant.setValue(null);
         combobox_categorie_combattant.setValue(null);
     }
+
+    /**
+     * Ajout Combattant
+     * TODO : Debug getLastIdCombattant return UnsupportedOperationException
+     */
     public void handleAddCombattantButton(){
         if (handleValidateForm()){
             Combattants nouveau_combattants = new Combattants(
@@ -153,6 +167,11 @@ public class CombattantsController implements Initializable {
             addNewCombattantService.start();
         }
     }
+
+    /**
+     * Get ID Club combattant
+     * @return ID Club
+     */
     public int getIdClubCombattant() {
         String get_club_query = "SELECT id_clb FROM club WHERE nom_club=\'" + combobox_club_combattant.getValue().toString() + "\'";
         int id_club = 0;
@@ -166,6 +185,11 @@ public class CombattantsController implements Initializable {
         }
         return id_club;
     }
+
+    /**
+     * get ID categorie combattant
+     * @return ID Categorie
+     */
     public int getIdCategorieCombattant() {
         String get_id_categorie_query = "SELECT id_cp FROM categorie_poids WHERE categorie=\'" + combobox_categorie_combattant.getValue().toString() + "\'";
         int id_categorie = 0;
@@ -178,6 +202,11 @@ public class CombattantsController implements Initializable {
         }
         return id_categorie;
     }
+
+    /**
+     * Get nom club combattant
+     * @return nom_combattant
+     */
     public String getNomClubCombattant() {
         String get_club_query = "SELECT nom_club FROM club WHERE id_clb=\'" + getIdClubCombattant() + "\'";
         String nom_club = "";
@@ -191,6 +220,11 @@ public class CombattantsController implements Initializable {
         }
         return nom_club;
     }
+
+    /**
+     * Get nom categorie combattant
+     * @return nom_categorie
+     */
     public String getNomCategorieCombattant() {
         String get_categorie_query = "SELECT categorie FROM categorie_poids WHERE id_cp=\'" + getIdCategorieCombattant() + "\'";
         String nom_categorie = "";
@@ -204,6 +238,10 @@ public class CombattantsController implements Initializable {
         }
         return nom_categorie;
     }
+
+    /**
+     * Delete combattant
+     */
     public void handleDeleteMenu(){
         Combattants combattants_effacer = tableview_combattant.getSelectionModel().getSelectedItem();
         Service<Boolean> deleteCombattantService = combattantService.deleteCombattant(combattants_effacer);
@@ -226,42 +264,28 @@ public class CombattantsController implements Initializable {
         deleteCombattantService.start();
     }
 
+    /**
+     * Selection combattant dans tableview
+     */
     public void getSelectedCoombattant(){
+
         ObservableList<Combattants> liste_selected = tableview_combattant.getSelectionModel().getSelectedItems();
         ArrayList<Combattants> cbt_match = new ArrayList<>();
         if(liste_selected.size() > 2){
             appUtils.warningAlertDialog("AVERTISSEMENT","Choisir au moins 2 combattant");
         } else {
             for (Combattants cbt : liste_selected) {
-                System.out.println("SELECTED : " + cbt.getPrenom_combattant() + " - CLUB : " + cbt.getClub_combattant());
+                //System.out.println("SELECTED : " + cbt.getPrenom_combattant() + " - CLUB : " + cbt.getClub_combattant());
                 cbt_match.add(cbt);
             }
             System.out.println("CBT 1 : " + cbt_match.get(0).getPrenom_combattant() + " - CLUB : " + cbt_match.get(0).getClub_combattant());
             System.out.println("CBT 2 : " + cbt_match.get(1).getPrenom_combattant() + " - CLUB : " + cbt_match.get(1).getClub_combattant());
-            /*
-            String tour_match[] = {
-                    "DEMI-FINALE","FINALE","OPEN","MORT SUBIT","ABSOLUTE"
-            };
-
-            ChoiceDialog choiceDialog = new ChoiceDialog(tour_match[1], tour_match);
-            choiceDialog.setHeaderText("Choix type match");
-            choiceDialog.setContentText("TYPE MATCH : ");
-
-            GridPane gridPane = new GridPane();
-            gridPane.setHgap(10);
-            gridPane.setVgap(10);
-            gridPane.setPadding(new Insets(20, 150, 10, 10));
-
-            Label label = new Label("Duree match :");
-            TextField textField = new TextField();
-            gridPane.add(label, 0, 0);
-            gridPane.add(textField, 1, 0);
-            choiceDialog.getDialogPane().setContent(gridPane);
 
 
-            Optional<String> result = choiceDialog.showAndWait();
 
-            System.out.println("TYPE MATCH SELECTED : " + choiceDialog.getSelectedItem().toString());*/
+            /**
+             * Dialog creation match
+             */
             Dialog<Match> dialog = new Dialog<>();
             dialog.setTitle("Creer Match");
             dialog.setHeaderText("Creer un match");
@@ -283,6 +307,7 @@ public class CombattantsController implements Initializable {
             Label label_tatami = new Label("Emplacement match :");
             ComboBox tatami_match = new ComboBox();
 
+            // Populate emplacement combobox
             Service<List<Emplacement>> emplacement = emplacementService.getEmplacementDataService();
             emplacement.setOnSucceeded(s -> {
                 List<String> emplacement_data = new ArrayList<>();
@@ -318,6 +343,20 @@ public class CombattantsController implements Initializable {
                             Integer.valueOf(duree_match.getText()),
                             id_tatami
                     );
+
+                    ScoreboardController scoreboardController = ScoreboardController.getInstance();
+                    if (scoreboardController != null){
+                        scoreboardController.afficheCombattant_1(cbt_match.get(0).getPrenom_combattant());
+                        scoreboardController.afficheClubCombattant1(cbt_match.get(0).getClub_combattant());
+                        scoreboardController.afficheCombattant_2(cbt_match.get(1).getPrenom_combattant());
+                        scoreboardController.afficheClubCombattant2(cbt_match.get(1).getClub_combattant());
+                        scoreboardController.afficheTempsMatch(Integer.parseInt(duree_match.getText()));
+                    } else {
+                        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                        errorAlert.setTitle("ERREUR");
+                        errorAlert.setContentText("Erreur lors de l'initialisation du controller");
+                        errorAlert.showAndWait();
+                    }
                 }
                 return null;
             });
@@ -327,6 +366,12 @@ public class CombattantsController implements Initializable {
             });
         }
     }
+
+    /**
+     * Get selected tatami ID
+     * @param tatami
+     * @return id_tatami
+     */
     public int getTatamiById(String tatami){
         String get_tatami_id = "SELECT id_tatami FROM emplacement WHERE nom_emplacement=\'"+ tatami +"\'";
         int _tatami_id = 0;
@@ -341,6 +386,15 @@ public class CombattantsController implements Initializable {
         }
         return _tatami_id;
     }
+
+    /**
+     * Creation match query
+     * @param cbt_id_1
+     * @param cbt_id_2
+     * @param type_match
+     * @param duree_match
+     * @param tatami_id
+     */
     public void createMatch(Integer cbt_id_1, Integer cbt_id_2, String type_match, Integer duree_match, Integer tatami_id){
         String add_combattant_query = "INSERT INTO match ('combattant_1_id', 'combattant_2_id', 'tour_match', 'duree_match','tatami_id') VALUES (?,?,?,?,?)";
         try {
@@ -363,6 +417,18 @@ public class CombattantsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        /*ScoreboardController scoreboardController = ScoreboardController.getInstance();
+        if (scoreboardController != null){
+            scoreboardController.afficheCombattant_1("DATA 1 PORY");
+            scoreboardController.afficheCombattant_2("DATA 2 PORY");
+        } else {
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setTitle("ERREUR");
+            errorAlert.setContentText("Erreur lors de l'initialisation du controller");
+            errorAlert.showAndWait();
+        }*/
+       // CombattantsController.setScoreboardController(this);
+
         ClubService clubService = new ClubService();
         CategorieService categorieService = new CategorieService();
 
@@ -379,7 +445,8 @@ public class CombattantsController implements Initializable {
         ContextMenu contextMenu = new ContextMenu();
         MenuItem match_menu = new MenuItem("MATCH");
         MenuItem delete_menu = new MenuItem("EFFACER");
-        contextMenu.getItems().addAll(match_menu, delete_menu);
+        MenuItem test_menu = new MenuItem("CONTROL BOARD");
+        contextMenu.getItems().addAll(match_menu, delete_menu, test_menu);
         tableview_combattant.setContextMenu(contextMenu);
 
         delete_menu.setOnAction((event) -> {
@@ -388,6 +455,10 @@ public class CombattantsController implements Initializable {
 
         match_menu.setOnAction((event) -> {
             getSelectedCoombattant();
+        });
+
+        test_menu.setOnAction((event) -> {
+            //controlScoreBoard();
         });
 
 
