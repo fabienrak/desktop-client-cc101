@@ -23,7 +23,9 @@ public class LoginController {
     private Button btn_login;
     private Stage stage;
     private Parent parent;
+    @FXML
     private TextField username_field;
+    @FXML
     private TextField mdp_field;
 
     PreparedStatement preparedStatement = null;
@@ -37,8 +39,8 @@ public class LoginController {
      * @throws IOException
      */
     @FXML
-    private void switchToDashboard(ActionEvent event) throws IOException {
-        if (event.getSource() == btn_login){
+    private void switchToDashboard(ActionEvent actionEvent) throws IOException {
+        if (actionEvent.getSource() == btn_login){
             stage = (Stage) btn_login.getScene().getWindow();
             parent = FXMLLoader.load(getClass().getResource("/fxml/home/home.fxml"));
             Scene scene = new Scene(parent);
@@ -50,23 +52,26 @@ public class LoginController {
     /**
      * Verification utilisateur
      */
-    public void verificationManager(ActionEvent actionEvent){
-        String manager_query = "SELECT * FROM manager WHERE username = ? AND password = ?";
-        if (verifyInfo() == true){
+    @FXML
+    private void verificationManager(){
+        String manager_query = "SELECT username, password FROM manager";
+        if (verifyInfo()){
             try{
                 preparedStatement = connection.prepareStatement(manager_query);
-                preparedStatement.setString(1,username_field.getText());
-                preparedStatement.setString(2,mdp_field.getText());
                 resultSet = preparedStatement.executeQuery();
-
-                if (resultSet.next()){
-                    appUtils.successAlertDialog("SUCCESS","Information valide");
-                } else {
-                    appUtils.erreurAlertDialog("ERREUR","Information de connexion invalide");
+                if(resultSet.next()){
+                    if (username_field.getText().equals(resultSet.getString("username"))){
+                        if (mdp_field.getText().equals(resultSet.getString("password"))){
+                            //switchToDashboard(actionEvent);
+                        } else {
+                            appUtils.erreurAlertDialog("ERREUR","Mot de passe non valide");
+                        }
+                    } else {
+                        appUtils.erreurAlertDialog("ERREUR","Nom d'utilisateur non valide");
+                    }
                 }
-
             } catch (SQLException e) {
-                e.getMessage();
+                e.printStackTrace();
             }
         }
     }
@@ -77,10 +82,10 @@ public class LoginController {
      */
     private boolean verifyInfo() {
         if (username_field.getText() == null || username_field.getText().isEmpty()){
-            appUtils.warningAlertDialog("AVERTISSEMENT","");
+            appUtils.warningAlertDialog("AVERTISSEMENT","Veuillez completer tous les champs");
             return false;
         } else if (mdp_field.getText() == null || mdp_field.getText().isEmpty()) {
-            appUtils.warningAlertDialog("AVERTISSEMENT","Champ ");
+            appUtils.warningAlertDialog("AVERTISSEMENT","Veuillez completer tous les champs");
             return false;
         }
         return true;

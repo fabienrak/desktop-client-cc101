@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.MaskerPane?>
+
+
+<VBox fx:controller="org.app.controller.EmplacementController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox prefHeight="650.0" prefWidth="1050.0">
+         <children>
+            <StackPane prefHeight="650.0" prefWidth="666.0">
+               <children>
+                  <MaskerPane fx:id="masker_tableview" text="Chargement en cour ....." />
+                  <TableView fx:id="tableview_emplacement" prefHeight="200.0" prefWidth="200.0">
+                    <columns>
+                      <TableColumn fx:id="col_id_emplacement" prefWidth="75.0" text="ID" />
+                      <TableColumn fx:id="col_nom_emplacement" prefWidth="162.0" text="NOM EMPLACEMENT" />
+                        <TableColumn fx:id="col_couleur_tatami" minWidth="7.0" prefWidth="152.0" text="COULEUR" />
+                    </columns>
+                  </TableView>
+               </children>
+            </StackPane>
+            <StackPane prefHeight="650.0" prefWidth="384.0" style="-fx-background-color: #2f3542;">
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="71.0" fitWidth="125.0" layoutX="157.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/emplacement.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="127.0" layoutY="92.0" text="Ajout Emplacement" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txt_nom_emplacement" layoutX="110.0" layoutY="150.0" prefHeight="37.0" prefWidth="248.0" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutY="140.0" prefHeight="56.0" prefWidth="108.0" text="Nom  :" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="12.0" layoutY="191.0" prefHeight="56.0" prefWidth="108.0" text="Couleur  :" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="combobox_couleur_tatami" layoutX="110.0" layoutY="201.0" prefHeight="37.0" prefWidth="248.0" />
+                        <Button fx:id="btn_enregistrer_emplacement" layoutX="165.0" layoutY="280.0" mnemonicParsing="false" onAction="#handleAddEmplacement" prefHeight="47.0" prefWidth="140.0" style="-fx-background-radius: 20;" text="Enregistrer">
+                           <font>
+                              <Font name="Arial Bold" size="14.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="38.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../images/add-button.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </StackPane>
+         </children>
+      </HBox>
+   </children>
+</VBox>
