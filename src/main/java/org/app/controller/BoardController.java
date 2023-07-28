@@ -1,10 +1,14 @@
 package org.app.controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-public class BoardController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class BoardController implements Initializable {
 
     @FXML
     private Button btn_start_chrono;
@@ -31,7 +35,6 @@ public class BoardController {
     int _POINT_3 = 3;
     int _POINT_2 = 2;
     int _POINT_4 = 4;
-    int _DERNIER_POINTS = scoreboardController.getLastAvantage();
 
     @FXML
     public void startChronoMatch(){
@@ -73,17 +76,33 @@ public class BoardController {
     @FXML
         public void handlePoints(){
         BTN_PLUS_1.setOnAction(actionEvent -> {
-            scoreboardController.handlePointsCombattant1(_POINT_1);
+            scoreboardController.handleAddPointsCombattant1(_POINT_1);
         });
         BTN_PLUS_2.setOnAction(actionEvent -> {
-           scoreboardController.handlePointsCombattant1(_POINT_2);
+           scoreboardController.handleAddPointsCombattant1(_POINT_2);
         });
         BTN_PLUS_3.setOnAction(actionEvent -> {
-            scoreboardController.handlePointsCombattant1(_POINT_3);
+            scoreboardController.handleAddPointsCombattant1(_POINT_3);
         });
         BTN_PLUS_4.setOnAction(actionEvent -> {
-            scoreboardController.handlePointsCombattant1(_POINT_4);
+            scoreboardController.handleAddPointsCombattant1(_POINT_4);
         });
     }
 
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        BTN_PLUS_1.setOnAction(actionEvent -> {
+            scoreboardController.handleAddPointsCombattant1(_POINT_1);
+        });
+        BTN_PLUS_2.setOnAction(actionEvent -> {
+            scoreboardController.handleAddPointsCombattant1(_POINT_2);
+        });
+        BTN_PLUS_3.setOnAction(actionEvent -> {
+            scoreboardController.handleAddPointsCombattant1(_POINT_3);
+        });
+        BTN_PLUS_4.setOnAction(actionEvent -> {
+            scoreboardController.handleAddPointsCombattant1(_POINT_4);
+        });
+    }
 }

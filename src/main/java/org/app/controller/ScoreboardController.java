@@ -4,6 +4,7 @@ import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -80,12 +81,19 @@ public class ScoreboardController {
         return String.format("%02d:%02d", minutes, seconds);
     }
 
+    /**
+     * Format time number from textfield
+     * @return int time_number
+     */
     public int formatTimeNumber(){
         int duree_match = Integer.parseInt(label_time.getText().trim());
         System.out.println("TIME FORMATTED : " + duree_match);
         return duree_match;
     }
 
+    /**
+     * Start chrono
+     */
     public void startChrono(){
         if (isPaused) {
 
@@ -115,6 +123,9 @@ public class ScoreboardController {
         timeline.play();
     }
 
+    /**
+     * Pause Chrono
+     */
     public void pauseChrono(){
         if (timeline != null) {
             /*FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), label_time);
@@ -125,16 +136,27 @@ public class ScoreboardController {
             timeline.pause();
         }
         isPaused = true;
+
     }
 
+    /**
+     * Play Chrono
+     */
     public void playChrono(){
         if (timeline != null) {
-
+            FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), label_time);
+            fadeTransition.setFromValue(1.0);
+            fadeTransition.setToValue(0.0);
+            fadeTransition.setCycleCount(Animation.INDEFINITE);
+            fadeTransition.stop();
             timeline.play();
         }
         isPaused = false;
     }
 
+    /**
+     * Stop Chrono
+     */
     public void stopChrono(){
         if (timeline != null) {
             timeline.stop();
@@ -175,9 +197,9 @@ public class ScoreboardController {
     /**
      * handle point combattant 1
      */
-    public void handlePointsCombattant1(Integer point_combattant){
+    public void handleAddPointsCombattant1(Integer point_combattant){
         // TODO Handle point combattant - vitaina au plus tard rapitso pory
-        label_point_c1.setText(point_combattant + label_point_c1.getText());
+        label_point_c1.setText(String.valueOf(point_combattant + Integer.parseInt(label_point_c1.getText())));
     }
 
 
