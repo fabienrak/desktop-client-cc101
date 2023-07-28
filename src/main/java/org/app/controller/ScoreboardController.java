@@ -4,6 +4,7 @@ import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -196,9 +197,9 @@ public class ScoreboardController {
     /**
      * handle point combattant 1
      */
-    public void handlePointsCombattant1(Integer point_combattant){
+    public void handleAddPointsCombattant1(Integer point_combattant){
         // TODO Handle point combattant - vitaina au plus tard rapitso pory
-        label_point_c1.setText(point_combattant + label_point_c1.getText());
+        label_point_c1.setText(String.valueOf(point_combattant + Integer.parseInt(label_point_c1.getText())));
     }
 
 

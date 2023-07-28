@@ -1,5 +1,6 @@
 package org.app.controller;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -74,12 +75,18 @@ public class HomeController {
 
     @FXML
     private void sceneEmplacement(ActionEvent actionEvent) throws IOException {
-        Node node_source = (Node) actionEvent.getSource();
-        stage = (Stage) node_source.getScene().getWindow();
-        Parent parent = FXMLLoader.load(getClass().getResource("/fxml/emplacement/emplacement.fxml"));
-        stage.setTitle("GESTION EMPLACEMENT");
-        content_pane.getChildren().removeAll();
-        content_pane.getChildren().setAll(parent);
+        Platform.runLater(() -> {
+            try {
+                Node node_source = (Node) actionEvent.getSource();
+                stage = (Stage) node_source.getScene().getWindow();
+                Parent parent = FXMLLoader.load(getClass().getResource("/fxml/emplacement/emplacement.fxml"));
+                stage.setTitle("GESTION EMPLACEMENT");
+                content_pane.getChildren().removeAll();
+                content_pane.getChildren().setAll(parent);
+            } catch (Exception exception){
+                exception.printStackTrace();
+            }
+        });
     }
 
     @FXML
@@ -93,17 +100,23 @@ public class HomeController {
     }
 
     @FXML
-    private void openScoreBoard(){
+    private void openScoreBoard(ActionEvent actionEvent){
         try {
+            //Node node_source = (Node) actionEvent.getSource();
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/fxml/scoreboard/scoreboard.fxml"));
             Scene scoreboardScene = new Scene(fxmlLoader.load(), 1050, 650);
             Stage scoreboardStage = new Stage();
             ScoreboardController scoreboardController = fxmlLoader.getController();
             fxmlLoader.setController(scoreboardController);
-
             scoreboardStage.setScene(scoreboardScene);
             scoreboardStage.show();
+
+            if (scoreboardStage.isShowing()){
+                btn_open_scoreboard.setDisable(true);
+            }
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
