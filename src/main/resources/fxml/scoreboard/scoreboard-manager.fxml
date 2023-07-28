@@ -2,6 +2,8 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -18,6 +20,87 @@
                         <Font name="Arial Bold" size="24.0" />
                      </font>
                   </Label>
+                  <Button fx:id="BTN_ADD_AVANTAGE_C1" layoutX="15.0" layoutY="151.0" mnemonicParsing="false" onAction="#ajoutAvantageCombattant1" prefHeight="65.0" prefWidth="134.0">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/add-button.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label layoutX="21.0" layoutY="87.0" prefHeight="39.0" prefWidth="122.0" text="AVANTAGE :" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="BTN_DEL_AVANTAGE_C1" layoutX="185.0" layoutY="151.0" mnemonicParsing="false" onAction="#effaceAvantageCombattant1" prefHeight="65.0" prefWidth="134.0">
+                     <graphic>
+                        <ImageView fitHeight="38.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/cancel.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label fx:id="label_avantage_c1" alignment="CENTER" contentDisplay="CENTER" layoutX="149.0" layoutY="79.0" prefHeight="27.0" prefWidth="110.0" text="0" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="48.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="21.0" layoutY="267.0" prefHeight="39.0" prefWidth="122.0" text="PENALITE :" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="BTN_ADD_PENALITE_C2" layoutX="15.0" layoutY="311.0" mnemonicParsing="false" onAction="#ajoutPenaliteCombattant1" prefHeight="65.0" prefWidth="134.0">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/add-button.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="BTN_DEL_PENALITE_C2" layoutX="185.0" layoutY="311.0" mnemonicParsing="false" onAction="#effacePenaliteCombattant1" prefHeight="65.0" prefWidth="134.0">
+                     <graphic>
+                        <ImageView fitHeight="38.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/cancel.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label fx:id="label_avantage_c11" alignment="CENTER" contentDisplay="CENTER" layoutX="149.0" layoutY="249.0" prefHeight="27.0" prefWidth="110.0" text="0" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="48.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="21.0" layoutY="393.0" prefHeight="27.0" prefWidth="110.0" text="POINTS :" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="BTN_PLUS_1" layoutX="18.0" layoutY="446.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="98.0" text="+1">
+                     <font>
+                        <Font name="Arial Bold" size="36.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="BTN_PLUS_2" layoutX="228.0" layoutY="446.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="98.0" text="+2">
+                     <font>
+                        <Font name="Arial Bold" size="36.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="BTN_PLUS_3" layoutX="18.0" layoutY="536.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="98.0" text="+3">
+                     <font>
+                        <Font name="Arial Bold" size="36.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="BTN_PLUS_4" layoutX="228.0" layoutY="536.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="98.0" text="+4">
+                     <font>
+                        <Font name="Arial Bold" size="36.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
             <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="640.0" prefWidth="350.0" style="-fx-background-color: #0a3d62;">
@@ -27,25 +110,53 @@
                         <Font name="Arial Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btn_start_chrono" layoutX="111.0" layoutY="186.0" mnemonicParsing="false" onAction="#startChronoMatch" prefHeight="53.0" prefWidth="154.0" text="START ">
+                  <Button fx:id="btn_start_chrono" layoutX="111.0" layoutY="186.0" mnemonicParsing="false" onAction="#startChronoMatch" prefHeight="53.0" prefWidth="154.0" style="-fx-background-radius: 20;" text="START ">
                      <font>
                         <Font name="Arial Bold" size="14.0" />
                      </font>
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/start.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
-                  <Button fx:id="btn_pause_chrono" layoutX="111.0" layoutY="267.0" mnemonicParsing="false" onAction="#pauseChronoMatch" prefHeight="53.0" prefWidth="154.0" text="PAUSE ">
+                  <Button fx:id="btn_pause_chrono" layoutX="111.0" layoutY="267.0" mnemonicParsing="false" onAction="#pauseChronoMatch" prefHeight="53.0" prefWidth="154.0" style="-fx-background-radius: 20;" text="PAUSE ">
                      <font>
                         <Font name="Arial Bold" size="14.0" />
                      </font>
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/pause.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
-                  <Button fx:id="btn_play_chrono" layoutX="111.0" layoutY="344.0" mnemonicParsing="false" onAction="#playChronoMatch" prefHeight="53.0" prefWidth="154.0" text="PLAY">
+                  <Button fx:id="btn_play_chrono" layoutX="111.0" layoutY="344.0" mnemonicParsing="false" onAction="#playChronoMatch" prefHeight="53.0" prefWidth="154.0" style="-fx-background-radius: 20;" text="PLAY">
                      <font>
                         <Font name="Arial Bold" size="14.0" />
                      </font>
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/play.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
-                  <Button fx:id="btn_stop_chrono" layoutX="111.0" layoutY="423.0" mnemonicParsing="false" onAction="#stopChronoMatch" prefHeight="53.0" prefWidth="154.0" text="STOP">
+                  <Button fx:id="btn_stop_chrono" layoutX="111.0" layoutY="423.0" mnemonicParsing="false" onAction="#stopChronoMatch" prefHeight="53.0" prefWidth="154.0" style="-fx-background-radius: 20;" text="STOP">
                      <font>
                         <Font name="Arial Bold" size="14.0" />
                      </font>
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/stop.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
                </children></AnchorPane>
             <AnchorPane layoutX="304.0" layoutY="10.0" prefHeight="640.0" prefWidth="355.0" style="-fx-background-color: #3c6382;">
