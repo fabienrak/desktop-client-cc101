@@ -71,7 +71,7 @@ public class BoardController {
     }
 
     @FXML
-    public void handlePoints(){
+        public void handlePoints(){
         BTN_PLUS_1.setOnAction(actionEvent -> {
             scoreboardController.handlePointsCombattant1(_POINT_1);
         });
