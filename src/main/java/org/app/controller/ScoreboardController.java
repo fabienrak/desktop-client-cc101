@@ -69,12 +69,19 @@ public class ScoreboardController {
         return String.format("%02d:%02d", minutes, seconds);
     }
 
+    /**
+     * Format time number from textfield
+     * @return int time_number
+     */
     public int formatTimeNumber(){
         int duree_match = Integer.parseInt(label_time.getText().trim());
         System.out.println("TIME FORMATTED : " + duree_match);
         return duree_match;
     }
 
+    /**
+     * Start chrono
+     */
     public void startChrono(){
         if (isPaused) {
 
@@ -104,6 +111,9 @@ public class ScoreboardController {
         timeline.play();
     }
 
+    /**
+     * Pause Chrono
+     */
     public void pauseChrono(){
         if (timeline != null) {
             FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), label_time);
@@ -114,16 +124,27 @@ public class ScoreboardController {
             timeline.pause();
         }
         isPaused = true;
+
     }
 
+    /**
+     * Play Chrono
+     */
     public void playChrono(){
         if (timeline != null) {
-
+            FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), label_time);
+            fadeTransition.setFromValue(1.0);
+            fadeTransition.setToValue(0.0);
+            fadeTransition.setCycleCount(Animation.INDEFINITE);
+            fadeTransition.stop();
             timeline.play();
         }
         isPaused = false;
     }
 
+    /**
+     * Stop Chrono
+     */
     public void stopChrono(){
         if (timeline != null) {
             timeline.stop();
