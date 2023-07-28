@@ -8,4 +8,4 @@
 
 ![login_form](https://i.ibb.co/pyM2jtX/login-form.png,"login_form")
 
-![dashboard](https://i.ibb.co/t8KSrKM/dashboard.png,"dashboard")
+![dashboard](https://i.ibb.co/J5fNHPp/dashboard.png,"dashboard")

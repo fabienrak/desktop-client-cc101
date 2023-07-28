@@ -5,6 +5,7 @@ import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -22,6 +23,16 @@ public class ScoreboardController {
     private Label label_club_cbt2;
     @FXML
     private Label label_time;
+    @FXML
+    private Label cbt_1_avantage;
+    @FXML
+    private Label cbt_1_penalite;
+    @FXML
+    private Label label_point_c1;
+    @FXML
+    private Button BTN_ADD_AVANTAGE_C1;
+    @FXML
+    private Button BTN_DEL_AVANTAGE_C1;
 
 
     private static ScoreboardController instance;
@@ -116,11 +127,11 @@ public class ScoreboardController {
      */
     public void pauseChrono(){
         if (timeline != null) {
-            FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), label_time);
+            /*FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), label_time);
             fadeTransition.setFromValue(1.0);
             fadeTransition.setToValue(0.0);
             fadeTransition.setCycleCount(Animation.INDEFINITE);
-            fadeTransition.play();
+            fadeTransition.play();*/
             timeline.pause();
         }
         isPaused = true;
@@ -153,6 +164,41 @@ public class ScoreboardController {
         duree_seconde = 0;
         label_time.setText(formatTime(duree_minute, duree_seconde));
         isPaused = false;
+    }
+
+    public int getLastAvantage(){
+        return Integer.parseInt(cbt_1_avantage.getText().trim());
+    }
+
+    /**
+     * Avantage & Penalite Combattant 1
+     */
+    public void ajoutAvantageC1(Integer avantage_point){
+        int dernier_avantage = Integer.parseInt(cbt_1_avantage.getText().trim());
+        cbt_1_avantage.setText(String.valueOf(dernier_avantage + avantage_point));
+    }
+
+    public void effacerAvantageC1(Integer avantage_point){
+        int dernier_avantage = Integer.parseInt(cbt_1_avantage.getText().trim());
+        cbt_1_avantage.setText(String.valueOf(dernier_avantage - avantage_point));
+    }
+
+    public void ajoutPenaliteC1(Integer penalite_point){
+        int dernier_penalite = Integer.parseInt(cbt_1_penalite.getText().trim());
+        cbt_1_penalite.setText(String.valueOf(dernier_penalite + penalite_point));
+    }
+
+    public void effacerPenaliteC1(Integer penalite_point){
+        int dernier_avantage = Integer.parseInt(cbt_1_penalite.getText().trim());
+        cbt_1_penalite.setText(String.valueOf(dernier_avantage - penalite_point));
+    }
+
+    /**
+     * handle point combattant 1
+     */
+    public void handlePointsCombattant1(Integer point_combattant){
+        // TODO Handle point combattant - vitaina au plus tard rapitso pory
+        label_point_c1.setText(point_combattant + label_point_c1.getText());
     }
 
 
