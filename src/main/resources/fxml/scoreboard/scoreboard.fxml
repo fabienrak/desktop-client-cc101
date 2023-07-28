@@ -22,9 +22,9 @@
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0097e6;">
          <children>
-            <Label fx:id="label_combattant_1" alignment="CENTER" contentDisplay="CENTER" layoutX="28.0" layoutY="56.0" prefHeight="84.0" prefWidth="470.0" AnchorPane.bottomAnchor="134.0" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="56.0">
+            <Label fx:id="label_combattant_1" layoutX="7.0" layoutY="56.0" prefHeight="84.0" prefWidth="513.0" AnchorPane.bottomAnchor="134.0" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="56.0">
                <font>
-                  <Font name="Arial Bold" size="72.0" />
+                  <Font name="Arial Bold" size="64.0" />
                </font>
             </Label>
             <Label fx:id="label_club_cbt1" layoutX="28.0" layoutY="177.0" prefHeight="61.0" prefWidth="179.0" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="177.0">
@@ -36,28 +36,38 @@
       </AnchorPane>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0097e6;" GridPane.columnIndex="1">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="312.0" layoutY="16.0" prefHeight="186.0" prefWidth="199.0" text="0" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="16.0">
+            <Label fx:id="label_point_c1" alignment="CENTER" contentDisplay="CENTER" layoutX="312.0" layoutY="16.0" prefHeight="342.0" prefWidth="216.0" text="0" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="16.0">
                <font>
                   <Font name="Arial Bold" size="150.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="63.0" layoutY="192.0" prefHeight="118.0" prefWidth="123.0" text="0" AnchorPane.bottomAnchor="37.0" AnchorPane.rightAnchor="339.0" AnchorPane.topAnchor="192.0">
+            <Label fx:id="cbt_1_penalite" alignment="CENTER" contentDisplay="CENTER" layoutX="63.0" layoutY="157.0" prefHeight="118.0" prefWidth="123.0" text="0" AnchorPane.bottomAnchor="72.0" AnchorPane.rightAnchor="339.0" AnchorPane.topAnchor="157.0">
                <font>
                   <Font name="Arial Bold" size="72.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="63.0" layoutY="20.0" prefHeight="107.0" prefWidth="123.0" text="0" AnchorPane.bottomAnchor="176.0" AnchorPane.rightAnchor="339.0" AnchorPane.topAnchor="20.0">
+            <Label fx:id="cbt_1_avantage" alignment="CENTER" contentDisplay="CENTER" layoutX="63.0" layoutY="20.0" prefHeight="107.0" prefWidth="123.0" text="0" AnchorPane.bottomAnchor="176.0" AnchorPane.rightAnchor="339.0" AnchorPane.topAnchor="20.0">
                <font>
                   <Font name="Arial Bold" size="72.0" />
+               </font>
+            </Label>
+            <Label layoutX="99.0" layoutY="109.0" text="ADV" AnchorPane.bottomAnchor="177.0" AnchorPane.rightAnchor="375.0" AnchorPane.topAnchor="109.0">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="100.0" layoutY="258.0" text="PEN" AnchorPane.bottomAnchor="88.0" AnchorPane.rightAnchor="375.5" AnchorPane.topAnchor="258.0">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #e74c3c;" GridPane.rowIndex="1">
          <children>
-            <Label fx:id="label_combattant_2" alignment="CENTER" contentDisplay="CENTER" layoutX="24.0" layoutY="25.0" prefHeight="102.0" prefWidth="478.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="25.0">
+            <Label fx:id="label_combattant_2" layoutX="10.0" layoutY="25.0" prefHeight="102.0" prefWidth="513.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="25.0">
                <font>
-                  <Font name="Arial Bold" size="72.0" />
+                  <Font name="Arial Bold" size="64.0" />
                </font>
             </Label>
             <Label fx:id="label_club_cbt2" layoutX="33.0" layoutY="142.0" prefHeight="61.0" prefWidth="179.0" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="120.0">
@@ -74,7 +84,7 @@
                   <Font name="Arial Bold" size="150.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="65.0" layoutY="127.0" prefHeight="77.0" prefWidth="123.0" text="0" AnchorPane.bottomAnchor="-12.0" AnchorPane.rightAnchor="337.0" AnchorPane.topAnchor="127.0">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="65.0" layoutY="109.0" prefHeight="77.0" prefWidth="123.0" text="0" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="337.0" AnchorPane.topAnchor="109.0">
                <font>
                   <Font name="Arial Bold" size="72.0" />
                </font>
@@ -82,6 +92,16 @@
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="65.0" layoutY="-17.0" prefHeight="102.0" prefWidth="123.0" text="0" AnchorPane.bottomAnchor="132.0" AnchorPane.rightAnchor="337.0" AnchorPane.topAnchor="-17.0">
                <font>
                   <Font name="Arial Bold" size="72.0" />
+               </font>
+            </Label>
+            <Label layoutX="101.0" layoutY="64.0" text="ADV" AnchorPane.bottomAnchor="126.0" AnchorPane.rightAnchor="373.0" AnchorPane.topAnchor="64.0">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="102.0" layoutY="189.0" text="PEN" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="373.5" AnchorPane.topAnchor="189.0">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
                </font>
             </Label>
          </children>
