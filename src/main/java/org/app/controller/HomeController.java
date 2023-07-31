@@ -111,12 +111,6 @@ public class HomeController {
             fxmlLoader.setController(scoreboardController);
             scoreboardStage.setScene(scoreboardScene);
             scoreboardStage.show();
-
-            if (scoreboardStage.isShowing()){
-                btn_open_scoreboard.setDisable(true);
-            }
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
