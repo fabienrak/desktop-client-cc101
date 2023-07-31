@@ -417,17 +417,6 @@ public class CombattantsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        /*ScoreboardController scoreboardController = ScoreboardController.getInstance();
-        if (scoreboardController != null){
-            scoreboardController.afficheCombattant_1("DATA 1 PORY");
-            scoreboardController.afficheCombattant_2("DATA 2 PORY");
-        } else {
-            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-            errorAlert.setTitle("ERREUR");
-            errorAlert.setContentText("Erreur lors de l'initialisation du controller");
-            errorAlert.showAndWait();
-        }*/
-       // CombattantsController.setScoreboardController(this);
 
         ClubService clubService = new ClubService();
         CategorieService categorieService = new CategorieService();
@@ -445,8 +434,7 @@ public class CombattantsController implements Initializable {
         ContextMenu contextMenu = new ContextMenu();
         MenuItem match_menu = new MenuItem("MATCH");
         MenuItem delete_menu = new MenuItem("EFFACER");
-        MenuItem test_menu = new MenuItem("CONTROL BOARD");
-        contextMenu.getItems().addAll(match_menu, delete_menu, test_menu);
+        contextMenu.getItems().addAll(match_menu, delete_menu);
         tableview_combattant.setContextMenu(contextMenu);
 
         delete_menu.setOnAction((event) -> {
@@ -456,11 +444,6 @@ public class CombattantsController implements Initializable {
         match_menu.setOnAction((event) -> {
             getSelectedCoombattant();
         });
-
-        test_menu.setOnAction((event) -> {
-            //controlScoreBoard();
-        });
-
 
         Platform.runLater(() -> {
 

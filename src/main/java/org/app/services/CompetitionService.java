@@ -18,6 +18,10 @@ public class CompetitionService {
     ResultSet resultSet = null;
     Connection connection = DatabaseConnection.getConnection();
 
+    /**
+     * Get List Competition
+     * @return list_competition
+     */
     public Service<List<Competition>> getCompetitionData(){
         Service<List<Competition>> competition_service = new Service(){
             @Override
@@ -51,6 +55,10 @@ public class CompetitionService {
         return competition_service;
     }
 
+    /**
+     * Get last competition ID
+     * @return last_competition_id
+     */
     public Service<Integer> getLastCompetitionId(){
         return new Service<Integer>() {
             @Override
@@ -76,6 +84,11 @@ public class CompetitionService {
         };
     }
 
+    /**
+     * Add new competition
+     * @param competition
+     * @return
+     */
     public Service<Boolean> addNewCompetition(Competition competition){
         return new Service<Boolean>(){
             @Override

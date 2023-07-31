@@ -11,7 +11,7 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.app.controller.BoardController">
    <children>
-      <HBox prefHeight="640.0" prefWidth="1055.0">
+      <HBox prefHeight="650.0" prefWidth="1055.0">
          <children>
             <AnchorPane prefHeight="640.0" prefWidth="350.0" style="-fx-background-color: #3c6382;">
                <children>
@@ -20,11 +20,11 @@
                         <Font name="Arial Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Button fx:id="BTN_ADD_AVANTAGE_C1" layoutX="15.0" layoutY="151.0" mnemonicParsing="false" onAction="#ajoutAvantageCombattant1" prefHeight="65.0" prefWidth="134.0">
+                  <Button fx:id="BTN_ADD_AVANTAGE_C1" layoutX="15.0" layoutY="151.0" mnemonicParsing="false" onAction="#ajoutAvantageCombattant1" prefHeight="43.0" prefWidth="134.0" style="-fx-background-radius: 20;">
                      <graphic>
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../images/add-button.png" />
+                              <Image url="@../../images/add.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -34,11 +34,11 @@
                         <Font name="Arial Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Button fx:id="BTN_DEL_AVANTAGE_C1" layoutX="185.0" layoutY="151.0" mnemonicParsing="false" onAction="#effaceAvantageCombattant1" prefHeight="65.0" prefWidth="134.0">
+                  <Button fx:id="BTN_DEL_AVANTAGE_C1" layoutX="185.0" layoutY="151.0" mnemonicParsing="false" onAction="#effaceAvantageCombattant1" prefHeight="49.0" prefWidth="134.0" style="-fx-background-radius: 20;">
                      <graphic>
                         <ImageView fitHeight="38.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../images/cancel.png" />
+                              <Image url="@../../images/minus.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -53,20 +53,20 @@
                         <Font name="Arial Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Button fx:id="BTN_ADD_PENALITE_C2" layoutX="15.0" layoutY="311.0" mnemonicParsing="false" onAction="#ajoutPenaliteCombattant1" prefHeight="65.0" prefWidth="134.0">
+                  <Button fx:id="BTN_ADD_PENALITE_C2" layoutX="15.0" layoutY="311.0" mnemonicParsing="false" onAction="#ajoutPenaliteCombattant1" prefHeight="49.0" prefWidth="134.0" style="-fx-background-radius: 20;">
                      <graphic>
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../images/add-button.png" />
+                              <Image url="@../../images/add.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="BTN_DEL_PENALITE_C2" layoutX="185.0" layoutY="311.0" mnemonicParsing="false" onAction="#effacePenaliteCombattant1" prefHeight="65.0" prefWidth="134.0">
+                  <Button fx:id="BTN_DEL_PENALITE_C2" layoutX="185.0" layoutY="311.0" mnemonicParsing="false" onAction="#effacePenaliteCombattant1" prefHeight="49.0" prefWidth="134.0" style="-fx-background-radius: 20;">
                      <graphic>
                         <ImageView fitHeight="38.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../images/cancel.png" />
+                              <Image url="@../../images/minus.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -81,24 +81,44 @@
                         <Font name="Arial Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Button fx:id="BTN_PLUS_1" layoutX="18.0" layoutY="446.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="98.0" text="+1">
+                  <Button fx:id="BTN_PLUS_1" layoutX="18.0" layoutY="436.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="98.0" text="+1">
                      <font>
-                        <Font name="Arial Bold" size="36.0" />
+                        <Font name="Arial Bold" size="24.0" />
                      </font>
                   </Button>
-                  <Button fx:id="BTN_PLUS_2" layoutX="228.0" layoutY="446.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="98.0" text="+2">
+                  <Button fx:id="BTN_PLUS_2" layoutX="18.0" layoutY="486.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="98.0" text="+2">
                      <font>
-                        <Font name="Arial Bold" size="36.0" />
+                        <Font name="Arial Bold" size="24.0" />
                      </font>
                   </Button>
-                  <Button fx:id="BTN_PLUS_3" layoutX="18.0" layoutY="536.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="98.0" text="+3">
+                  <Button fx:id="BTN_PLUS_3" layoutX="18.0" layoutY="536.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="98.0" text="+3">
                      <font>
-                        <Font name="Arial Bold" size="36.0" />
+                        <Font name="Arial Bold" size="24.0" />
                      </font>
                   </Button>
-                  <Button fx:id="BTN_PLUS_4" layoutX="228.0" layoutY="536.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="98.0" text="+4">
+                  <Button fx:id="BTN_PLUS_4" layoutX="18.0" layoutY="586.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="98.0" text="+4">
                      <font>
-                        <Font name="Arial Bold" size="36.0" />
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="BTN_MOINS_1" layoutX="228.0" layoutY="436.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="98.0" text="-1">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="BTN_MOINS_2" layoutX="228.0" layoutY="486.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="98.0" text="-2">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="BTN_MOINS_3" layoutX="228.0" layoutY="536.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="98.0" text="-3">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="BTN_MOINS_4" layoutX="228.0" layoutY="586.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="98.0" text="-4">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
                      </font>
                   </Button>
                </children>
@@ -158,6 +178,24 @@
                         </ImageView>
                      </graphic>
                   </Button>
+                  <Button fx:id="BTN_ADD_AVANTAGE_C12" layoutX="21.0" layoutY="101.0" mnemonicParsing="false" onAction="#ajoutAvantageCombattant1" prefHeight="39.0" prefWidth="89.0" style="-fx-background-radius: 20;">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/add.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="BTN_DEL_AVANTAGE_C12" layoutX="233.0" layoutY="101.0" mnemonicParsing="false" onAction="#effaceAvantageCombattant1" prefHeight="49.0" prefWidth="89.0" style="-fx-background-radius: 20;">
+                     <graphic>
+                        <ImageView fitHeight="38.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/minus.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                </children></AnchorPane>
             <AnchorPane layoutX="304.0" layoutY="10.0" prefHeight="640.0" prefWidth="355.0" style="-fx-background-color: #3c6382;">
                <children>
@@ -166,6 +204,107 @@
                         <Font name="Arial Bold" size="24.0" />
                      </font>
                   </Label>
+                  <Button fx:id="BTN_ADD_AVANTAGE_C11" layoutX="18.0" layoutY="301.0" mnemonicParsing="false" onAction="#ajoutPenaliteCombattant2" prefHeight="43.0" prefWidth="134.0" style="-fx-background-radius: 20;">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/add.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label layoutX="6.0" layoutY="78.0" prefHeight="39.0" prefWidth="122.0" text="AVANTAGE :" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="BTN_DEL_AVANTAGE_C11" layoutX="198.0" layoutY="301.0" mnemonicParsing="false" onAction="#effacePenaliteCombattant2" prefHeight="49.0" prefWidth="134.0" style="-fx-background-radius: 20;">
+                     <graphic>
+                        <ImageView fitHeight="38.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/minus.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label fx:id="label_avantage_c12" alignment="CENTER" contentDisplay="CENTER" layoutX="123.0" layoutY="240.0" prefHeight="27.0" prefWidth="110.0" text="0" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="48.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="12.0" layoutY="248.0" prefHeight="39.0" prefWidth="122.0" text="PENALITE :" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="BTN_ADD_AVANTAGE_C2" layoutX="18.0" layoutY="125.0" mnemonicParsing="false" onAction="#ajoutAvantageCombattant2" prefHeight="49.0" prefWidth="134.0" style="-fx-background-radius: 20;">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/add.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="BTN_DEL_AVANTAGE_C2" layoutX="198.0" layoutY="125.0" mnemonicParsing="false" onAction="#effaceAvantageCombattant2" prefHeight="49.0" prefWidth="134.0" style="-fx-background-radius: 20;">
+                     <graphic>
+                        <ImageView fitHeight="38.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/minus.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label fx:id="label_avantage_c111" alignment="CENTER" contentDisplay="CENTER" layoutX="123.0" layoutY="62.0" prefHeight="27.0" prefWidth="110.0" text="0" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="48.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="18.0" layoutY="384.0" prefHeight="27.0" prefWidth="110.0" text="POINTS :" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="BTN_PLUS_1_C2" layoutX="18.0" layoutY="430.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="98.0" text="+1">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="BTN_PLUS_2_C2" layoutX="18.0" layoutY="479.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="98.0" text="+2">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="BTN_PLUS_3_C2" layoutX="18.0" layoutY="532.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="98.0" text="+3">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="BTN_PLUS_4_C2" layoutX="18.0" layoutY="585.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="98.0" text="+4">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="BTN_MOINS_1_C2" layoutX="234.0" layoutY="430.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="98.0" text="-1">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="BTN_MOINS_2_C2" layoutX="234.0" layoutY="479.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="98.0" text="-2">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="BTN_MOINS_3_C2" layoutX="234.0" layoutY="532.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="98.0" text="-3">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="BTN_MOINS_4_C2" layoutX="234.0" layoutY="585.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="98.0" text="-4">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
          </children>

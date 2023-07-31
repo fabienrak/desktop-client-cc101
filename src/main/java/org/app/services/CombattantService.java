@@ -18,6 +18,10 @@ public class CombattantService {
     ResultSet resultSet = null;
     Connection connection = DatabaseConnection.getConnection();
 
+    /**
+     * Get List combattant
+     * @return list_combattant
+     */
     public Service<List<Combattants>> getCombattantsData() {
         Service<List<Combattants>> combattant_service = new Service(){
             @Override
@@ -56,6 +60,10 @@ public class CombattantService {
         return combattant_service;
     };
 
+    /**
+     * Get last ID combattant registered
+     * @return last_id_combattant
+     */
     public Service<Integer> getLastCombattantId(){
         return new Service<Integer>() {
             @Override
@@ -81,6 +89,11 @@ public class CombattantService {
         };
     }
 
+    /**
+     * Add new Combattant
+     * @param combattants
+     * @return nouveau_combattant
+     */
     public Service<Boolean> addNewCombattant(Combattants combattants){
         return new Service<Boolean>() {
             @Override
@@ -113,6 +126,11 @@ public class CombattantService {
         };
     }
 
+    /**
+     * Delete combattant
+     * @param combattants
+     * @return deleted_combattant
+     */
     public Service<Boolean> deleteCombattant(Combattants combattants){
         return new Service<>() {
             @Override
