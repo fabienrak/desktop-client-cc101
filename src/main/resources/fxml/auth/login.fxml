@@ -35,7 +35,7 @@
                           <Font name="Arial Bold" size="14.0" />
                       </font>
                   </Label>
-                  <Button id="btn_login" fx:id="btn_login" layoutX="531.0" layoutY="172.0" mnemonicParsing="false" onAction="#switchToDashboard" prefHeight="39.0" prefWidth="156.0" style="-fx-background-radius: 20;" text="Se Connecter">
+                  <Button id="btn_login" fx:id="btn_login" layoutX="531.0" layoutY="172.0" mnemonicParsing="false" onAction="#verificationManager" prefHeight="39.0" prefWidth="156.0" style="-fx-background-radius: 20;" text="Se Connecter">
                       <font>
                           <Font name="Arial Bold" size="14.0" />
                       </font>

@@ -100,9 +100,8 @@ public class HomeController {
     }
 
     @FXML
-    private void openScoreBoard(ActionEvent actionEvent){
+    private void openScoreBoard(){
         try {
-            //Node node_source = (Node) actionEvent.getSource();
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/fxml/scoreboard/scoreboard.fxml"));
             Scene scoreboardScene = new Scene(fxmlLoader.load(), 1050, 650);

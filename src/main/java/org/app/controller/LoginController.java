@@ -39,13 +39,15 @@ public class LoginController {
      * @throws IOException
      */
     @FXML
-    private void switchToDashboard(ActionEvent actionEvent) throws IOException {
-        if (actionEvent.getSource() == btn_login){
+    private void switchToDashboard() {
+        try {
             stage = (Stage) btn_login.getScene().getWindow();
             parent = FXMLLoader.load(getClass().getResource("/fxml/home/home.fxml"));
             Scene scene = new Scene(parent);
             stage.setScene(scene);
             stage.show();
+        } catch (Exception exception){
+            exception.printStackTrace();
         }
     }
 
@@ -62,12 +64,12 @@ public class LoginController {
                 if(resultSet.next()){
                     if (username_field.getText().equals(resultSet.getString("username"))){
                         if (mdp_field.getText().equals(resultSet.getString("password"))){
-                            //switchToDashboard(actionEvent);
+                            switchToDashboard();
                         } else {
-                            appUtils.erreurAlertDialog("ERREUR","Mot de passe non valide");
+                            appUtils.erreurAlertDialog("ERREUR","MOT DE PASSE NON VALIDE");
                         }
                     } else {
-                        appUtils.erreurAlertDialog("ERREUR","Nom d'utilisateur non valide");
+                        appUtils.erreurAlertDialog("ERREUR","NOM D UTILISATEUR NON VALIDE");
                     }
                 }
             } catch (SQLException e) {
