@@ -131,6 +131,19 @@
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </TextField>
+            <ImageView fitHeight="79.0" fitWidth="85.0" layoutX="45.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/swap.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="134.0" layoutY="45.0" prefHeight="17.0" prefWidth="60.0" text="Filtrer :" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+            </Label>
+            <ComboBox layoutX="194.0" layoutY="41.0" prefWidth="150.0" promptText="Poids" />
+            <ComboBox layoutX="373.0" layoutY="42.0" prefWidth="150.0" promptText="Ceinture" />
+            <ComboBox layoutX="553.0" layoutY="42.0" prefWidth="150.0" promptText="Genre" />
          </children>
          <opaqueInsets>
             <Insets />
