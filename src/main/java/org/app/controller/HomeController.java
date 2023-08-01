@@ -106,8 +106,8 @@ public class HomeController {
             fxmlLoader.setLocation(getClass().getResource("/fxml/scoreboard/scoreboard.fxml"));
             Scene scoreboardScene = new Scene(fxmlLoader.load(), 1050, 650);
             Stage scoreboardStage = new Stage();
-            ScoreboardController scoreboardController = fxmlLoader.getController();
-            fxmlLoader.setController(scoreboardController);
+            /*ScoreboardController scoreboardController = fxmlLoader.getController();
+            fxmlLoader.setController(scoreboardController);*/
             scoreboardStage.setScene(scoreboardScene);
             scoreboardStage.show();
         } catch (IOException e) {

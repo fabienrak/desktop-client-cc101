@@ -1,6 +1,8 @@
 package org.app.controller;
 
 import javafx.application.Platform;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -26,6 +28,7 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import org.app.model.*;
 import org.app.services.CategorieService;
 import org.app.services.ClubService;
@@ -81,6 +84,8 @@ public class CombattantsController implements Initializable {
     private TableColumn<Combattants, String> col_grade_combattant;
     @FXML
     private TableColumn<Combattants, String> col_categorie_combattant;
+    @FXML
+    private TableColumn<Combattants, Combattants> col_select_combattant;
     @FXML
     private MaskerPane masker_tableview;
     CombattantService combattantService = new CombattantService();
@@ -275,13 +280,8 @@ public class CombattantsController implements Initializable {
             appUtils.warningAlertDialog("AVERTISSEMENT","Choisir au moins 2 combattant");
         } else {
             for (Combattants cbt : liste_selected) {
-                //System.out.println("SELECTED : " + cbt.getPrenom_combattant() + " - CLUB : " + cbt.getClub_combattant());
                 cbt_match.add(cbt);
             }
-            System.out.println("CBT 1 : " + cbt_match.get(0).getPrenom_combattant() + " - CLUB : " + cbt_match.get(0).getClub_combattant());
-            System.out.println("CBT 2 : " + cbt_match.get(1).getPrenom_combattant() + " - CLUB : " + cbt_match.get(1).getClub_combattant());
-
-
 
             /**
              * Dialog creation match
@@ -315,9 +315,6 @@ public class CombattantsController implements Initializable {
                     emplacement_data.add(tatami.getNom_emplacement());
                 }
                 tatami_match.getItems().addAll(emplacement_data);
-                for (int i = 0; i < emplacement_data.size(); i++) {
-                    System.out.println("TATAMI DATA : " + emplacement_data.get(i) + " ID : "+i);
-                }
             });
             emplacement.start();
 
@@ -354,7 +351,7 @@ public class CombattantsController implements Initializable {
                     } else {
                         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
                         errorAlert.setTitle("ERREUR");
-                        errorAlert.setContentText("Erreur lors de l'initialisation du controller");
+                        errorAlert.setContentText("ERREUR INTERNE SURVENUE");
                         errorAlert.showAndWait();
                     }
                 }
@@ -365,6 +362,16 @@ public class CombattantsController implements Initializable {
                 System.out.println("DATA : " + new_match.getDuree_match()  + " - " + new_match.getTour_match());
             });
         }
+    }
+
+    /**
+     * Select combattant
+     */
+    public void selectCombattant(){
+        ObservableList<Combattants> combattant_selectionner = tableview_combattant.getSelectionModel().getSelectedItems();
+        ArrayList<Combattants> liste_combattant_selectionner = new ArrayList<>();
+        liste_combattant_selectionner.add((Combattants) combattant_selectionner);
+        System.out.println("Combattant SELECTIONNER : " + liste_combattant_selectionner.get(0) + " - " + liste_combattant_selectionner.get(1));
     }
 
     /**
@@ -414,6 +421,7 @@ public class CombattantsController implements Initializable {
         }
     }
 
+    Button btn_match = new Button("match");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

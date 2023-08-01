@@ -1,6 +1,5 @@
 package org.app.services;
 
-import javafx.collections.FXCollections;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import org.app.model.Clubs;
