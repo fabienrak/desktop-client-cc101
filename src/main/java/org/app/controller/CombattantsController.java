@@ -77,7 +77,7 @@ public class CombattantsController implements Initializable {
     @FXML
     private TableColumn<Combattants, String> col_genre_combattant;
     @FXML
-    private TableColumn<Combattants, String> col_poids_combattant;
+    private TableColumn<Combattants, Integer> col_poids_combattant;
     @FXML
     private TableColumn<Combattants, String> col_club_combattant;
     @FXML
@@ -88,12 +88,28 @@ public class CombattantsController implements Initializable {
     private TableColumn<Combattants, Combattants> col_select_combattant;
     @FXML
     private MaskerPane masker_tableview;
+    @FXML
+    private ComboBox<Integer> cbx_poids;
+    @FXML
+    private ComboBox<String> cbx_ceinture;
+    @FXML
+    private ComboBox<String> cbx_genre;
     CombattantService combattantService = new CombattantService();
     EmplacementService emplacementService = new EmplacementService();
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
     Connection connection = DatabaseConnection.getConnection();
     Utils appUtils = new Utils();
+
+    /**
+     * Populate combobox filtre poids
+     */
+    public ObservableList<Combattants> filtre_combattant(){
+        ObservableList<Combattants> liste_combattant_filtre = FXCollections.observableArrayList();
+        String query_filtre;
+
+        return liste_combattant_filtre;
+    }
 
 
     /**
@@ -421,10 +437,24 @@ public class CombattantsController implements Initializable {
         }
     }
 
-    Button btn_match = new Button("match");
+    public void populatePoidsCombobox(){
+        ObservableList<Integer> poids_value = FXCollections.observableArrayList();
+        for (Combattants combattants : tableview_combattant.getItems()){
+            poids_value.add(col_poids_combattant.getCellObservableValue(combattants).getValue());
+        }
+        System.out.println("DATA : " + poids_value);
+        Set<Integer> poids_sans_doublon = new HashSet<>(poids_value);
+
+        System.out.println("POIDS : " + poids_sans_doublon);
+        cbx_poids.getItems().clear();
+        cbx_poids.setItems(
+                poids_value
+        );
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        populatePoidsCombobox();
 
         ClubService clubService = new ClubService();
         CategorieService categorieService = new CategorieService();
@@ -472,6 +502,25 @@ public class CombattantsController implements Initializable {
                     "CEINTURE NOIR",
                     "CEINTURE ROUGE"
             );
+
+            cbx_ceinture.getItems().clear();
+            cbx_ceinture.getItems().addAll(
+                    "CEINTURE BLANC",
+                    "CEINTURE JAUNE",
+                    "CEINTURE BLEU",
+                    "CEINTURE VIOLET",
+                    "CEINTURE MARRON",
+                    "CEINTURE NOIR",
+                    "CEINTURE ROUGE"
+            );
+
+            cbx_genre.getItems().clear();
+            cbx_genre.getItems().addAll(
+              "HOMME","FEMME"
+            );
+
+            // Poids disponible
+
 
             // Populate Club ComboBox
             Service<List<Clubs>> data_club = clubService.getClubData();
