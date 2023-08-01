@@ -25,9 +25,7 @@ public class BoardController implements Initializable {
     @FXML
     private Button BTN_DEL_AVANTAGE_C1, BTN_DEL_AVANTAGE_C2;
     @FXML
-    private Button BTN_ADD_PENALITE_C2;
-    @FXML
-    private Button BTN_DEL_PENALITE_C2;
+    private Button BTN_ADD_PENALITE_C2, BTN_DEL_PENALITE_C2;
     @FXML
     private Button BTN_PLUS_1, BTN_PLUS_2, BTN_PLUS_3, BTN_PLUS_4;
     @FXML

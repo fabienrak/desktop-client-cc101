@@ -18,6 +18,10 @@ public class EmplacementService {
     ResultSet resultSet = null;
     Connection connection = DatabaseConnection.getConnection();
 
+    /**
+     * Get Emplacement
+     * @return list_emplacement
+     */
     public Service<List<Emplacement>> getEmplacementDataService() {
         Service<List<Emplacement>> emplacementService = new Service(){
             @Override
@@ -49,6 +53,10 @@ public class EmplacementService {
         return emplacementService;
     }
 
+    /**
+     * Get Last emplacement ID
+     * @return last_emplacement_id
+     */
     public Service<Integer> getLastEmplacementId(){
         return new Service<Integer>() {
             @Override
@@ -74,6 +82,11 @@ public class EmplacementService {
         };
     }
 
+    /**
+     * Add new emplacement
+     * @param emplacement
+     * @return nouveau_emplacement
+     */
     public Service<Boolean> addNewEmplacement(Emplacement emplacement){
         return new Service<Boolean>(){
             @Override
