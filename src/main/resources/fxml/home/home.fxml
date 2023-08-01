@@ -9,15 +9,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #2c3e50;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.app.controller.HomeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #bdc3c7;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.app.controller.HomeController">
    <children>
-      <VBox alignment="CENTER" prefHeight="700.0" prefWidth="112.0" style="-fx-background-color: #34495e;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" prefHeight="700.0" prefWidth="112.0" style="-fx-background-color: #ecf0f1;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="95.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/logo_cc101.png" />
                </image></ImageView>
-            <Button id="btn_menu_combattant" fx:id="btn_menu_combattant" alignment="CENTER" contentDisplay="TOP" graphicTextGap="5.0" mnemonicParsing="false" onAction="#sceneCombattant" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #34495e;" text="Combattant" textFill="WHITE">
+            <Button id="btn_menu_combattant" fx:id="btn_menu_combattant" alignment="CENTER" contentDisplay="TOP" graphicTextGap="5.0" mnemonicParsing="false" onAction="#sceneCombattant" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #ecf0f1;" text="Combattant">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
@@ -35,7 +35,7 @@
                   <Insets left="10.0" top="25.0" />
                </padding>
             </Button>
-            <Button id="btn_menu_reglage" fx:id="btn_menu_competition" alignment="CENTER" contentDisplay="TOP" graphicTextGap="5.0" layoutX="10.0" layoutY="254.0" mnemonicParsing="false" onAction="#sceneCompetition" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #34495e;" text="Competition" textFill="WHITE">
+            <Button id="btn_menu_reglage" fx:id="btn_menu_competition" alignment="CENTER" contentDisplay="TOP" graphicTextGap="5.0" layoutX="10.0" layoutY="254.0" mnemonicParsing="false" onAction="#sceneCompetition" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #ecf0f1;" text="Competition">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
@@ -53,7 +53,7 @@
                   <Insets left="10.0" top="5.0" />
                </padding>
             </Button>
-            <Button id="btn_menu_about" fx:id="btn_menu_club" alignment="CENTER" contentDisplay="TOP" graphicTextGap="5.0" layoutX="10.0" layoutY="333.0" lineSpacing="5.0" mnemonicParsing="false" onAction="#sceneClub" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #34495e;" text="Club" textFill="WHITE">
+            <Button id="btn_menu_about" fx:id="btn_menu_club" alignment="CENTER" contentDisplay="TOP" graphicTextGap="5.0" layoutX="10.0" layoutY="333.0" lineSpacing="5.0" mnemonicParsing="false" onAction="#sceneClub" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #ecf0f1;" text="Club">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
@@ -71,7 +71,7 @@
                   <Insets left="10.0" top="5.0" />
                </padding>
             </Button>
-            <Button id="btn_menu_about" fx:id="btn_menu_categorie" alignment="CENTER" contentDisplay="TOP" graphicTextGap="5.0" layoutX="13.0" layoutY="488.0" lineSpacing="5.0" mnemonicParsing="false" onAction="#sceneCategory" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #34495e;" text="Categories" textFill="WHITE">
+            <Button id="btn_menu_about" fx:id="btn_menu_categorie" alignment="CENTER" contentDisplay="TOP" graphicTextGap="5.0" layoutX="13.0" layoutY="488.0" lineSpacing="5.0" mnemonicParsing="false" onAction="#sceneCategory" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #ecf0f1;" text="Categories">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
@@ -89,7 +89,7 @@
                   <Insets left="10.0" top="5.0" />
                </padding>
             </Button>
-            <Button id="btn_menu_about" fx:id="btn_menu_emplacement" alignment="CENTER" contentDisplay="TOP" graphicTextGap="5.0" layoutX="13.0" layoutY="526.0" lineSpacing="5.0" mnemonicParsing="false" onAction="#sceneEmplacement" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #34495e;" text="Emplacement" textFill="WHITE">
+            <Button id="btn_menu_about" fx:id="btn_menu_emplacement" alignment="CENTER" contentDisplay="TOP" graphicTextGap="5.0" layoutX="13.0" layoutY="526.0" lineSpacing="5.0" mnemonicParsing="false" onAction="#sceneEmplacement" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #ecf0f1;" text="Emplacement">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
@@ -107,7 +107,7 @@
                   <Insets left="10.0" top="5.0" />
                </padding>
             </Button>
-            <Button id="btn_menu_about" fx:id="btn_menu_emplacement1" alignment="CENTER" contentDisplay="TOP" graphicTextGap="5.0" layoutX="13.0" layoutY="526.0" lineSpacing="5.0" mnemonicParsing="false" onAction="#sceneScoreboardManager" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #34495e;" text="Scoreboard" textFill="WHITE">
+            <Button id="btn_menu_about" fx:id="btn_menu_emplacement1" alignment="CENTER" contentDisplay="TOP" graphicTextGap="5.0" layoutX="13.0" layoutY="526.0" lineSpacing="5.0" mnemonicParsing="false" onAction="#sceneScoreboardManager" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #ecf0f1;" text="Scoreboard">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
@@ -125,7 +125,7 @@
                   <Insets left="10.0" top="5.0" />
                </padding>
             </Button>
-            <Button id="btn_menu_about" fx:id="btn_open_scoreboard" alignment="CENTER" contentDisplay="TOP" graphicTextGap="5.0" layoutX="10.0" layoutY="613.0" lineSpacing="5.0" mnemonicParsing="false" onAction="#openScoreBoard" prefHeight="90.0" prefWidth="112.0" style="-fx-background-color: #34495e;" text="Ouvrir Board" textFill="WHITE">
+            <Button id="btn_menu_about" fx:id="btn_open_scoreboard" alignment="CENTER" contentDisplay="TOP" graphicTextGap="5.0" layoutX="10.0" layoutY="613.0" lineSpacing="5.0" mnemonicParsing="false" onAction="#openScoreBoard" prefHeight="90.0" prefWidth="112.0" style="-fx-background-color: #ecf0f1;" text="Ouvrir Board">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
@@ -146,67 +146,67 @@
          </children></VBox>
       <AnchorPane fx:id="content_pane" layoutX="125.0" layoutY="15.0" prefHeight="772.0" prefWidth="1064.0" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="125.0" AnchorPane.topAnchor="15.0">
          <children>
-            <Label layoutX="177.0" layoutY="249.0" prefHeight="31.0" prefWidth="153.0" text="Menu Combattant : " textFill="WHITE">
+            <Label layoutX="177.0" layoutY="249.0" prefHeight="31.0" prefWidth="153.0" text="Menu Combattant : ">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="327.0" layoutY="249.0" prefHeight="31.0" prefWidth="388.0" text="Gestion des combattant, Ajout - Affichage - Tri" textFill="WHITE">
+            <Label layoutX="327.0" layoutY="249.0" prefHeight="31.0" prefWidth="388.0" text="Gestion des combattant, Ajout - Affichage - Tri">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="177.0" layoutY="299.0" prefHeight="31.0" prefWidth="153.0" text="Menu Competition : " textFill="WHITE">
+            <Label layoutX="177.0" layoutY="299.0" prefHeight="31.0" prefWidth="153.0" text="Menu Competition : ">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="327.0" layoutY="299.0" prefHeight="31.0" prefWidth="601.0" text="Gestion des competition, Renseignement a propos du competition, Ajout - Affichage" textFill="WHITE">
+            <Label layoutX="327.0" layoutY="299.0" prefHeight="31.0" prefWidth="601.0" text="Gestion des competition, Renseignement a propos du competition, Ajout - Affichage">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="177.0" layoutY="349.0" prefHeight="31.0" prefWidth="153.0" text="Menu Club : " textFill="WHITE">
+            <Label layoutX="177.0" layoutY="349.0" prefHeight="31.0" prefWidth="153.0" text="Menu Club : ">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="327.0" layoutY="349.0" prefHeight="31.0" prefWidth="601.0" text="Gestion des club, Enregistrement Club, Ajout - Affichage" textFill="WHITE">
+            <Label layoutX="327.0" layoutY="349.0" prefHeight="31.0" prefWidth="601.0" text="Gestion des club, Enregistrement Club, Ajout - Affichage">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="177.0" layoutY="399.0" prefHeight="31.0" prefWidth="153.0" text="Menu Categories : " textFill="WHITE">
+            <Label layoutX="177.0" layoutY="399.0" prefHeight="31.0" prefWidth="153.0" text="Menu Categories : ">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="327.0" layoutY="399.0" prefHeight="31.0" prefWidth="601.0" text="Gestion des categories, Renseignement Categories des poids, Ajout - Affichage" textFill="WHITE">
+            <Label layoutX="327.0" layoutY="399.0" prefHeight="31.0" prefWidth="601.0" text="Gestion des categories, Renseignement Categories des poids, Ajout - Affichage">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="177.0" layoutY="449.0" prefHeight="31.0" prefWidth="153.0" text="Menu Emplacement : " textFill="WHITE">
+            <Label layoutX="177.0" layoutY="449.0" prefHeight="31.0" prefWidth="153.0" text="Menu Emplacement : ">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="327.0" layoutY="449.0" prefHeight="31.0" prefWidth="601.0" text="Gestion des emplacement Match, Ajout - Affichage" textFill="WHITE">
+            <Label layoutX="327.0" layoutY="449.0" prefHeight="31.0" prefWidth="601.0" text="Gestion des emplacement Match, Ajout - Affichage">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="177.0" layoutY="499.0" prefHeight="31.0" prefWidth="153.0" text="Menu Scoreboard : " textFill="WHITE">
+            <Label layoutX="177.0" layoutY="499.0" prefHeight="31.0" prefWidth="153.0" text="Menu Scoreboard : ">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="327.0" layoutY="499.0" prefHeight="31.0" prefWidth="601.0" text="Controle du tableau de score" textFill="WHITE">
+            <Label layoutX="327.0" layoutY="499.0" prefHeight="31.0" prefWidth="601.0" text="Controle du tableau de score">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="437.0" layoutY="189.0" prefHeight="31.0" prefWidth="193.0" text="Fonctionnement" textFill="WHITE">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="437.0" layoutY="189.0" prefHeight="31.0" prefWidth="193.0" text="Fonctionnement">
                <font>
                   <Font name="Arial Bold" size="24.0" />
                </font>

@@ -13,7 +13,7 @@
 
 <AnchorPane prefHeight="250.0" prefWidth="700.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../../css/login.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.app.controller.LoginController">
     <children>
-          <Pane prefHeight="250.0" prefWidth="700.0" style="-fx-background-color: #34495e;">
+          <Pane prefHeight="250.0" prefWidth="700.0" style="-fx-background-color: #ecf0f1;">
               <children>
                   <TextField fx:id="username_field" layoutX="407.0" layoutY="69.0" prefHeight="39.0" prefWidth="280.0" style="-fx-border-radius: 20;" styleClass="input_username" stylesheets="@../../css/style.css">
                       <font>
@@ -25,12 +25,12 @@
                           <Font name="Arial Bold" size="14.0" />
                       </font>
                   </PasswordField>
-                  <Label layoutX="243.0" layoutY="64.0" prefHeight="39.0" prefWidth="164.0" text="Nom d'utilisateur :" textFill="WHITE">
+                  <Label layoutX="243.0" layoutY="64.0" prefHeight="39.0" prefWidth="164.0" text="Nom d'utilisateur :">
                       <font>
                           <Font name="Arial Bold" size="14.0" />
                       </font>
                   </Label>
-                  <Label layoutX="243.0" layoutY="128.0" prefHeight="30.0" prefWidth="137.0" text="Mot de Passe :" textFill="#fffefe">
+                  <Label layoutX="243.0" layoutY="128.0" prefHeight="30.0" prefWidth="137.0" text="Mot de Passe :">
                       <font>
                           <Font name="Arial Bold" size="14.0" />
                       </font>
@@ -47,7 +47,7 @@
                   </ImageView>
                </graphic>
                   </Button>
-                  <Label layoutX="232.0" layoutY="232.0" prefHeight="17.0" prefWidth="291.0" text="Made with          By Isha Fabian - Copyright  CC101 2023" textFill="WHITE">
+                  <Label layoutX="232.0" layoutY="232.0" prefHeight="17.0" prefWidth="291.0" text="Made with          By Isha Fabian - Copyright  CC101 2023">
                       <font>
                           <Font name="Arial" size="10.0" />
                       </font>

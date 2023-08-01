@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -15,23 +16,29 @@
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.MaskerPane?>
 
-<VBox prefHeight="750.0" prefWidth="1050.0" style="-fx-background-color: #2f3542;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.app.controller.CombattantsController">
+<VBox prefHeight="750.0" prefWidth="1050.0" style="-fx-background-color: #2f3640;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.app.controller.CombattantsController">
    <children>
-      <AnchorPane prefHeight="294.0" prefWidth="1050.0" style="-fx-background-color: #57606f;">
+      <AnchorPane prefHeight="294.0" prefWidth="1050.0" style="-fx-background-color: #bdc3c7; -fx-border-color: #2f3640;">
          <children>
-            <TextField fx:id="txt_nom_combattant" layoutX="323.0" layoutY="14.0" prefHeight="37.0" prefWidth="248.0" />
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="147.0" layoutY="5.0" prefHeight="56.0" prefWidth="130.0" text="Nom :" textAlignment="CENTER" textFill="WHITE">
+            <TextField fx:id="txt_nom_combattant" layoutX="323.0" layoutY="14.0" prefHeight="37.0" prefWidth="248.0">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font></TextField>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="147.0" layoutY="5.0" prefHeight="56.0" prefWidth="130.0" text="Nom :" textAlignment="CENTER">
                <font>
                   <Font name="Arial Bold" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="txt_prenom_combattant" layoutX="323.0" layoutY="71.0" prefHeight="37.0" prefWidth="248.0" />
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="169.0" layoutY="62.0" prefHeight="56.0" prefWidth="108.0" text="Prenom :" textAlignment="CENTER" textFill="WHITE">
+            <TextField fx:id="txt_prenom_combattant" layoutX="323.0" layoutY="71.0" prefHeight="37.0" prefWidth="248.0">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font></TextField>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="169.0" layoutY="62.0" prefHeight="56.0" prefWidth="108.0" text="Prenom :" textAlignment="CENTER">
                <font>
                   <Font name="Arial Bold" size="13.0" />
                </font>
             </Label>
-            <Button fx:id="btn_save_combattant" layoutX="861.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleAddCombattantButton" prefHeight="40.0" prefWidth="130.0" style="-fx-background-radius: 20;" text="Enregistrer">
+            <Button fx:id="btn_save_combattant" layoutX="861.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleAddCombattantButton" prefHeight="40.0" prefWidth="130.0" style="-fx-background-radius: 20; -fx-background-color: #7f8fa6;" text="Enregistrer">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
@@ -43,42 +50,45 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="189.0" layoutY="121.0" prefHeight="56.0" prefWidth="130.0" text="Date de naissance :" textAlignment="CENTER" textFill="WHITE">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="189.0" layoutY="121.0" prefHeight="56.0" prefWidth="130.0" text="Date de naissance :" textAlignment="CENTER">
                <font>
                   <Font name="Arial Bold" size="13.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="141.0" layoutY="182.0" prefHeight="56.0" prefWidth="151.0" text="Genre :" textAlignment="CENTER" textFill="WHITE">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="141.0" layoutY="182.0" prefHeight="56.0" prefWidth="151.0" text="Genre :" textAlignment="CENTER">
                <font>
                   <Font name="Arial Bold" size="13.0" />
                </font>
             </Label>
             <ComboBox fx:id="combobox_genre_combattant" layoutX="323.0" layoutY="192.0" prefHeight="37.0" prefWidth="248.0" />
             <DatePicker fx:id="txt_date_naissance_combattant" layoutX="323.0" layoutY="131.0" prefHeight="37.0" prefWidth="248.0" />
-            <TextField fx:id="txt_poids_combattant" layoutX="743.0" layoutY="14.0" prefHeight="37.0" prefWidth="138.0" />
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="587.0" layoutY="5.0" prefHeight="56.0" prefWidth="130.0" text="Poids :" textAlignment="CENTER" textFill="WHITE">
+            <TextField fx:id="txt_poids_combattant" layoutX="743.0" layoutY="14.0" prefHeight="37.0" prefWidth="138.0">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font></TextField>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="587.0" layoutY="5.0" prefHeight="56.0" prefWidth="130.0" text="Poids :" textAlignment="CENTER">
                <font>
                   <Font name="Arial Bold" size="13.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="847.0" layoutY="5.0" prefHeight="56.0" prefWidth="130.0" text="Kg" textAlignment="CENTER" textFill="WHITE">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="847.0" layoutY="5.0" prefHeight="56.0" prefWidth="130.0" text="Kg" textAlignment="CENTER">
                <font>
                   <Font name="Arial Bold" size="13.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="575.0" layoutY="62.0" prefHeight="56.0" prefWidth="151.0" text="Club :" textAlignment="CENTER" textFill="WHITE">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="575.0" layoutY="62.0" prefHeight="56.0" prefWidth="151.0" text="Club :" textAlignment="CENTER">
                <font>
                   <Font name="Arial Bold" size="13.0" />
                </font>
             </Label>
             <ComboBox fx:id="combobox_club_combattant" layoutX="743.0" layoutY="72.0" prefHeight="37.0" prefWidth="248.0" />
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="575.0" layoutY="122.0" prefHeight="56.0" prefWidth="159.0" text="Grade :" textAlignment="CENTER" textFill="WHITE">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="575.0" layoutY="122.0" prefHeight="56.0" prefWidth="159.0" text="Grade :" textAlignment="CENTER">
                <font>
                   <Font name="Arial Bold" size="13.0" />
                </font>
             </Label>
             <ComboBox fx:id="combobox_grade_combattant" layoutX="743.0" layoutY="132.0" prefHeight="37.0" prefWidth="248.0" />
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="575.0" layoutY="182.0" prefHeight="56.0" prefWidth="177.0" text="Categorie :" textAlignment="CENTER" textFill="WHITE">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="575.0" layoutY="182.0" prefHeight="56.0" prefWidth="177.0" text="Categorie :" textAlignment="CENTER">
                <font>
                   <Font name="Arial Bold" size="13.0" />
                </font>
@@ -89,13 +99,16 @@
                   <Image url="@../../images/fighter.png" />
                </image>
             </ImageView>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="164.0" prefHeight="37.0" prefWidth="130.0" text="Ajout Combattant" textFill="WHITE">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="164.0" prefHeight="37.0" prefWidth="130.0" text="Ajout Combattant">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </Label>
-            <Separator layoutX="168.0" layoutY="18.0" orientation="VERTICAL" prefHeight="252.0" prefWidth="5.0" />
+            <Separator layoutX="168.0" layoutY="18.0" orientation="VERTICAL" prefHeight="252.0" prefWidth="5.0" style="-fx-background-color: #2f3640;" />
          </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
       </AnchorPane>
       <AnchorPane prefHeight="440.0" prefWidth="1050.0">
          <children>
@@ -119,6 +132,9 @@
                </font>
             </TextField>
          </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
       </AnchorPane>
    </children>
 </VBox>
