@@ -447,14 +447,14 @@ public class CombattantsController implements Initializable {
 
         System.out.println("POIDS : " + poids_sans_doublon);
         cbx_poids.getItems().clear();
-        cbx_poids.setItems(
-                poids_value
+        cbx_poids.getItems().addAll(
+                poids_sans_doublon
         );
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        populatePoidsCombobox();
+
 
         ClubService clubService = new ClubService();
         CategorieService categorieService = new CategorieService();
@@ -505,13 +505,7 @@ public class CombattantsController implements Initializable {
 
             cbx_ceinture.getItems().clear();
             cbx_ceinture.getItems().addAll(
-                    "CEINTURE BLANC",
-                    "CEINTURE JAUNE",
-                    "CEINTURE BLEU",
-                    "CEINTURE VIOLET",
-                    "CEINTURE MARRON",
-                    "CEINTURE NOIR",
-                    "CEINTURE ROUGE"
+
             );
 
             cbx_genre.getItems().clear();
@@ -520,7 +514,6 @@ public class CombattantsController implements Initializable {
             );
 
             // Poids disponible
-
 
             // Populate Club ComboBox
             Service<List<Clubs>> data_club = clubService.getClubData();
@@ -553,7 +546,7 @@ public class CombattantsController implements Initializable {
                 tableview_combattant.getItems().setAll(serviceCombattant.getValue());
                 tableview_combattant.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
                 ObservableList<Combattants> liste_combattants = FXCollections.observableList(serviceCombattant.getValue());
-
+                populatePoidsCombobox();
                 FilteredList<Combattants> filteredList = new FilteredList<>(liste_combattants, b -> true);
                 txt_search_combattant.textProperty().addListener((observableValue, oldValue, newValue) -> {
                     filteredList.setPredicate(Combattant -> {

@@ -81,11 +81,6 @@
                         <Font name="Arial Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Button fx:id="BTN_PLUS_1" layoutX="18.0" layoutY="436.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="98.0" text="+1">
-                     <font>
-                        <Font name="Arial Bold" size="24.0" />
-                     </font>
-                  </Button>
                   <Button fx:id="BTN_PLUS_2" layoutX="18.0" layoutY="486.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="98.0" text="+2">
                      <font>
                         <Font name="Arial Bold" size="24.0" />
@@ -265,11 +260,6 @@
                         <Font name="Arial Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Button fx:id="BTN_PLUS_1_C2" layoutX="18.0" layoutY="430.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="98.0" text="+1">
-                     <font>
-                        <Font name="Arial Bold" size="24.0" />
-                     </font>
-                  </Button>
                   <Button fx:id="BTN_PLUS_2_C2" layoutX="18.0" layoutY="479.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="98.0" text="+2">
                      <font>
                         <Font name="Arial Bold" size="24.0" />

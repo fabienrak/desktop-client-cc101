@@ -115,10 +115,10 @@ public class BoardController implements Initializable {
         // COMBATTANT 1
 
         // Bouton ajout point
-        BTN_PLUS_1.setOnAction(actionEvent -> {
+        /*BTN_PLUS_1.setOnAction(actionEvent -> {
             ScoreboardController scoreboardController = ScoreboardController.getInstance();
             scoreboardController.handleAddPointsCombattant1(_POINT_1);
-        });
+        });*/
         BTN_PLUS_2.setOnAction(actionEvent -> {
             ScoreboardController scoreboardController = ScoreboardController.getInstance();
             scoreboardController.handleAddPointsCombattant1(_POINT_2);
@@ -151,10 +151,10 @@ public class BoardController implements Initializable {
         });
 
         // Combattannt 2
-        BTN_PLUS_1_C2.setOnAction(actionEvent -> {
+        /*BTN_PLUS_1_C2.setOnAction(actionEvent -> {
             ScoreboardController scoreboardController = ScoreboardController.getInstance();
             scoreboardController.handleAddPointsCombattant2(_POINT_1);
-        });
+        });*/
         BTN_PLUS_2_C2.setOnAction(actionEvent -> {
             ScoreboardController scoreboardController = ScoreboardController.getInstance();
             scoreboardController.handleAddPointsCombattant2(_POINT_2);
