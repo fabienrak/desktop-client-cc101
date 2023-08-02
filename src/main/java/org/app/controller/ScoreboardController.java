@@ -1,24 +1,29 @@
 package org.app.controller;
 
-import javafx.animation.Animation;
-import javafx.animation.FadeTransition;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+import javafx.animation.*;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.app.model.Victoire;
 import org.app.utils.Utils;
 
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.time.temporal.ChronoUnit;
 import java.util.ResourceBundle;
@@ -42,6 +47,12 @@ public class ScoreboardController implements Initializable {
     @FXML
     private Label label_point_c1, label_point_c2;
     @FXML
+    private ImageView SUBMISSION_C1, SUBMISSION_C2,
+            POINT_C1, POINT_C2,
+            ABANDON_C1, ABANDON_C2,
+            DISQUALIFIE_C1, DISQUALIFIE_C2,
+            MATCH_NULL_C1, MATCH_NULL_C2;
+    @FXML
     private Button BTN_ADD_AVANTAGE_C1, BTN_ADD_AVANTAGE_C2;
     @FXML
     private Button BTN_DEL_AVANTAGE_C1, BTN_DEL_AVANTAGE_C2;
@@ -49,6 +60,7 @@ public class ScoreboardController implements Initializable {
     private int duree_seconde = 0;
     private boolean isPaused = false;
     private Timeline timeline;
+    private Stage stage;
     Utils app_utils = new Utils();
     private static ScoreboardController instance;
     public ScoreboardController(){
@@ -338,6 +350,94 @@ public class ScoreboardController implements Initializable {
         }
     }
 
+
+    /**
+     * Animation victoire
+     */
+    Duration duree_anim = Duration.seconds(1.3);
+    private void afficheVictoire(ImageView node, Duration duration) {
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.ZERO, new KeyValue(node.visibleProperty(), true)),
+                new KeyFrame(duration.divide(2), new KeyValue(node.visibleProperty(), false)),
+                new KeyFrame(duration, new KeyValue(node.visibleProperty(), true))
+        );
+
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+    }
+
+    /**
+     * Annonce victoire
+     * Format : VICTOIRE_COMBATTANT_1 :
+     * Ex : SUBMISSION_COMBATTANT_1
+     */
+    public void annonceVictoire(Victoire cbt_victoire){
+        switch (cbt_victoire){
+            case SUBMISSION_COMBATTANT_1 -> {
+                SUBMISSION_C1.setVisible(true);
+                afficheVictoire(SUBMISSION_C1, duree_anim);
+                captureResultat(stage);
+            }
+            case SUBMISSION_COMBATTANT_2 -> {
+                SUBMISSION_C2.setVisible(true);
+                afficheVictoire(SUBMISSION_C2, duree_anim);
+            }
+            case POINT_COMBATTANT_1 -> {
+                POINT_C1.setVisible(true);
+                afficheVictoire(POINT_C1, duree_anim);
+            }
+            case POINT_COMBATTANT_2 -> {
+                POINT_C2.setVisible(true);
+                afficheVictoire(POINT_C2, duree_anim);
+            }
+            case ABANDON_COMBATTANT_1 -> {
+                ABANDON_C1.setVisible(true);
+                afficheVictoire(ABANDON_C1, duree_anim);
+            }
+            case ABANDON_COMBATTANT_2 -> {
+                ABANDON_C2.setVisible(true);
+                afficheVictoire(ABANDON_C2, duree_anim);
+            }
+            case DISQUALIFICATION_COMBATTANT_1 -> {
+                DISQUALIFIE_C1.setVisible(true);
+                afficheVictoire(DISQUALIFIE_C1, duree_anim);
+            }
+            case DISQUALIFICATION_COMBATTANT_2 -> {
+                DISQUALIFIE_C2.setVisible(true);
+                afficheVictoire(DISQUALIFIE_C2, duree_anim);
+            }
+            case MATCH_NULL -> {
+                MATCH_NULL_C1.setVisible(true);
+                MATCH_NULL_C2.setVisible(true);
+                afficheVictoire(MATCH_NULL_C1, duree_anim);
+                afficheVictoire(MATCH_NULL_C2, duree_anim);
+            }
+        }
+
+    }
+
+    /**
+     * Capture d'ecran a la fin du match
+     * @param Stage
+     */
+    public void captureResultat(Stage stage){
+        if (null != stage && stage.sceneProperty() != null){
+            Scene scene_en_cour = stage.getScene();
+            int width = (int) scene_en_cour.widthProperty().get();
+            int height = (int) scene_en_cour.heightProperty().get();
+            WritableImage image = scene_en_cour.snapshot(new WritableImage(width, height));
+            File file_image = new File(java.time.LocalDate.now()+"-DATA.png");
+            System.out.println("IMAGE : " + file_image);
+            try {
+                ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file_image);
+                app_utils.successAlertDialog("SUCCESS","CAPTURE BIEN ENREGISTRER");
+            } catch (IOException e) {
+                app_utils.erreurAlertDialog("ERREUR","ERREUR DU CAPTURE");
+                e.printStackTrace();
+            }
+        }
+
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

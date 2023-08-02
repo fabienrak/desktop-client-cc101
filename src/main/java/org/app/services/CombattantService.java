@@ -153,4 +153,52 @@ public class CombattantService {
             }
         };
     }
+
+    /**
+     * Filtre combattant
+     * @param poids
+     * @param grade
+     * @param genre
+     * @return liste_combattant_filtrer
+     */
+    public Service<List<Combattants>> filtreCombattant(Integer poids_combattant, String genre_combattant, String grade_combattant){
+        Service<List<Combattants>> filtre_combattant_service = new Service<List<Combattants>>() {
+            @Override
+            protected Task<List<Combattants>> createTask() {
+                return new Task<>() {
+                    @Override
+                    protected List<Combattants> call() {
+                        List<Combattants> liste_combattant_filtrer = new ArrayList<>();
+                        String filtre_combattant = "SELECT id_cb, nom, prenom, date_naissance, genre, poids, grade, nom_club, categorie FROM combattant \n" +
+                                "INNER JOIN club ON club.id_clb=combattant.club_id\n" +
+                                "INNER JOIN categorie_poids ON categorie_poids.id_cp=combattant.categorie_id \n" +
+                                " WHERE combattant.poids=\'" + poids_combattant + "\' AND combattant.genre=\'" + genre_combattant + "\' AND combattant.grade=\'" + grade_combattant + "\'";
+                        System.out.println("REQUETE : " + filtre_combattant);
+                        try {
+                            preparedStatement = connection.prepareStatement(filtre_combattant);
+                            System.out.println("REQUETE : " + filtre_combattant);
+                            resultSet = preparedStatement.executeQuery();
+                            while (resultSet.next()) {
+                                Combattants combattants_filtrer = new Combattants(
+                                        resultSet.getInt("id_cb"),
+                                        resultSet.getString("nom"),
+                                        resultSet.getString("prenom"),
+                                        resultSet.getString("date_naissance"),
+                                        resultSet.getString("genre"),
+                                        resultSet.getInt("poids"),
+                                        resultSet.getString("grade"),
+                                        resultSet.getString("nom_club"),
+                                        resultSet.getString("categorie"));
+                                liste_combattant_filtrer.add(combattants_filtrer);
+                            }
+                        } catch (SQLException sqlException) {
+                            sqlException.printStackTrace();
+                        }
+                        return liste_combattant_filtrer;
+                    }
+                };
+            }
+        };
+        return filtre_combattant_service;
+    }
 }

@@ -112,7 +112,7 @@
       </AnchorPane>
       <AnchorPane prefHeight="440.0" prefWidth="1050.0">
          <children>
-            <MaskerPane fx:id="masker_tableview" prefHeight="440.0" prefWidth="1050.0" />
+            <MaskerPane fx:id="masker_tableview" prefHeight="440.0" prefWidth="1050.0" text="Chargement en cour ..." />
             <TableView fx:id="tableview_combattant" layoutX="14.0" layoutY="98.0" prefHeight="331.0" prefWidth="1018.0">
               <columns>
                 <TableColumn fx:id="col_id_combattant" prefWidth="75.0" text="ID" />
@@ -141,10 +141,10 @@
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="cbx_poids" layoutX="154.0" layoutY="41.0" prefWidth="150.0" promptText="Poids" />
+            <ComboBox fx:id="cbx_poids" layoutX="154.0" layoutY="41.0" prefWidth="150.0" promptText="Poids (en Kg)" />
             <ComboBox fx:id="cbx_ceinture" layoutX="333.0" layoutY="42.0" prefWidth="150.0" promptText="Ceinture" />
             <ComboBox fx:id="cbx_genre" layoutX="513.0" layoutY="42.0" prefWidth="150.0" promptText="Genre" />
-            <Button layoutX="681.0" layoutY="42.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="73.0" text="Filtrer">
+            <Button layoutX="681.0" layoutY="42.0" mnemonicParsing="false" onAction="#filtrerCombattant" prefHeight="25.0" prefWidth="73.0" text="Filtrer">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>

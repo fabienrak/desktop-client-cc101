@@ -22,16 +22,41 @@
    <children>
       <AnchorPane style="-fx-background-color: #0097e6;">
          <children>
-            <Label fx:id="label_combattant_1" layoutX="7.0" layoutY="56.0" prefHeight="87.0" prefWidth="513.0" AnchorPane.bottomAnchor="125.0" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="56.0">
+            <Label fx:id="label_combattant_1" layoutX="14.0" layoutY="59.0" prefHeight="102.0" prefWidth="576.0" AnchorPane.bottomAnchor="107.0" AnchorPane.topAnchor="59.0">
                <font>
                   <Font name="Arial Bold" size="64.0" />
                </font>
             </Label>
-            <Label fx:id="label_club_cbt1" layoutX="28.0" layoutY="177.0" prefHeight="61.0" prefWidth="179.0" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="177.0">
+            <Label fx:id="label_club_cbt1" layoutX="28.0" layoutY="177.0" prefHeight="55.0" prefWidth="531.0" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="177.0">
                <font>
                   <Font name="Arial Bold" size="48.0" />
                </font>
             </Label>
+            <ImageView fx:id="SUBMISSION_C1" fitHeight="144.0" fitWidth="1028.0" layoutX="14.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="24.478271484375" AnchorPane.topAnchor="69.0">
+               <image>
+                  <Image url="@../../images/submission.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="POINT_C1" fitHeight="144.0" fitWidth="1028.0" layoutX="67.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../../images/point.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ABANDON_C1" fitHeight="144.0" fitWidth="1028.0" layoutX="77.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../../images/abandon.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="DISQUALIFIE_C1" fitHeight="144.0" fitWidth="1028.0" layoutX="87.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../../images/disqualifie.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="MATCH_NULL_C1" fitHeight="144.0" fitWidth="1028.0" layoutX="51.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../../images/match_null.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0097e6;" GridPane.columnIndex="1">
@@ -65,16 +90,41 @@
       </AnchorPane>
       <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #e74c3c;" GridPane.rowIndex="1">
          <children>
-            <Label fx:id="label_combattant_2" layoutX="10.0" layoutY="25.0" prefHeight="102.0" prefWidth="513.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="25.0">
+            <Label fx:id="label_combattant_2" layoutX="10.0" layoutY="25.0" prefHeight="102.0" prefWidth="538.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="25.0">
                <font>
                   <Font name="Arial Bold" size="64.0" />
                </font>
             </Label>
-            <Label fx:id="label_club_cbt2" layoutX="29.0" layoutY="142.0" prefHeight="61.0" prefWidth="179.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="142.0">
+            <Label fx:id="label_club_cbt2" layoutX="29.0" layoutY="142.0" prefHeight="61.0" prefWidth="531.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="142.0">
                <font>
                   <Font name="Arial Bold" size="48.0" />
                </font>
             </Label>
+            <ImageView fx:id="SUBMISSION_C2" fitHeight="144.0" fitWidth="941.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../../images/submission.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="POINT_C2" fitHeight="144.0" fitWidth="1028.0" layoutX="66.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../../images/point.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ABANDON_C2" fitHeight="144.0" fitWidth="1028.0" layoutX="76.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../../images/abandon.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="DISQUALIFIE_C2" fitHeight="144.0" fitWidth="1028.0" layoutX="86.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../../images/disqualifie.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="MATCH_NULL_C2" fitHeight="144.0" fitWidth="1028.0" layoutX="48.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../../images/match_null.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #e74c3c;" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -117,7 +167,7 @@
       </AnchorPane>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f5f6fa;" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <children>
-            <ImageView fitHeight="216.0" fitWidth="275.0" layoutX="333.0" layoutY="-67.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="5.0">
+            <ImageView fitHeight="216.0" fitWidth="216.0" layoutX="333.0" layoutY="-67.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="5.0">
                <image>
                   <Image url="@../../images/logo_cc101.png" />
                </image>
