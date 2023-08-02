@@ -26,7 +26,7 @@ public class BoardController implements Initializable {
     @FXML
     private Button btn_stop_chrono;
     @FXML
-    private Label label_avantage_c1;
+    private Label label_avantage_c1, label_prenom_cbt1;
     @FXML
     private Button BTN_ADD_AVANTAGE_C1, BTN_ADD_AVANTAGE_C2;
     @FXML
@@ -238,7 +238,7 @@ public class BoardController implements Initializable {
         });
         BTN_RESET.setOnAction(actionEvent -> {
             ScoreboardController scoreboardController = ScoreboardController.getInstance();
-            System.out.println("CAPTURE D ECRAN");
+            scoreboardController.resetScoreBoard();
         });
 
     }

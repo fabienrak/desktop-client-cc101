@@ -88,6 +88,9 @@ public class ScoreboardController implements Initializable {
 
     public void afficheTempsMatch(int duree_match){
         label_time.setText(String.valueOf(Integer.valueOf(duree_match)));
+        //duree_minute = formatTimeNumber();
+        //duree_seconde = 0;
+        //label_time.setText(formatTime(duree_minute, duree_seconde));
         label_time.setVisible(false);
     }
 
@@ -149,11 +152,6 @@ public class ScoreboardController implements Initializable {
      */
     public void pauseChrono(){
         if (timeline != null) {
-            /*FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), label_time);
-            fadeTransition.setFromValue(1.0);
-            fadeTransition.setToValue(0.0);
-            fadeTransition.setCycleCount(Animation.INDEFINITE);
-            fadeTransition.play();*/
             timeline.pause();
         }
         isPaused = true;
@@ -165,11 +163,6 @@ public class ScoreboardController implements Initializable {
      */
     public void playChrono(){
         if (timeline != null) {
-            FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), label_time);
-            fadeTransition.setFromValue(1.0);
-            fadeTransition.setToValue(0.0);
-            fadeTransition.setCycleCount(Animation.INDEFINITE);
-            fadeTransition.stop();
             timeline.play();
         }
         isPaused = false;
@@ -182,10 +175,10 @@ public class ScoreboardController implements Initializable {
         if (timeline != null) {
             timeline.stop();
         }
-        duree_minute = 1;
+        duree_minute = 0;
         duree_seconde = 0;
         label_time.setText(formatTime(duree_minute, duree_seconde));
-        isPaused = false;
+        isPaused = true;
     }
 
     /**
@@ -248,10 +241,10 @@ public class ScoreboardController implements Initializable {
         int dernier_penalite = Integer.parseInt(cbt_1_penalite.getText().trim());
         cbt_1_penalite.setText(String.valueOf(dernier_penalite + penalite_point));
         if (Integer.parseInt(cbt_1_penalite.getText()) == 2){
-            int avantage_point_cbt2 = Integer.parseInt(cbt_2_avantage.getText() + 1);
+            int avantage_point_cbt2 = Integer.parseInt(cbt_2_avantage.getText()) + 1;
             cbt_2_avantage.setText(String.valueOf(avantage_point_cbt2));
         } else if(Integer.parseInt(cbt_1_penalite.getText()) == 3){
-            int point_cbt2 = Integer.parseInt(label_point_c2.getText() + 2);
+            int point_cbt2 = Integer.parseInt(label_point_c2.getText()) + 2;
             label_point_c2.setText(String.valueOf(point_cbt2));
         } else if (Integer.parseInt(cbt_1_penalite.getText()) == 4){
             Alert alert_victoire = new Alert(Alert.AlertType.INFORMATION);
@@ -312,10 +305,10 @@ public class ScoreboardController implements Initializable {
         int dernier_penalite = Integer.parseInt(cbt_2_penalite.getText().trim());
         cbt_2_penalite.setText(String.valueOf(dernier_penalite + penalite_point));
         if(Integer.parseInt(cbt_2_penalite.getText()) == 2){
-            int avantage_point_cbt1 = Integer.parseInt(cbt_1_avantage.getText() + 1);
+            int avantage_point_cbt1 = Integer.parseInt(cbt_1_avantage.getText())  + 1;
             cbt_1_avantage.setText(String.valueOf(avantage_point_cbt1));
         } else if(Integer.parseInt(cbt_2_penalite.getText()) == 3){
-            int point_cbt1 = Integer.parseInt(label_point_c1.getText() + 2);
+            int point_cbt1 = Integer.parseInt(label_point_c1.getText()) + 2;
             label_point_c1.setText(String.valueOf(point_cbt1));
         } else if(Integer.parseInt(cbt_2_penalite.getText()) == 4){
             Alert alert_victoire = new Alert(Alert.AlertType.INFORMATION);
@@ -376,42 +369,51 @@ public class ScoreboardController implements Initializable {
             case SUBMISSION_COMBATTANT_1 -> {
                 SUBMISSION_C1.setVisible(true);
                 afficheVictoire(SUBMISSION_C1, duree_anim);
-                captureResultat(stage);
+                stopChrono();
             }
             case SUBMISSION_COMBATTANT_2 -> {
                 SUBMISSION_C2.setVisible(true);
                 afficheVictoire(SUBMISSION_C2, duree_anim);
+                stopChrono();
             }
             case POINT_COMBATTANT_1 -> {
                 POINT_C1.setVisible(true);
                 afficheVictoire(POINT_C1, duree_anim);
+                stopChrono();
             }
             case POINT_COMBATTANT_2 -> {
                 POINT_C2.setVisible(true);
                 afficheVictoire(POINT_C2, duree_anim);
+                stopChrono();
             }
             case ABANDON_COMBATTANT_1 -> {
                 ABANDON_C1.setVisible(true);
                 afficheVictoire(ABANDON_C1, duree_anim);
+                stopChrono();
             }
             case ABANDON_COMBATTANT_2 -> {
                 ABANDON_C2.setVisible(true);
                 afficheVictoire(ABANDON_C2, duree_anim);
+                stopChrono();
             }
             case DISQUALIFICATION_COMBATTANT_1 -> {
                 DISQUALIFIE_C1.setVisible(true);
                 afficheVictoire(DISQUALIFIE_C1, duree_anim);
+                stopChrono();
             }
             case DISQUALIFICATION_COMBATTANT_2 -> {
                 DISQUALIFIE_C2.setVisible(true);
                 afficheVictoire(DISQUALIFIE_C2, duree_anim);
+                stopChrono();
             }
             case MATCH_NULL -> {
                 MATCH_NULL_C1.setVisible(true);
                 MATCH_NULL_C2.setVisible(true);
                 afficheVictoire(MATCH_NULL_C1, duree_anim);
                 afficheVictoire(MATCH_NULL_C2, duree_anim);
+                stopChrono();
             }
+            //default -> stopChrono();
         }
 
     }
@@ -436,7 +438,40 @@ public class ScoreboardController implements Initializable {
                 e.printStackTrace();
             }
         }
+    }
 
+    /**
+     * Reset ScoreBoard pour match suivant
+     */
+    String default_value = String.valueOf(0);
+    public void resetScoreBoard(){
+        label_combattant_1.setText("");
+        label_club_cbt1.setText("");
+        cbt_1_avantage.setText(default_value);
+        cbt_1_penalite.setText(default_value);
+        label_point_c1.setText(default_value);
+
+        SUBMISSION_C1.setVisible(false);
+        SUBMISSION_C2.setVisible(false);
+
+        DISQUALIFIE_C1.setVisible(false);
+        DISQUALIFIE_C2.setVisible(false);
+
+        POINT_C1.setVisible(false);
+        POINT_C2.setVisible(false);
+
+        MATCH_NULL_C1.setVisible(false);
+        MATCH_NULL_C2.setVisible(false);
+
+        label_combattant_2.setText("");
+        label_club_cbt2.setText("");
+        cbt_2_avantage.setText(default_value);
+        cbt_2_penalite.setText(default_value);
+        label_point_c2.setText(default_value);
+        stopChrono();
+
+
+        label_time.setText(formatTime(00,00));
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -15,7 +15,7 @@
          <children>
             <AnchorPane prefHeight="640.0" prefWidth="350.0" style="-fx-background-color: #3c6382;">
                <children>
-                  <Label layoutX="98.0" layoutY="14.0" text="Combattant 1" textFill="WHITE">
+                  <Label fx:id="label_prenom_cbt1" layoutX="98.0" layoutY="14.0" text="Combattant 1" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="24.0" />
                      </font>
