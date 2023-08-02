@@ -5,15 +5,25 @@ import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.app.utils.Utils;
 
-public class ScoreboardController {
+import java.net.URL;
+import java.time.temporal.ChronoUnit;
+import java.util.ResourceBundle;
+
+public class ScoreboardController implements Initializable {
 
     @FXML
     private Label label_combattant_1;
@@ -35,16 +45,15 @@ public class ScoreboardController {
     private Button BTN_ADD_AVANTAGE_C1, BTN_ADD_AVANTAGE_C2;
     @FXML
     private Button BTN_DEL_AVANTAGE_C1, BTN_DEL_AVANTAGE_C2;
-    private static ScoreboardController instance;
     private int duree_minute = 1;
     private int duree_seconde = 0;
     private boolean isPaused = false;
     private Timeline timeline;
-
+    Utils app_utils = new Utils();
+    private static ScoreboardController instance;
     public ScoreboardController(){
         instance = this;
     }
-
     public static ScoreboardController getInstance(){
         return instance;
     }
@@ -167,6 +176,40 @@ public class ScoreboardController {
         isPaused = false;
     }
 
+    /**
+     * Add Time
+     */
+    public void updateChrono(){
+        duree_seconde++;
+        if (duree_seconde >= 60){
+            duree_seconde = 0;
+            duree_minute++;
+        }
+    }
+
+    /**
+     * TIMER TEST
+     */
+    int time = 0;
+    public void timer(){
+        java.time.Duration duration = java.time.Duration.ofMinutes(0);
+        ObjectProperty<java.time.Duration> remainingDuration
+//                = new SimpleObjectProperty<>(java.time.Duration.ofSeconds(5)); // 5 sec
+                = new SimpleObjectProperty<>(java.time.Duration.ofMinutes(duration.toMinutes()));
+        System.out.println("TEMPS : " + time);
+
+        // format (hh:mm:ss):
+        label_time.textProperty().bind(Bindings.createStringBinding(() -> String.format("%02d:%02d",
+                        remainingDuration.get().toMinutesPart(),
+                        remainingDuration.get().toSecondsPart()),
+                remainingDuration));
+
+        Timeline countDownTimeLine = new Timeline(new KeyFrame(Duration.seconds(1), (ActionEvent event) ->
+                remainingDuration.setValue(remainingDuration.get().minus(1, ChronoUnit.SECONDS))));
+
+        
+    }
+
     public int getLastAvantageCbt1(){
         return Integer.parseInt(cbt_1_avantage.getText().trim());
     }
@@ -183,6 +226,10 @@ public class ScoreboardController {
     public void effacerAvantageC1(Integer avantage_point){
         int dernier_avantage = Integer.parseInt(cbt_1_avantage.getText().trim());
         cbt_1_avantage.setText(String.valueOf(dernier_avantage - avantage_point));
+        if (Integer.parseInt(cbt_1_avantage.getText()) < 0){
+            cbt_1_avantage.setText(String.valueOf(0));
+            app_utils.warningAlertDialog("AVRTISSEMENT","POINT LIMITER A 0");
+        }
     }
 
     public void ajoutPenaliteC1(Integer penalite_point){
@@ -205,6 +252,10 @@ public class ScoreboardController {
     public void effacerPenaliteC1(Integer penalite_point){
         int dernier_avantage = Integer.parseInt(cbt_1_penalite.getText().trim());
         cbt_1_penalite.setText(String.valueOf(dernier_avantage - penalite_point));
+        if(Integer.parseInt(cbt_1_penalite.getText()) < 0){
+            cbt_1_penalite.setText(String.valueOf(0));
+            app_utils.warningAlertDialog("AVRTISSEMENT","POINT LIMITER A 0");
+        }
     }
 
     /**
@@ -216,6 +267,10 @@ public class ScoreboardController {
 
     public void handleDelPointsCombattant1(Integer point_combattant){
         label_point_c1.setText(String.valueOf(Integer.parseInt(label_point_c1.getText()) - point_combattant));
+        if (Integer.parseInt(label_point_c1.getText()) < 0){
+            label_point_c1.setText(String.valueOf(0));
+            app_utils.warningAlertDialog("AVRTISSEMENT","POINT LIMITER A 0");
+        }
     }
 
 
@@ -231,6 +286,10 @@ public class ScoreboardController {
     public void effacerAvantageC2(Integer avantage_point){
         int dernier_avantage = Integer.parseInt(cbt_2_avantage.getText().trim());
         cbt_2_avantage.setText(String.valueOf(dernier_avantage - avantage_point));
+        if (Integer.parseInt(cbt_2_avantage.getText()) < 0){
+            cbt_2_avantage.setText(String.valueOf(0));
+            app_utils.warningAlertDialog("AVRTISSEMENT","POINT LIMITER A 0");
+        }
     }
 
     /**
@@ -257,6 +316,10 @@ public class ScoreboardController {
     public void effacerPenaliteC2(Integer penalite_point){
         int dernier_avantage = Integer.parseInt(cbt_2_penalite.getText().trim());
         cbt_2_penalite.setText(String.valueOf(dernier_avantage - penalite_point));
+        if (Integer.parseInt(cbt_2_penalite.getText()) < 0){
+            cbt_2_penalite.setText(String.valueOf(0));
+            app_utils.warningAlertDialog("AVRTISSEMENT","POINT LIMITER A 0");
+        }
     }
 
     /**
@@ -269,6 +332,14 @@ public class ScoreboardController {
 
     public void handleDelPointsCombattant2(Integer point_combattant){
         label_point_c2.setText(String.valueOf(Integer.parseInt(label_point_c2.getText()) - point_combattant));
+        if (Integer.parseInt(label_point_c2.getText()) < 0){
+            label_point_c2.setText(String.valueOf(0));
+            app_utils.warningAlertDialog("AVRTISSEMENT","POINT LIMITER A 0");
+        }
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
 }

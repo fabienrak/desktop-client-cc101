@@ -1,6 +1,8 @@
 package org.app.controller;
 
 import javafx.application.Platform;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -26,6 +28,7 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import org.app.model.*;
 import org.app.services.CategorieService;
 import org.app.services.ClubService;
@@ -74,7 +77,7 @@ public class CombattantsController implements Initializable {
     @FXML
     private TableColumn<Combattants, String> col_genre_combattant;
     @FXML
-    private TableColumn<Combattants, String> col_poids_combattant;
+    private TableColumn<Combattants, Integer> col_poids_combattant;
     @FXML
     private TableColumn<Combattants, String> col_club_combattant;
     @FXML
@@ -82,13 +85,31 @@ public class CombattantsController implements Initializable {
     @FXML
     private TableColumn<Combattants, String> col_categorie_combattant;
     @FXML
+    private TableColumn<Combattants, Combattants> col_select_combattant;
+    @FXML
     private MaskerPane masker_tableview;
+    @FXML
+    private ComboBox<Integer> cbx_poids;
+    @FXML
+    private ComboBox<String> cbx_ceinture;
+    @FXML
+    private ComboBox<String> cbx_genre;
     CombattantService combattantService = new CombattantService();
     EmplacementService emplacementService = new EmplacementService();
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
     Connection connection = DatabaseConnection.getConnection();
     Utils appUtils = new Utils();
+
+    /**
+     * Populate combobox filtre poids
+     */
+    public ObservableList<Combattants> filtre_combattant(){
+        ObservableList<Combattants> liste_combattant_filtre = FXCollections.observableArrayList();
+        String query_filtre;
+
+        return liste_combattant_filtre;
+    }
 
 
     /**
@@ -275,13 +296,8 @@ public class CombattantsController implements Initializable {
             appUtils.warningAlertDialog("AVERTISSEMENT","Choisir au moins 2 combattant");
         } else {
             for (Combattants cbt : liste_selected) {
-                //System.out.println("SELECTED : " + cbt.getPrenom_combattant() + " - CLUB : " + cbt.getClub_combattant());
                 cbt_match.add(cbt);
             }
-            System.out.println("CBT 1 : " + cbt_match.get(0).getPrenom_combattant() + " - CLUB : " + cbt_match.get(0).getClub_combattant());
-            System.out.println("CBT 2 : " + cbt_match.get(1).getPrenom_combattant() + " - CLUB : " + cbt_match.get(1).getClub_combattant());
-
-
 
             /**
              * Dialog creation match
@@ -315,9 +331,6 @@ public class CombattantsController implements Initializable {
                     emplacement_data.add(tatami.getNom_emplacement());
                 }
                 tatami_match.getItems().addAll(emplacement_data);
-                for (int i = 0; i < emplacement_data.size(); i++) {
-                    System.out.println("TATAMI DATA : " + emplacement_data.get(i) + " ID : "+i);
-                }
             });
             emplacement.start();
 
@@ -354,7 +367,7 @@ public class CombattantsController implements Initializable {
                     } else {
                         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
                         errorAlert.setTitle("ERREUR");
-                        errorAlert.setContentText("Erreur lors de l'initialisation du controller");
+                        errorAlert.setContentText("ERREUR INTERNE SURVENUE");
                         errorAlert.showAndWait();
                     }
                 }
@@ -365,6 +378,16 @@ public class CombattantsController implements Initializable {
                 System.out.println("DATA : " + new_match.getDuree_match()  + " - " + new_match.getTour_match());
             });
         }
+    }
+
+    /**
+     * Select combattant
+     */
+    public void selectCombattant(){
+        ObservableList<Combattants> combattant_selectionner = tableview_combattant.getSelectionModel().getSelectedItems();
+        ArrayList<Combattants> liste_combattant_selectionner = new ArrayList<>();
+        liste_combattant_selectionner.add((Combattants) combattant_selectionner);
+        System.out.println("Combattant SELECTIONNER : " + liste_combattant_selectionner.get(0) + " - " + liste_combattant_selectionner.get(1));
     }
 
     /**
@@ -414,9 +437,24 @@ public class CombattantsController implements Initializable {
         }
     }
 
+    public void populatePoidsCombobox(){
+        ObservableList<Integer> poids_value = FXCollections.observableArrayList();
+        for (Combattants combattants : tableview_combattant.getItems()){
+            poids_value.add(col_poids_combattant.getCellObservableValue(combattants).getValue());
+        }
+        System.out.println("DATA : " + poids_value);
+        Set<Integer> poids_sans_doublon = new HashSet<>(poids_value);
+
+        System.out.println("POIDS : " + poids_sans_doublon);
+        cbx_poids.getItems().clear();
+        cbx_poids.getItems().addAll(
+                poids_sans_doublon
+        );
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
 
         ClubService clubService = new ClubService();
         CategorieService categorieService = new CategorieService();
@@ -465,6 +503,18 @@ public class CombattantsController implements Initializable {
                     "CEINTURE ROUGE"
             );
 
+            cbx_ceinture.getItems().clear();
+            cbx_ceinture.getItems().addAll(
+
+            );
+
+            cbx_genre.getItems().clear();
+            cbx_genre.getItems().addAll(
+              "HOMME","FEMME"
+            );
+
+            // Poids disponible
+
             // Populate Club ComboBox
             Service<List<Clubs>> data_club = clubService.getClubData();
             data_club.setOnSucceeded(s -> {
@@ -496,7 +546,7 @@ public class CombattantsController implements Initializable {
                 tableview_combattant.getItems().setAll(serviceCombattant.getValue());
                 tableview_combattant.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
                 ObservableList<Combattants> liste_combattants = FXCollections.observableList(serviceCombattant.getValue());
-
+                populatePoidsCombobox();
                 FilteredList<Combattants> filteredList = new FilteredList<>(liste_combattants, b -> true);
                 txt_search_combattant.textProperty().addListener((observableValue, oldValue, newValue) -> {
                     filteredList.setPredicate(Combattant -> {

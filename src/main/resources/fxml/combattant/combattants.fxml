@@ -126,11 +126,29 @@
                   <TableColumn fx:id="col_categorie_combattant" prefWidth="75.0" text="Categorie" />
               </columns>
             </TableView>
-            <TextField fx:id="txt_search_combattant" layoutX="764.0" layoutY="53.0" prefHeight="37.0" prefWidth="268.0" promptText="Recherche (Nom, Prenom, Club, ...)">
+            <TextField fx:id="txt_search_combattant" layoutX="784.0" layoutY="36.0" prefHeight="37.0" prefWidth="248.0" promptText="Recherche (Nom, Prenom, Club, ...)">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font>
+            </TextField>
+            <ImageView fitHeight="79.0" fitWidth="85.0" layoutX="15.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/swap.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="94.0" layoutY="45.0" prefHeight="17.0" prefWidth="60.0" text="Filtrer :" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
-            </TextField>
+            </Label>
+            <ComboBox fx:id="cbx_poids" layoutX="154.0" layoutY="41.0" prefWidth="150.0" promptText="Poids" />
+            <ComboBox fx:id="cbx_ceinture" layoutX="333.0" layoutY="42.0" prefWidth="150.0" promptText="Ceinture" />
+            <ComboBox fx:id="cbx_genre" layoutX="513.0" layoutY="42.0" prefWidth="150.0" promptText="Genre" />
+            <Button layoutX="681.0" layoutY="42.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="73.0" text="Filtrer">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+            </Button>
          </children>
          <opaqueInsets>
             <Insets />
