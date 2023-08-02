@@ -1,9 +1,15 @@
 package org.app.controller;
 
+import javafx.animation.Animation;
+import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.app.model.Victoire;
 import org.app.utils.Utils;
 
 import java.net.URL;
@@ -35,6 +41,11 @@ public class BoardController implements Initializable {
     private Button BTN_PLUS_1_C2, BTN_PLUS_2_C2, BTN_PLUS_3_C2, BTN_PLUS_4_C2;
     @FXML
     private Button BTN_MOINS_1_C2, BTN_MOINS_2_C2, BTN_MOINS_3_C2, BTN_MOINS_4_C2;
+    @FXML
+    private Button BTN_SUBMISSION_C1, BTN_SUBMISSION_C2,
+            BTN_POINT_C1, BTN_POINT_C2,
+            BTN_ABANDON_C1, BTN_ABANDON_C2,
+            BTN_DISQUALIFIE_C1, BTN_DISQUALIFIE_C2, BTN_MATCH_NULL, BTN_RESET;
     Utils app_utils = new Utils();
     ScoreboardController scoreboardController = ScoreboardController.getInstance();
 
@@ -184,5 +195,51 @@ public class BoardController implements Initializable {
             ScoreboardController scoreboardController = ScoreboardController.getInstance();
             scoreboardController.handleDelPointsCombattant2(_POINT_4);
         });
+
+        /**
+         * Annonce Victoire
+         */
+
+        BTN_SUBMISSION_C1.setOnAction(actionEvent -> {
+            ScoreboardController scoreboardController = ScoreboardController.getInstance();
+            scoreboardController.annonceVictoire(Victoire.SUBMISSION_COMBATTANT_1);
+        });
+        BTN_SUBMISSION_C2.setOnAction(actionEvent -> {
+            ScoreboardController scoreboardController = ScoreboardController.getInstance();
+            scoreboardController.annonceVictoire(Victoire.SUBMISSION_COMBATTANT_2);
+        });
+        BTN_POINT_C1.setOnAction(actionEvent -> {
+            ScoreboardController scoreboardController = ScoreboardController.getInstance();
+            scoreboardController.annonceVictoire(Victoire.POINT_COMBATTANT_1);
+        });
+        BTN_POINT_C2.setOnAction(actionEvent -> {
+            ScoreboardController scoreboardController = ScoreboardController.getInstance();
+            scoreboardController.annonceVictoire(Victoire.POINT_COMBATTANT_2);
+        });
+        BTN_ABANDON_C1.setOnAction(actionEvent -> {
+            ScoreboardController scoreboardController = ScoreboardController.getInstance();
+            scoreboardController.annonceVictoire(Victoire.ABANDON_COMBATTANT_1);
+        });
+        BTN_ABANDON_C2.setOnAction(actionEvent -> {
+            ScoreboardController scoreboardController = ScoreboardController.getInstance();
+            scoreboardController.annonceVictoire(Victoire.ABANDON_COMBATTANT_2);
+        });
+        BTN_DISQUALIFIE_C1.setOnAction(actionEvent -> {
+            ScoreboardController scoreboardController = ScoreboardController.getInstance();
+            scoreboardController.annonceVictoire(Victoire.DISQUALIFICATION_COMBATTANT_1);
+        });
+        BTN_DISQUALIFIE_C2.setOnAction(actionEvent -> {
+            ScoreboardController scoreboardController = ScoreboardController.getInstance();
+            scoreboardController.annonceVictoire(Victoire.DISQUALIFICATION_COMBATTANT_2);
+        });
+        BTN_MATCH_NULL.setOnAction(actionEvent -> {
+            ScoreboardController scoreboardController = ScoreboardController.getInstance();
+            scoreboardController.annonceVictoire(Victoire.MATCH_NULL);
+        });
+        BTN_RESET.setOnAction(actionEvent -> {
+            ScoreboardController scoreboardController = ScoreboardController.getInstance();
+            System.out.println("CAPTURE D ECRAN");
+        });
+
     }
 }

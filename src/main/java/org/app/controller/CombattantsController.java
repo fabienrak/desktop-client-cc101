@@ -190,6 +190,40 @@ public class CombattantsController implements Initializable {
     }
 
     /**
+     * Filtrer combattant
+     */
+    @FXML
+    public void filtrerCombattant(){
+        if (cbx_poids.getItems() == null || cbx_genre.getItems() == null || cbx_ceinture.getItems() == null){
+            appUtils.warningAlertDialog("AVERTISSEMENT","VEUILLEZ REMPLIR LES CRITERES");
+        } else {
+            masker_tableview.setDisable(false);
+            masker_tableview.toFront();
+
+            Service<List<Combattants>> service_filtre_combattant = combattantService.filtreCombattant(
+                    cbx_poids.getValue(), cbx_genre.getValue(), cbx_ceinture.getValue()
+            );
+            service_filtre_combattant.setOnSucceeded(onSucceededEvent -> {
+                System.out.println("RETOUR : " + service_filtre_combattant.getValue());
+                if (service_filtre_combattant.getValue().isEmpty()){
+                    appUtils.warningAlertDialog("AVERTISSEMENT","AUCUNE DONNEE TROUVER");
+                } else {
+                    ObservableList<Combattants> liste_combattants = FXCollections.observableArrayList(service_filtre_combattant.getValue());
+                    System.out.println("TYPE : " + liste_combattants.getClass());
+                    tableview_combattant.setItems(liste_combattants);
+                }
+
+                masker_tableview.setDisable(true);
+                masker_tableview.toBack();
+            });
+            service_filtre_combattant.setOnFailed(onFailedEvent -> {
+                service_filtre_combattant.getException().printStackTrace();
+            });
+            service_filtre_combattant.start();
+        }
+    }
+
+    /**
      * Get ID Club combattant
      * @return ID Club
      */
@@ -452,6 +486,7 @@ public class CombattantsController implements Initializable {
         );
     }
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -505,7 +540,13 @@ public class CombattantsController implements Initializable {
 
             cbx_ceinture.getItems().clear();
             cbx_ceinture.getItems().addAll(
-
+                    "CEINTURE BLANC",
+                    "CEINTURE JAUNE",
+                    "CEINTURE BLEU",
+                    "CEINTURE VIOLET",
+                    "CEINTURE MARRON",
+                    "CEINTURE NOIR",
+                    "CEINTURE ROUGE"
             );
 
             cbx_genre.getItems().clear();
