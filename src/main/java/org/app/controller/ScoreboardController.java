@@ -1,7 +1,6 @@
 package org.app.controller;
 
 import javafx.animation.*;
-import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -9,24 +8,32 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
-import javafx.scene.paint.Color;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.app.model.Victoire;
 import org.app.utils.Utils;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.temporal.ChronoUnit;
 import java.util.ResourceBundle;
+
+import static java.awt.Color.RED;
+import static javafx.application.Platform.exit;
 
 public class ScoreboardController implements Initializable {
 
@@ -56,6 +63,8 @@ public class ScoreboardController implements Initializable {
     private Button BTN_ADD_AVANTAGE_C1, BTN_ADD_AVANTAGE_C2;
     @FXML
     private Button BTN_DEL_AVANTAGE_C1, BTN_DEL_AVANTAGE_C2;
+    @FXML
+    private AnchorPane anchor_cbt1;
     private int duree_minute = 1;
     private int duree_seconde = 0;
     private boolean isPaused = false;
@@ -88,6 +97,9 @@ public class ScoreboardController implements Initializable {
 
     public void afficheTempsMatch(int duree_match){
         label_time.setText(String.valueOf(Integer.valueOf(duree_match)));
+        //duree_minute = formatTimeNumber();
+        //duree_seconde = 0;
+        //label_time.setText(formatTime(duree_minute, duree_seconde));
         label_time.setVisible(false);
     }
 
@@ -139,6 +151,13 @@ public class ScoreboardController implements Initializable {
             }
 
             label_time.setText(formatTime(duree_minute, duree_seconde));
+
+            if (duree_minute == 0 && duree_seconde == 5){
+                label_time.setBackground(
+                        new Background(new BackgroundFill(javafx.scene.paint.Color.RED, CornerRadii.EMPTY, Insets.EMPTY))
+                );
+                animateChronoLabel(label_time);
+            }
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
@@ -149,11 +168,6 @@ public class ScoreboardController implements Initializable {
      */
     public void pauseChrono(){
         if (timeline != null) {
-            /*FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), label_time);
-            fadeTransition.setFromValue(1.0);
-            fadeTransition.setToValue(0.0);
-            fadeTransition.setCycleCount(Animation.INDEFINITE);
-            fadeTransition.play();*/
             timeline.pause();
         }
         isPaused = true;
@@ -165,11 +179,6 @@ public class ScoreboardController implements Initializable {
      */
     public void playChrono(){
         if (timeline != null) {
-            FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), label_time);
-            fadeTransition.setFromValue(1.0);
-            fadeTransition.setToValue(0.0);
-            fadeTransition.setCycleCount(Animation.INDEFINITE);
-            fadeTransition.stop();
             timeline.play();
         }
         isPaused = false;
@@ -182,50 +191,71 @@ public class ScoreboardController implements Initializable {
         if (timeline != null) {
             timeline.stop();
         }
-        duree_minute = 1;
+        duree_minute = 0;
         duree_seconde = 0;
         label_time.setText(formatTime(duree_minute, duree_seconde));
-        isPaused = false;
+        animateChronoLabel(label_time);
+        isPaused = true;
     }
 
     /**
      * Add Time
      */
     public void updateChrono(){
-        duree_seconde++;
-        if (duree_seconde >= 60){
-            duree_seconde = 0;
-            duree_minute++;
-        }
+       if (isPaused){
+           return;
+       }
+        duree_minute++;
     }
 
     /**
-     * TIMER TEST
+     * Del Time
      */
-    int time = 0;
-    public void timer(){
-        java.time.Duration duration = java.time.Duration.ofMinutes(0);
-        ObjectProperty<java.time.Duration> remainingDuration
-//                = new SimpleObjectProperty<>(java.time.Duration.ofSeconds(5)); // 5 sec
-                = new SimpleObjectProperty<>(java.time.Duration.ofMinutes(duration.toMinutes()));
-        System.out.println("TEMPS : " + time);
-
-        // format (hh:mm:ss):
-        label_time.textProperty().bind(Bindings.createStringBinding(() -> String.format("%02d:%02d",
-                        remainingDuration.get().toMinutesPart(),
-                        remainingDuration.get().toSecondsPart()),
-                remainingDuration));
-
-        Timeline countDownTimeLine = new Timeline(new KeyFrame(Duration.seconds(1), (ActionEvent event) ->
-                remainingDuration.setValue(remainingDuration.get().minus(1, ChronoUnit.SECONDS))));
-
-        
+    public void removeTime(){
+        if (isPaused){
+            return;
+        }
+        duree_minute--;
+    }
+    public boolean checkTime(){
+        return (duree_minute == 0 && duree_seconde == 0);
     }
 
+    private void animateChronoLabel(Label label) {
+        Timeline timeline_chrono = new Timeline(
+                new KeyFrame(Duration.seconds(0.5), e -> label.setVisible(false)),
+                new KeyFrame(Duration.seconds(1.0), e -> label.setVisible(true))
+        );
+        timeline_chrono.setCycleCount(Animation.INDEFINITE);
+        timeline_chrono.play();
+        PauseTransition pause = new PauseTransition(Duration.seconds(7));
+        pause.setOnFinished(e -> timeline_chrono.stop());
+        pause.play();
+        //timeline_chrono.stop();
+    }
+
+    /**
+     * Recuperation dernier point
+     * @return
+     */
     public int getLastAvantageCbt1(){
         return Integer.parseInt(cbt_1_avantage.getText().trim());
     }
-
+    public int getLastAvantageCbt2(){
+        return Integer.parseInt(cbt_2_avantage.getText().trim());
+    }
+    public int getLastPenaliteCbt1(){
+        return Integer.parseInt(cbt_1_penalite.getText().trim());
+    }
+    public int getLastPenaliteCbt2(){
+        return Integer.parseInt(cbt_2_penalite.getText().trim());
+    }
+    public int getLastPointCbt1(){
+        return Integer.parseInt(label_point_c1.getText().trim());
+    }
+    public int getLastPointCbt2(){
+        return Integer.parseInt(label_point_c2.getText().trim());
+    }
 
     /**
      * Avantage & Penalite Combattant 1
@@ -248,10 +278,10 @@ public class ScoreboardController implements Initializable {
         int dernier_penalite = Integer.parseInt(cbt_1_penalite.getText().trim());
         cbt_1_penalite.setText(String.valueOf(dernier_penalite + penalite_point));
         if (Integer.parseInt(cbt_1_penalite.getText()) == 2){
-            int avantage_point_cbt2 = Integer.parseInt(cbt_2_avantage.getText() + 1);
+            int avantage_point_cbt2 = Integer.parseInt(cbt_2_avantage.getText()) + 1;
             cbt_2_avantage.setText(String.valueOf(avantage_point_cbt2));
         } else if(Integer.parseInt(cbt_1_penalite.getText()) == 3){
-            int point_cbt2 = Integer.parseInt(label_point_c2.getText() + 2);
+            int point_cbt2 = Integer.parseInt(label_point_c2.getText()) + 2;
             label_point_c2.setText(String.valueOf(point_cbt2));
         } else if (Integer.parseInt(cbt_1_penalite.getText()) == 4){
             Alert alert_victoire = new Alert(Alert.AlertType.INFORMATION);
@@ -312,10 +342,10 @@ public class ScoreboardController implements Initializable {
         int dernier_penalite = Integer.parseInt(cbt_2_penalite.getText().trim());
         cbt_2_penalite.setText(String.valueOf(dernier_penalite + penalite_point));
         if(Integer.parseInt(cbt_2_penalite.getText()) == 2){
-            int avantage_point_cbt1 = Integer.parseInt(cbt_1_avantage.getText() + 1);
+            int avantage_point_cbt1 = Integer.parseInt(cbt_1_avantage.getText())  + 1;
             cbt_1_avantage.setText(String.valueOf(avantage_point_cbt1));
         } else if(Integer.parseInt(cbt_2_penalite.getText()) == 3){
-            int point_cbt1 = Integer.parseInt(label_point_c1.getText() + 2);
+            int point_cbt1 = Integer.parseInt(label_point_c1.getText()) + 2;
             label_point_c1.setText(String.valueOf(point_cbt1));
         } else if(Integer.parseInt(cbt_2_penalite.getText()) == 4){
             Alert alert_victoire = new Alert(Alert.AlertType.INFORMATION);
@@ -356,14 +386,19 @@ public class ScoreboardController implements Initializable {
      */
     Duration duree_anim = Duration.seconds(1.3);
     private void afficheVictoire(ImageView node, Duration duration) {
-        Timeline timeline = new Timeline(
+        Timeline timeline_victoire = new Timeline(
                 new KeyFrame(Duration.ZERO, new KeyValue(node.visibleProperty(), true)),
                 new KeyFrame(duration.divide(2), new KeyValue(node.visibleProperty(), false)),
                 new KeyFrame(duration, new KeyValue(node.visibleProperty(), true))
         );
 
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
+        timeline_victoire.setCycleCount(Timeline.INDEFINITE);
+        timeline_victoire.play();
+        PauseTransition pause = new PauseTransition(Duration.seconds(7));
+        pause.setOnFinished(e -> timeline_victoire.stop());
+        pause.play();
+        //timeline_victoire.stop();
+
     }
 
     /**
@@ -376,42 +411,51 @@ public class ScoreboardController implements Initializable {
             case SUBMISSION_COMBATTANT_1 -> {
                 SUBMISSION_C1.setVisible(true);
                 afficheVictoire(SUBMISSION_C1, duree_anim);
-                captureResultat(stage);
+                stopChrono();
             }
             case SUBMISSION_COMBATTANT_2 -> {
                 SUBMISSION_C2.setVisible(true);
                 afficheVictoire(SUBMISSION_C2, duree_anim);
+                stopChrono();
             }
             case POINT_COMBATTANT_1 -> {
                 POINT_C1.setVisible(true);
                 afficheVictoire(POINT_C1, duree_anim);
+                stopChrono();
             }
             case POINT_COMBATTANT_2 -> {
                 POINT_C2.setVisible(true);
                 afficheVictoire(POINT_C2, duree_anim);
+                stopChrono();
             }
             case ABANDON_COMBATTANT_1 -> {
                 ABANDON_C1.setVisible(true);
                 afficheVictoire(ABANDON_C1, duree_anim);
+                stopChrono();
             }
             case ABANDON_COMBATTANT_2 -> {
                 ABANDON_C2.setVisible(true);
                 afficheVictoire(ABANDON_C2, duree_anim);
+                stopChrono();
             }
             case DISQUALIFICATION_COMBATTANT_1 -> {
                 DISQUALIFIE_C1.setVisible(true);
                 afficheVictoire(DISQUALIFIE_C1, duree_anim);
+                stopChrono();
             }
             case DISQUALIFICATION_COMBATTANT_2 -> {
                 DISQUALIFIE_C2.setVisible(true);
                 afficheVictoire(DISQUALIFIE_C2, duree_anim);
+                stopChrono();
             }
             case MATCH_NULL -> {
                 MATCH_NULL_C1.setVisible(true);
                 MATCH_NULL_C2.setVisible(true);
                 afficheVictoire(MATCH_NULL_C1, duree_anim);
                 afficheVictoire(MATCH_NULL_C2, duree_anim);
+                stopChrono();
             }
+            //default -> stopChrono();
         }
 
     }
@@ -436,7 +480,47 @@ public class ScoreboardController implements Initializable {
                 e.printStackTrace();
             }
         }
+    }
 
+    /**
+     * Reset ScoreBoard pour match suivant
+     */
+    String default_value = String.valueOf(0);
+    public boolean resetScoreBoard(){
+        label_combattant_1.setText("");
+        label_club_cbt1.setText("");
+        cbt_1_avantage.setText(default_value);
+        cbt_1_penalite.setText(default_value);
+        label_point_c1.setText(default_value);
+
+        SUBMISSION_C1.visibleProperty().setValue(false);
+        SUBMISSION_C1.managedProperty().setValue(false);
+        SUBMISSION_C1.setVisible(false);
+        SUBMISSION_C2.visibleProperty().setValue(false);
+        SUBMISSION_C2.setVisible(false);
+
+        DISQUALIFIE_C1.setVisible(false);
+        DISQUALIFIE_C2.setVisible(false);
+
+        POINT_C1.setVisible(false);
+        POINT_C2.setVisible(false);
+
+        MATCH_NULL_C1.setVisible(false);
+        MATCH_NULL_C2.setVisible(false);
+
+
+        label_combattant_2.setText("");
+        label_club_cbt2.setText("");
+        cbt_2_avantage.setText(default_value);
+        cbt_2_penalite.setText(default_value);
+
+        label_point_c2.setText(default_value);
+        stopChrono();
+
+        label_time.setVisible(false);
+
+        label_time.setText(formatTime(00,00));
+        return true;
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

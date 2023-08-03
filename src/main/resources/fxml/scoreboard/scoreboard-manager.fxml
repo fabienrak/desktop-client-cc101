@@ -13,9 +13,9 @@
    <children>
       <HBox prefHeight="750.0" prefWidth="1055.0">
          <children>
-            <AnchorPane prefHeight="640.0" prefWidth="350.0" style="-fx-background-color: #3c6382;">
+            <AnchorPane prefHeight="640.0" prefWidth="350.0" style="-fx-background-color: #0097e6;">
                <children>
-                  <Label layoutX="98.0" layoutY="14.0" text="Combattant 1" textFill="WHITE">
+                  <Label fx:id="label_prenom_cbt1" contentDisplay="CENTER" layoutX="11.0" layoutY="14.0" prefHeight="27.0" prefWidth="320.0" text="Combattant 1" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="24.0" />
                      </font>
@@ -71,7 +71,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Label fx:id="label_avantage_c11" alignment="CENTER" contentDisplay="CENTER" layoutX="149.0" layoutY="249.0" prefHeight="27.0" prefWidth="110.0" text="0" textFill="WHITE">
+                  <Label fx:id="label_penalite_c1" alignment="CENTER" contentDisplay="CENTER" layoutX="149.0" layoutY="249.0" prefHeight="27.0" prefWidth="110.0" text="0" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="48.0" />
                      </font>
@@ -141,9 +141,14 @@
                         <Font name="Arial Bold" size="24.0" />
                      </font>
                   </Label>
+                  <Label fx:id="label_point_c1" alignment="CENTER" contentDisplay="CENTER" layoutX="142.0" layoutY="377.0" prefHeight="48.0" prefWidth="141.0" text="0" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="50.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="640.0" prefWidth="350.0" style="-fx-background-color: #0a3d62;">
+            <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="640.0" prefWidth="350.0" style="-fx-background-color: #2f3640;">
                <children>
                   <Label layoutX="136.0" layoutY="14.0" text="Temps" textFill="WHITE">
                      <font>
@@ -198,7 +203,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="BTN_ADD_AVANTAGE_C12" layoutX="21.0" layoutY="101.0" mnemonicParsing="false" onAction="#ajoutAvantageCombattant1" prefHeight="39.0" prefWidth="89.0" style="-fx-background-radius: 20;">
+                  <Button fx:id="BTN_ADD_MINUTE" layoutX="21.0" layoutY="101.0" mnemonicParsing="false" onAction="#ajoutMinute" prefHeight="39.0" prefWidth="89.0" style="-fx-background-radius: 20;">
                      <graphic>
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -207,7 +212,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="BTN_DEL_AVANTAGE_C12" layoutX="233.0" layoutY="101.0" mnemonicParsing="false" onAction="#effaceAvantageCombattant1" prefHeight="49.0" prefWidth="89.0" style="-fx-background-radius: 20;">
+                  <Button fx:id="BTN_DEL_TIME" layoutX="233.0" layoutY="101.0" mnemonicParsing="false" onAction="#effaceMinute" prefHeight="49.0" prefWidth="89.0" style="-fx-background-radius: 20;">
                      <graphic>
                         <ImageView fitHeight="38.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -228,22 +233,20 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="BTN_RESET" layoutX="111.0" layoutY="592.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="154.0" style="-fx-background-radius: 20;" text="RESET">
+                  <Button fx:id="BTN_RESET" layoutX="112.0" layoutY="592.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="154.0" style="-fx-background-radius: 20;" text="RESET">
                      <font>
                         <Font name="Arial Bold" size="14.0" />
                      </font>
-                     <graphic>
-                        <ImageView fitHeight="32.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../images/null.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
                   </Button>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="78.0" layoutY="684.0" prefHeight="39.0" prefWidth="223.0" text="CHRONO" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                  </Label>
                </children></AnchorPane>
-            <AnchorPane layoutX="304.0" layoutY="10.0" prefHeight="640.0" prefWidth="355.0" style="-fx-background-color: #3c6382;">
+            <AnchorPane layoutX="304.0" layoutY="10.0" prefHeight="640.0" prefWidth="355.0" style="-fx-background-color: #e74c3c;">
                <children>
-                  <Label layoutX="101.0" layoutY="14.0" text="Combattant 2" textFill="WHITE">
+                  <Label fx:id="label_prenom_cbt2" layoutX="12.0" layoutY="14.0" prefHeight="27.0" prefWidth="331.0" text="Combattant 2" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="24.0" />
                      </font>
@@ -271,7 +274,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Label fx:id="label_avantage_c12" alignment="CENTER" contentDisplay="CENTER" layoutX="123.0" layoutY="240.0" prefHeight="27.0" prefWidth="110.0" text="0" textFill="WHITE">
+                  <Label fx:id="label_penalite_c2" alignment="CENTER" contentDisplay="CENTER" layoutX="123.0" layoutY="240.0" prefHeight="27.0" prefWidth="110.0" text="0" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="48.0" />
                      </font>
@@ -299,7 +302,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Label fx:id="label_avantage_c111" alignment="CENTER" contentDisplay="CENTER" layoutX="123.0" layoutY="62.0" prefHeight="27.0" prefWidth="110.0" text="0" textFill="WHITE">
+                  <Label fx:id="label_avantage_c2" alignment="CENTER" contentDisplay="CENTER" layoutX="123.0" layoutY="62.0" prefHeight="27.0" prefWidth="110.0" text="0" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="48.0" />
                      </font>
@@ -367,6 +370,11 @@
                   <Label layoutX="12.0" layoutY="557.0" prefHeight="27.0" prefWidth="122.0" text="VICTOIRE" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="label_point_c2" alignment="CENTER" contentDisplay="CENTER" layoutX="128.0" layoutY="361.0" prefHeight="48.0" prefWidth="141.0" text="0" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="50.0" />
                      </font>
                   </Label>
                </children>

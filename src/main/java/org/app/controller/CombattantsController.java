@@ -1,34 +1,15 @@
 package org.app.controller;
 
 import javafx.application.Platform;
-import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.concurrent.Service;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.TilePane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import javafx.util.Callback;
 import org.app.model.*;
 import org.app.services.CategorieService;
 import org.app.services.ClubService;
@@ -37,9 +18,9 @@ import org.app.services.EmplacementService;
 import org.app.utils.DatabaseConnection;
 import org.app.utils.Utils;
 import org.controlsfx.control.MaskerPane;
+
 import java.net.URL;
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.*;
 
 public class CombattantsController implements Initializable {
@@ -94,12 +75,25 @@ public class CombattantsController implements Initializable {
     private ComboBox<String> cbx_ceinture;
     @FXML
     private ComboBox<String> cbx_genre;
+    @FXML
+    private TextField txt_duree_match;
+    @FXML
+    private ComboBox<TypeMatch> cbx_type_match;
+    @FXML
+    private ComboBox cbx_emplacement_match;
     CombattantService combattantService = new CombattantService();
     EmplacementService emplacementService = new EmplacementService();
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
     Connection connection = DatabaseConnection.getConnection();
     Utils appUtils = new Utils();
+    private static CombattantsController instance;
+    public CombattantsController(){
+        instance = this;
+    }
+    public static CombattantsController getInstance(){
+        return instance;
+    }
 
     /**
      * Populate combobox filtre poids
@@ -321,108 +315,61 @@ public class CombattantsController implements Initializable {
 
     /**
      * Selection combattant dans tableview
+     *
+     * @return
      */
-    public void getSelectedCoombattant(){
+    public ArrayList<Combattants> getSelectedCoombattant(){
 
         ObservableList<Combattants> liste_selected = tableview_combattant.getSelectionModel().getSelectedItems();
         ArrayList<Combattants> cbt_match = new ArrayList<>();
-        if(liste_selected.size() > 2){
+        if(liste_selected.size() > 2 || liste_selected.size() == 0){
             appUtils.warningAlertDialog("AVERTISSEMENT","Choisir au moins 2 combattant");
         } else {
             for (Combattants cbt : liste_selected) {
                 cbt_match.add(cbt);
             }
 
-            /**
-             * Dialog creation match
-             */
-            Dialog<Match> dialog = new Dialog<>();
-            dialog.setTitle("Creer Match");
-            dialog.setHeaderText("Creer un match");
-            dialog.setHeight(400);
-            dialog.setWidth(400);
-            dialog.setResizable(true);
-            GridPane gridPane = new GridPane();
-            gridPane.setHgap(10);
-            gridPane.setVgap(10);
-            gridPane.setPadding(new Insets(20, 150, 10, 10));
-            Label label_type = new Label("Type match :");
-            ObservableList<TypeMatch> options =
-                    FXCollections.observableArrayList(TypeMatch.values());
-            ComboBox<TypeMatch> type_match = new ComboBox<>(options);
+            // Recuperation ID emplacement
+            int id_tatami = getTatamiById(cbx_emplacement_match.getValue().toString());
+            createMatch(
+                    cbt_match.get(0).getId_combattant(),
+                    cbt_match.get(1).getId_combattant(),
+                    cbx_type_match.getValue().toString(),
+                    Integer.valueOf(txt_duree_match.getText()),
+                    id_tatami
+            );
 
-            Label label_duree = new Label("Duree match :");
-            TextField duree_match = new TextField();
-
-            Label label_tatami = new Label("Emplacement match :");
-            ComboBox tatami_match = new ComboBox();
-
-            // Populate emplacement combobox
-            Service<List<Emplacement>> emplacement = emplacementService.getEmplacementDataService();
-            emplacement.setOnSucceeded(s -> {
-                List<String> emplacement_data = new ArrayList<>();
-                for (Emplacement tatami : emplacement.getValue()){
-                    emplacement_data.add(tatami.getNom_emplacement());
-                }
-                tatami_match.getItems().addAll(emplacement_data);
-            });
-            emplacement.start();
-
-            gridPane.add(label_duree, 0, 0);
-            gridPane.add(duree_match, 1, 0);
-
-            gridPane.add(label_type, 0,1);
-            gridPane.add(type_match, 1,1);
-
-            gridPane.add(label_tatami, 0,2);
-            gridPane.add(tatami_match,1,2);
-
-            dialog.getDialogPane().setContent(gridPane);
-            dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
-            dialog.setResultConverter((ButtonType btn) -> {
-                if (btn == ButtonType.OK){
-                    System.out.println("DATA 1 : " + getTatamiById(tatami_match.getValue().toString()));
-                    int id_tatami = getTatamiById(tatami_match.getValue().toString());
-                    createMatch(
-                            cbt_match.get(0).getId_combattant(),
-                            cbt_match.get(1).getId_combattant(),
-                            type_match.getValue().toString(),
-                            Integer.valueOf(duree_match.getText()),
-                            id_tatami
-                    );
-
-                    ScoreboardController scoreboardController = ScoreboardController.getInstance();
-                    if (scoreboardController != null){
-                        scoreboardController.afficheCombattant_1(cbt_match.get(0).getPrenom_combattant());
-                        scoreboardController.afficheClubCombattant1(cbt_match.get(0).getClub_combattant());
-                        scoreboardController.afficheCombattant_2(cbt_match.get(1).getPrenom_combattant());
-                        scoreboardController.afficheClubCombattant2(cbt_match.get(1).getClub_combattant());
-                        scoreboardController.afficheTempsMatch(Integer.parseInt(duree_match.getText()));
-                    } else {
-                        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                        errorAlert.setTitle("ERREUR");
-                        errorAlert.setContentText("ERREUR INTERNE SURVENUE");
-                        errorAlert.showAndWait();
-                    }
-                }
-                return null;
-            });
-            Optional<Match> optional = dialog.showAndWait();
-            optional.ifPresent((Match new_match) -> {
-                System.out.println("DATA : " + new_match.getDuree_match()  + " - " + new_match.getTour_match());
-            });
+            ScoreboardController scoreboardController = ScoreboardController.getInstance();
+            if (scoreboardController != null){
+                scoreboardController.afficheCombattant_1(cbt_match.get(0).getPrenom_combattant());
+                scoreboardController.afficheClubCombattant1(cbt_match.get(0).getClub_combattant());
+                scoreboardController.afficheCombattant_2(cbt_match.get(1).getPrenom_combattant());
+                scoreboardController.afficheClubCombattant2(cbt_match.get(1).getClub_combattant());
+                scoreboardController.afficheTempsMatch(Integer.parseInt(txt_duree_match.getText()));
+            } else {
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setTitle("ERREUR");
+                errorAlert.setContentText("ERREUR INTERNE SURVENUE, OUVRIR LE TABLEAU DE SCORE EN PREMIER");
+                errorAlert.showAndWait();
+            }
         }
+        return cbt_match;
     }
 
     /**
      * Select combattant
      */
     public void selectCombattant(){
-        ObservableList<Combattants> combattant_selectionner = tableview_combattant.getSelectionModel().getSelectedItems();
-        ArrayList<Combattants> liste_combattant_selectionner = new ArrayList<>();
-        liste_combattant_selectionner.add((Combattants) combattant_selectionner);
-        System.out.println("Combattant SELECTIONNER : " + liste_combattant_selectionner.get(0) + " - " + liste_combattant_selectionner.get(1));
+        BoardController boardController = BoardController.getInstance();
+        ArrayList<Combattants> liste_combattant_selectionner = getSelectedCoombattant();
+        if (liste_combattant_selectionner.size() > 2 || liste_combattant_selectionner.size() == 0){
+            appUtils.warningAlertDialog("AVERTISSEMENT","CHOISISSEZ AU MOINS 2 COMBATTANT ET OUVRIR LE TABLEAU DE SCORE EN PREMIER");
+        } else {
+            boardController.affichePrenomCombattant1(liste_combattant_selectionner.get(0).getPrenom_combattant());
+            boardController.affichePrenomCombattant2(liste_combattant_selectionner.get(1).getPrenom_combattant());
+        }
     }
+
 
     /**
      * Get selected tatami ID
@@ -554,7 +501,20 @@ public class CombattantsController implements Initializable {
               "HOMME","FEMME"
             );
 
-            // Poids disponible
+            // Populate emplacement combobox
+            Service<List<Emplacement>> emplacement = emplacementService.getEmplacementDataService();
+            emplacement.setOnSucceeded(s -> {
+                List<String> emplacement_data = new ArrayList<>();
+                for (Emplacement tatami : emplacement.getValue()){
+                    emplacement_data.add(tatami.getNom_emplacement());
+                }
+                cbx_emplacement_match.getItems().addAll(emplacement_data);
+            });
+            emplacement.start();
+
+            // populate type match combobox
+            ObservableList<TypeMatch> type_match = FXCollections.observableArrayList(TypeMatch.values());
+            cbx_type_match.getItems().addAll(type_match);
 
             // Populate Club ComboBox
             Service<List<Clubs>> data_club = clubService.getClubData();
