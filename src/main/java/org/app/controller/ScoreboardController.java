@@ -215,9 +215,29 @@ public class ScoreboardController implements Initializable {
         
     }
 
+    /**
+     * Recuperation dernier point
+     * @return
+     */
     public int getLastAvantageCbt1(){
         return Integer.parseInt(cbt_1_avantage.getText().trim());
     }
+    public int getLastAvantageCbt2(){
+        return Integer.parseInt(cbt_2_avantage.getText().trim());
+    }
+    public int getLastPenaliteCbt1(){
+        return Integer.parseInt(cbt_1_penalite.getText().trim());
+    }
+    public int getLastPenaliteCbt2(){
+        return Integer.parseInt(cbt_2_penalite.getText().trim());
+    }
+    public int getLastPointCbt1(){
+        return Integer.parseInt(label_point_c1.getText().trim());
+    }
+    public int getLastPointCbt2(){
+        return Integer.parseInt(label_point_c2.getText().trim());
+    }
+
 
 
     /**
