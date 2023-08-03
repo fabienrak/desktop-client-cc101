@@ -20,7 +20,7 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <AnchorPane style="-fx-background-color: #0097e6;">
+      <AnchorPane fx:id="anchor_cbt1" style="-fx-background-color: #0097e6;">
          <children>
             <Label fx:id="label_combattant_1" layoutX="14.0" layoutY="59.0" prefHeight="102.0" prefWidth="576.0" AnchorPane.bottomAnchor="107.0" AnchorPane.topAnchor="59.0">
                <font>
@@ -95,7 +95,7 @@
                   <Font name="Arial Bold" size="64.0" />
                </font>
             </Label>
-            <Label fx:id="label_club_cbt2" layoutX="29.0" layoutY="142.0" prefHeight="61.0" prefWidth="531.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="142.0">
+            <Label fx:id="label_club_cbt2" layoutX="8.0" layoutY="142.0" prefHeight="61.0" prefWidth="597.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="142.0">
                <font>
                   <Font name="Arial Bold" size="48.0" />
                </font>

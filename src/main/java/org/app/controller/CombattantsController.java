@@ -362,8 +362,12 @@ public class CombattantsController implements Initializable {
     public void selectCombattant(){
         BoardController boardController = BoardController.getInstance();
         ArrayList<Combattants> liste_combattant_selectionner = getSelectedCoombattant();
-        boardController.affichePrenomCombattant1(liste_combattant_selectionner.get(0).getPrenom_combattant());
-        boardController.affichePrenomCombattant2(liste_combattant_selectionner.get(1).getPrenom_combattant());
+        if (liste_combattant_selectionner.size() > 2 || liste_combattant_selectionner.size() == 0){
+            appUtils.warningAlertDialog("AVERTISSEMENT","CHOISISSEZ AU MOINS 2 COMBATTANT ET OUVRIR LE TABLEAU DE SCORE EN PREMIER");
+        } else {
+            boardController.affichePrenomCombattant1(liste_combattant_selectionner.get(0).getPrenom_combattant());
+            boardController.affichePrenomCombattant2(liste_combattant_selectionner.get(1).getPrenom_combattant());
+        }
     }
 
 

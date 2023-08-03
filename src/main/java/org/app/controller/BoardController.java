@@ -142,6 +142,18 @@ public class BoardController implements Initializable {
         label_penalite_c2.setText(String.valueOf(dernier_penalite));
     }
 
+    @FXML
+    public void ajoutMinute(){
+        ScoreboardController scoreboardController = ScoreboardController.getInstance();
+        scoreboardController.updateChrono();
+    }
+
+    @FXML
+    public void effaceMinute(){
+        ScoreboardController scoreboardController = ScoreboardController.getInstance();
+        scoreboardController.removeTime();
+    }
+
     void affichePrenomCombattant1(String prenomCbt1){
         label_prenom_cbt1.setText(prenomCbt1);
     }
@@ -153,7 +165,7 @@ public class BoardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        // COMBATTANT 1
+        // Selection combattant
         CombattantsController combattantsController = CombattantsController.getInstance();
         if (combattantsController != null){
             combattantsController.selectCombattant();
@@ -161,7 +173,7 @@ public class BoardController implements Initializable {
             app_utils.warningAlertDialog("AVERTISSEMENT","VEUILLEZ OUVRIR EN PREMIER LE TABLEAU DE SCORE");
         }
 
-        // Bouton ajout point
+        // Bouton ajout point si utile
         /*BTN_PLUS_1.setOnAction(actionEvent -> {
             ScoreboardController scoreboardController = ScoreboardController.getInstance();
             scoreboardController.handleAddPointsCombattant1(_POINT_1);
