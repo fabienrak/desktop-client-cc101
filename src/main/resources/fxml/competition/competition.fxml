@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -15,15 +16,14 @@
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.MaskerPane?>
 
-
-<VBox fx:controller="org.app.controller.CompetitionController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #dcdde1;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.app.controller.CompetitionController">
    <children>
-      <HBox prefHeight="650.0" prefWidth="1050.0">
+      <HBox prefHeight="350.0" prefWidth="1050.0" style="-fx-background-color: #dcdde1;">
          <children>
             <StackPane prefHeight="650.0" prefWidth="641.0">
                <children>
                   <MaskerPane fx:id="masker_tableview" text="Chargement en cour ...." />
-                  <TableView fx:id="competition_tableview" prefHeight="650.0" prefWidth="617.0">
+                  <TableView fx:id="competition_tableview" prefHeight="611.0" prefWidth="641.0">
                     <columns>
                       <TableColumn fx:id="col_id_competition" prefWidth="75.0" text="ID" />
                       <TableColumn fx:id="col_nom_competition" prefWidth="75.0" text="TITRE COMPETITION" />
@@ -31,48 +31,54 @@
                         <TableColumn fx:id="col_date_fin_competition" prefWidth="75.0" text="DATE DE FIN" />
                         <TableColumn fx:id="col_lieu_competition" prefWidth="75.0" text="LIEU  COMPETITION" />
                     </columns>
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                     <StackPane.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </StackPane.margin>
                   </TableView>
                </children>
             </StackPane>
-            <StackPane prefHeight="650.0" prefWidth="409.0" style="-fx-background-color: #2f3542;">
+            <StackPane prefHeight="650.0" prefWidth="409.0" style="-fx-background-color: #2f3640;">
                <children>
                   <AnchorPane prefHeight="650.0" prefWidth="302.0">
                      <children>
-                        <ImageView fitHeight="90.0" fitWidth="94.0" layoutX="160.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="56.0" fitWidth="59.0" layoutX="172.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../images/competitive.png" />
+                              <Image url="@../../images/quiz.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="144.0" layoutY="111.0" text="Ajout Competition" textFill="WHITE">
+                        <Label layoutX="139.0" layoutY="81.0" text="Ajout Competition" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txt_nom_competition" layoutX="150.0" layoutY="160.0" prefHeight="37.0" prefWidth="248.0" />
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-20.0" layoutY="150.0" prefHeight="56.0" prefWidth="108.0" text="Titre :" textAlignment="CENTER" textFill="WHITE">
+                        <TextField fx:id="txt_nom_competition" layoutX="130.0" layoutY="123.0" prefHeight="27.0" prefWidth="248.0" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-12.0" layoutY="109.0" prefHeight="56.0" prefWidth="108.0" text="Titre :" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="13.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="207.0" prefHeight="56.0" prefWidth="108.0" text="Date de debut :" textAlignment="CENTER" textFill="WHITE">
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="21.0" layoutY="151.0" prefHeight="56.0" prefWidth="108.0" text="Date de debut :" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="13.0" />
                            </font>
                         </Label>
-                        <DatePicker fx:id="txt_date_debut_competition" layoutX="150.0" layoutY="216.0" prefHeight="37.0" prefWidth="248.0" />
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-7.0" layoutY="267.0" prefHeight="56.0" prefWidth="108.0" text="Date fin :" textAlignment="CENTER" textFill="WHITE">
+                        <DatePicker fx:id="txt_date_debut_competition" layoutX="130.0" layoutY="165.0" prefHeight="27.0" prefWidth="248.0" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="3.0" layoutY="193.0" prefHeight="56.0" prefWidth="108.0" text="Date fin :" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="13.0" />
                            </font>
                         </Label>
-                        <DatePicker fx:id="txt_date_fin_competition" layoutX="150.0" layoutY="276.0" prefHeight="37.0" prefWidth="248.0" />
-                        <TextField fx:id="txt_lieu_competition" layoutX="150.0" layoutY="330.0" prefHeight="37.0" prefWidth="248.0" />
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-14.0" layoutY="321.0" prefHeight="56.0" prefWidth="108.0" text="Lieu :" textAlignment="CENTER" textFill="WHITE">
+                        <DatePicker fx:id="txt_date_fin_competition" layoutX="130.0" layoutY="208.0" prefHeight="27.0" prefWidth="248.0" />
+                        <TextField fx:id="txt_lieu_competition" layoutX="130.0" layoutY="249.0" prefHeight="27.0" prefWidth="248.0" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-6.0" layoutY="235.0" prefHeight="56.0" prefWidth="108.0" text="Lieu :" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="13.0" />
                            </font>
                         </Label>
-                        <Button fx:id="btn_enregistrer_competition" layoutX="164.0" layoutY="394.0" mnemonicParsing="false" onAction="#handleAddCompetition" prefHeight="47.0" prefWidth="139.0" style="-fx-background-radius: 20;" text="Enregistrer">
+                        <Button fx:id="btn_enregistrer_competition" layoutX="188.0" layoutY="291.0" mnemonicParsing="false" onAction="#handleAddCompetition" prefHeight="34.0" prefWidth="139.0" style="-fx-background-radius: 20;" text="Enregistrer">
                            <graphic>
                               <ImageView fitHeight="38.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -81,10 +87,70 @@
                               </ImageView>
                            </graphic>
                            <font>
-                              <Font name="Arial Bold" size="14.0" />
+                              <Font name="Arial Bold" size="13.0" />
                            </font>
                         </Button>
                      </children>
+                     <StackPane.margin>
+                        <Insets bottom="15.0" left="5.0" right="5.0" top="15.0" />
+                     </StackPane.margin>
+                  </AnchorPane>
+               </children>
+            </StackPane>
+         </children>
+      </HBox>
+      <HBox layoutX="10.0" layoutY="10.0" prefHeight="350.0" prefWidth="1050.0">
+         <children>
+            <StackPane prefHeight="650.0" prefWidth="641.0">
+               <children>
+                  <MaskerPane fx:id="masker_tableview_tm" text="Chargement en cour ...." />
+                  <TableView fx:id="type_match_tableview" prefHeight="611.0" prefWidth="641.0">
+                     <columns>
+                        <TableColumn fx:id="col_id_typematch" prefWidth="75.0" text="ID" />
+                        <TableColumn fx:id="col_id_nom_type_match" prefWidth="75.0" text="TYPE MATCH" />
+                     </columns>
+                     <StackPane.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </StackPane.margin>
+                  </TableView>
+               </children>
+            </StackPane>
+            <StackPane prefHeight="650.0" prefWidth="409.0" style="-fx-background-color: #2f3640;">
+               <children>
+                  <AnchorPane prefHeight="650.0" prefWidth="302.0">
+                     <children>
+                        <ImageView fitHeight="56.0" fitWidth="59.0" layoutX="177.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/tournament.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="148.0" layoutY="81.0" text="Ajout type match" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txt_type_match" layoutX="126.0" layoutY="124.0" prefHeight="27.0" prefWidth="248.0" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="109.0" prefHeight="56.0" prefWidth="108.0" text="Type Match :" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="btn_save_type_match" layoutX="181.0" layoutY="176.0" mnemonicParsing="false" onAction="#ajoutTypeMatch" prefHeight="39.0" prefWidth="139.0" style="-fx-background-radius: 20;" text="Enregistrer">
+                           <graphic>
+                              <ImageView fitHeight="38.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../images/add-button.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Arial Bold" size="13.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <StackPane.margin>
+                        <Insets bottom="15.0" left="5.0" right="5.0" top="15.0" />
+                     </StackPane.margin>
                   </AnchorPane>
                </children>
             </StackPane>

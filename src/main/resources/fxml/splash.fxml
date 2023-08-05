@@ -7,16 +7,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="350.0" prefWidth="600.0" style="-fx-background-color: #34495e;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.app.controller.InitPreloader">
+<AnchorPane prefHeight="350.0" prefWidth="600.0" style="-fx-background-color: #ecf0f1;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.app.controller.InitPreloader">
    <children>
-      <ImageView fitHeight="205.0" fitWidth="235.0" layoutX="198.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="logo_club" fitHeight="205.0" fitWidth="235.0" layoutX="198.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/logo_cc101.png" />
          </image>
       </ImageView>
-      <ProgressBar fx:id="progress_process" layoutY="326.0" prefHeight="25.0" prefWidth="600.0" />
-      <Label fx:id="lbl_process" layoutX="4.0" layoutY="299.0" prefHeight="17.0" prefWidth="302.0" text="Chargement ..." textFill="WHITE">
+      <ProgressBar fx:id="progress_process" layoutX="1.0" layoutY="326.0" prefHeight="25.0" prefWidth="600.0" style="-fx-background-color: #c0392b; -fx-border-color: #c0392b;" />
+      <Label fx:id="lbl_process" layoutX="4.0" layoutY="299.0" prefHeight="17.0" prefWidth="302.0" text="Chargement ...">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font>

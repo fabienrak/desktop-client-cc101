@@ -2,7 +2,10 @@ package org.app.services;
 
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+import org.app.model.Categorie;
 import org.app.model.Clubs;
+import org.app.model.TypeMatch;
+import org.app.model.TypeMatchModel;
 import org.app.utils.DatabaseConnection;
 
 import java.sql.Connection;
@@ -12,64 +15,62 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClubService {
+public class TypeMatchService {
 
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
     Connection connection = DatabaseConnection.getConnection();
 
     /**
-     * Service get all club
-     * @return service
+     * Get all type match
+     * @return service - type_match
      */
-    public Service<List<Clubs>> getClubData(){
-        Service<List<Clubs>> club_service = new Service(){
+    public Service<List<TypeMatchModel>> getTypeMatchData(){
+        Service<List<TypeMatchModel>> type_match_service = new Service<>() {
             @Override
-            protected Task<List<Clubs>> createTask() {
+            protected Task<List<TypeMatchModel>> createTask() {
                 return new Task<>() {
                     @Override
-                    protected List<Clubs> call() {
-                        String liste_club_query = "SELECT * FROM club";
-                        List<Clubs> data_club = new ArrayList<>();
+                    protected List<TypeMatchModel> call() {
+                        String liste_type_match_query = "SELECT id, nom_type_match FROM type_match";
+                        List<TypeMatchModel> tm_data = new ArrayList<>();
                         try {
-                            preparedStatement = connection.prepareStatement(liste_club_query);
+                            preparedStatement = connection.prepareStatement(liste_type_match_query);
                             resultSet = preparedStatement.executeQuery();
                             while (resultSet.next()) {
-                                Clubs nouveau_club = new Clubs(
-                                        resultSet.getInt("id_clb"),
-                                        resultSet.getString("nom_club"),
-                                        resultSet.getString("adresse_club")
+                                TypeMatchModel type_match_data = new TypeMatchModel(
+                                        resultSet.getInt("id"),
+                                        resultSet.getString("nom_type_match")
                                 );
-                                data_club.add(nouveau_club);
+                                tm_data.add(type_match_data);
                             }
                         } catch (SQLException sqlException) {
                             sqlException.printStackTrace();
                         }
-                        return data_club;
+                        return tm_data;
                     }
                 };
             }
         };
-        return club_service;
-    };
+        return type_match_service;
+    }
 
     /**
-     * Get last ID registered
-     * @return last id registered
+     * Get last ID
      */
-    public Service<Integer> getLastIdFromClubTable(){
-        return new Service<Integer>(){
+    public Service<Integer> getLastTypeMatchId(){
+        return new Service<Integer>() {
             @Override
             protected Task<Integer> createTask() {
                 return new Task<Integer>() {
                     @Override
                     protected Integer call() throws Exception {
-                        String last_id_query = "SELECT seq FROM sqlite_sequence WHERE name = 'club'";
+                        String last_typematch_id_query = "SELECT seq FROM sqlite_sequence WHERE name = 'type_match'";
                         int _return_value = -1;
                         try {
-                            preparedStatement = connection.prepareStatement(last_id_query);
+                            preparedStatement = connection.prepareStatement(last_typematch_id_query);
                             resultSet = preparedStatement.executeQuery();
-                            while (resultSet.next()) {
+                            while (resultSet.next()){
                                 _return_value = resultSet.getInt("seq");
                             }
                         } catch (SQLException sqlException){
@@ -83,28 +84,25 @@ public class ClubService {
     }
 
     /**
-     * Add new Club
-     * @param nouveau_club
+     * Add new type match
      */
-    public Service<Boolean> addNewClub(Clubs nouveau_club){
-        return new Service<Boolean>(){
+    public Service<Boolean> addNewTypeMatch(TypeMatchModel typeMatchModel){
+        return new Service<Boolean>() {
             @Override
             protected Task<Boolean> createTask() {
-                return new Task<Boolean>(){
+                return new Task<Boolean>() {
                     @Override
                     protected Boolean call() throws Exception {
-                        String ajout_club_query = "INSERT INTO club (nom_club, adresse_club) VALUES (?,?)";
-                        try{
-                            preparedStatement = connection.prepareStatement(ajout_club_query);
-                            preparedStatement.setString(1, nouveau_club.getNom_club());
-                            preparedStatement.setString(2, nouveau_club.getAdresse_club());
+                        String ajout_type_match_query = "INSERT INTO type_match (nom_type_match) VALUES(?)";
+                        try {
+                            preparedStatement = connection.prepareStatement(ajout_type_match_query);
+                            preparedStatement.setString(1, typeMatchModel.getNom_type_match());
                             preparedStatement.executeUpdate();
                             return true;
-
-                        } catch (SQLException sqlException){
+                        } catch (SQLException sqlException) {
                             sqlException.printStackTrace();
-                            return false;
                         }
+                        return false;
                     }
                 };
             }
@@ -112,20 +110,19 @@ public class ClubService {
     }
 
     /**
-     * Delete club
-     * @param club
+     * Delete type match
      */
-    public Service<Boolean> deleteClub(Clubs club){
+    public Service<Boolean> deleteTypeMatch(TypeMatchModel typeMatchModel){
         return new Service<Boolean>(){
             @Override
             protected Task<Boolean> createTask() {
                 return new Task<Boolean>(){
                     @Override
                     protected Boolean call() throws Exception {
-                        String delete_club_query = "DELETE FROM club WHERE id_clb = ?";
+                        String delete_type_match_query = "DELETE FROM type_match WHERE id = ?";
                         try{
-                            preparedStatement = connection.prepareStatement(delete_club_query);
-                            preparedStatement.setInt(1,club.getId_club());
+                            preparedStatement = connection.prepareStatement(delete_type_match_query);
+                            preparedStatement.setInt(1,typeMatchModel.getId());
                             preparedStatement.executeUpdate();
                             return true;
                         } catch (SQLException sqlException){

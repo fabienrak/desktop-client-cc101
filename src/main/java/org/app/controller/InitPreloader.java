@@ -1,11 +1,16 @@
 package org.app.controller;
 
+import javafx.animation.Animation;
+import javafx.animation.FadeTransition;
 import javafx.application.Platform;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.app.App;
 import org.app.utils.DatabaseConnection;
 
@@ -21,10 +26,17 @@ public class InitPreloader implements Initializable {
 
     public Label lbl_process;
     public static Label lbl_loading;
+    @FXML
+    public ImageView logo_club;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         lbl_loading = lbl_process;
+        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(2.9), logo_club);
+            fadeTransition.setFromValue(1.0);
+            fadeTransition.setToValue(0.0);
+            fadeTransition.setCycleCount(Animation.INDEFINITE);
+            fadeTransition.play();
     }
 
     public String checkFunction(){
