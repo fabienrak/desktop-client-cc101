@@ -2,6 +2,7 @@ package org.app.controller;
 
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -63,11 +64,13 @@ public class BoardController implements Initializable {
     @FXML
     public void startChronoMatch(){
         ScoreboardController scoreboardController = ScoreboardController.getInstance();
+        //scoreboardController.startChrono();
         scoreboardController.startChrono();
     }
     @FXML
     public void pauseChronoMatch(){
         ScoreboardController scoreboardController = ScoreboardController.getInstance();
+        //scoreboardController.pauseChrono();
         scoreboardController.pauseChrono();
     }
     @FXML
@@ -162,8 +165,23 @@ public class BoardController implements Initializable {
         label_prenom_cbt2.setText(prenomCbt2);
     }
 
+    @FXML
+    private Label label_chrono;
+
+    void afficheChrono(){
+        ScoreboardController scoreboardController = ScoreboardController.getInstance();
+        //String temps = scoreboardController.getTimer();
+        if (scoreboardController != null){
+            label_chrono.setText(scoreboardController.getTimer());
+        } else {
+            app_utils.warningAlertDialog("AVERTISSEMENT","VEUILLEZ OUVRIR EN PREMIER LE TABLEAU DE SCORE, SELECTIONNER UN COMBATTANT");
+        }
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        afficheChrono();
 
         // Selection combattant
         CombattantsController combattantsController = CombattantsController.getInstance();
@@ -172,6 +190,10 @@ public class BoardController implements Initializable {
         } else {
             app_utils.warningAlertDialog("AVERTISSEMENT","VEUILLEZ OUVRIR EN PREMIER LE TABLEAU DE SCORE");
         }
+        btn_start_chrono.setOnAction(actionEvent -> {
+            ScoreboardController scoreboardController = ScoreboardController.getInstance();
+            scoreboardController.startChrono();
+        });
 
         // Bouton ajout point si utile
         /*BTN_PLUS_1.setOnAction(actionEvent -> {

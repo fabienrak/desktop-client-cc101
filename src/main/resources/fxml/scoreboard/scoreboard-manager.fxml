@@ -155,7 +155,7 @@
                         <Font name="Arial Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btn_start_chrono" layoutX="111.0" layoutY="186.0" mnemonicParsing="false" onAction="#startChronoMatch" prefHeight="53.0" prefWidth="154.0" style="-fx-background-radius: 20;" text="START ">
+                  <Button fx:id="btn_start_chrono" layoutX="111.0" layoutY="186.0" mnemonicParsing="false" onMouseClicked="#startChronoMatch" prefHeight="53.0" prefWidth="154.0" style="-fx-background-radius: 20;" text="START ">
                      <font>
                         <Font name="Arial Bold" size="14.0" />
                      </font>
@@ -238,7 +238,7 @@
                         <Font name="Arial Bold" size="14.0" />
                      </font>
                   </Button>
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="78.0" layoutY="684.0" prefHeight="39.0" prefWidth="223.0" text="CHRONO" textFill="WHITE">
+                  <Label fx:id="label_chrono" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="674.0" prefHeight="49.0" prefWidth="309.0" text="CHRONO" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="24.0" />
                      </font>

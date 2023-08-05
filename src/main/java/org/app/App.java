@@ -3,6 +3,7 @@ package org.app;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.app.controller.InitPreloader;
 import org.app.utils.DatabaseConnection;
@@ -28,6 +29,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         App.primaryStage = stage;
+        stage.getIcons().add(new Image(App.class.getResourceAsStream("/images/logo_icon.png")));
         stage.setX(200);
         stage.setY(200);
     }

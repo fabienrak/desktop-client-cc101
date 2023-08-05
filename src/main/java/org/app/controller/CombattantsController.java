@@ -11,10 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.app.model.*;
-import org.app.services.CategorieService;
-import org.app.services.ClubService;
-import org.app.services.CombattantService;
-import org.app.services.EmplacementService;
+import org.app.services.*;
 import org.app.utils.DatabaseConnection;
 import org.app.utils.Utils;
 import org.controlsfx.control.MaskerPane;
@@ -78,11 +75,14 @@ public class CombattantsController implements Initializable {
     @FXML
     private TextField txt_duree_match;
     @FXML
-    private ComboBox<TypeMatch> cbx_type_match;
+    private ComboBox cbx_type_match;
+    @FXML
+    private ComboBox cbx_time;
     @FXML
     private ComboBox cbx_emplacement_match;
     CombattantService combattantService = new CombattantService();
     EmplacementService emplacementService = new EmplacementService();
+    TypeMatchService typeMatchService = new TypeMatchService();
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
     Connection connection = DatabaseConnection.getConnection();
@@ -335,7 +335,7 @@ public class CombattantsController implements Initializable {
                     cbt_match.get(0).getId_combattant(),
                     cbt_match.get(1).getId_combattant(),
                     cbx_type_match.getValue().toString(),
-                    Integer.valueOf(txt_duree_match.getText()),
+                    Integer.parseInt(cbx_time.getValue().toString()),
                     id_tatami
             );
 
@@ -345,7 +345,7 @@ public class CombattantsController implements Initializable {
                 scoreboardController.afficheClubCombattant1(cbt_match.get(0).getClub_combattant());
                 scoreboardController.afficheCombattant_2(cbt_match.get(1).getPrenom_combattant());
                 scoreboardController.afficheClubCombattant2(cbt_match.get(1).getClub_combattant());
-                scoreboardController.afficheTempsMatch(Integer.parseInt(txt_duree_match.getText()));
+                scoreboardController.afficheTempsMatch(Integer.parseInt(cbx_time.getValue().toString()));
             } else {
                 Alert errorAlert = new Alert(Alert.AlertType.ERROR);
                 errorAlert.setTitle("ERREUR");
@@ -513,8 +513,27 @@ public class CombattantsController implements Initializable {
             emplacement.start();
 
             // populate type match combobox
-            ObservableList<TypeMatch> type_match = FXCollections.observableArrayList(TypeMatch.values());
-            cbx_type_match.getItems().addAll(type_match);
+            // Si Utilise ENUM TypeMatch : HOTFIX
+            //ObservableList<TypeMatch> type_match = FXCollections.observableArrayList(TypeMatch.values());
+            //cbx_type_match.getItems().addAll(type_match);
+
+            Service<List<TypeMatchModel>> data_type_match = typeMatchService.getTypeMatchData();
+            data_type_match.setOnSucceeded(tm -> {
+                List<String> type_match_data = new ArrayList<>();
+                for (TypeMatchModel liste_tm : data_type_match.getValue()){
+                    type_match_data.add(liste_tm.getNom_type_match());
+                }
+                cbx_type_match.getItems().addAll(type_match_data);
+            });
+            data_type_match.start();
+
+            //  Populate Combobox Temps : HOTFIX
+            // TODO : a dynamiser
+            cbx_time.getItems().clear();
+            cbx_time.getItems().addAll(
+                    "2","3","4","5","6","10","20"
+            );
+
 
             // Populate Club ComboBox
             Service<List<Clubs>> data_club = clubService.getClubData();
