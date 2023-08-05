@@ -22,12 +22,12 @@
    <children>
       <AnchorPane fx:id="anchor_cbt1" style="-fx-background-color: #0097e6;">
          <children>
-            <Label fx:id="label_combattant_1" layoutX="14.0" layoutY="59.0" prefHeight="102.0" prefWidth="576.0" AnchorPane.bottomAnchor="107.0" AnchorPane.topAnchor="59.0">
+            <Label fx:id="label_combattant_1" layoutX="14.0" layoutY="33.0" prefHeight="128.0" prefWidth="597.0" AnchorPane.bottomAnchor="107.0" AnchorPane.topAnchor="33.0">
                <font>
                   <Font name="Arial Bold" size="64.0" />
                </font>
             </Label>
-            <Label fx:id="label_club_cbt1" layoutX="28.0" layoutY="177.0" prefHeight="55.0" prefWidth="531.0" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="177.0">
+            <Label fx:id="label_club_cbt1" layoutX="8.0" layoutY="177.0" prefHeight="55.0" prefWidth="597.0" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="177.0">
                <font>
                   <Font name="Arial Bold" size="48.0" />
                </font>
@@ -90,7 +90,7 @@
       </AnchorPane>
       <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #e74c3c;" GridPane.rowIndex="1">
          <children>
-            <Label fx:id="label_combattant_2" layoutX="10.0" layoutY="25.0" prefHeight="102.0" prefWidth="538.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="25.0">
+            <Label fx:id="label_combattant_2" layoutX="10.0" layoutY="13.0" prefHeight="114.0" prefWidth="597.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="13.0">
                <font>
                   <Font name="Arial Bold" size="64.0" />
                </font>

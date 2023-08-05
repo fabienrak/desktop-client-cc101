@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.app.utils.Utils;
 
 import java.io.IOException;
 
@@ -33,6 +34,7 @@ public class HomeController {
     @FXML
     private AnchorPane content_pane;
     private Stage stage;
+    Utils app_utils = new Utils();
     @FXML
     private void sceneCombattant(ActionEvent actionEvent) throws IOException {
         Node node_source = (Node) actionEvent.getSource();
@@ -106,10 +108,16 @@ public class HomeController {
             fxmlLoader.setLocation(getClass().getResource("/fxml/scoreboard/scoreboard.fxml"));
             Scene scoreboardScene = new Scene(fxmlLoader.load(), 1050, 650);
             Stage scoreboardStage = new Stage();
+
             /*ScoreboardController scoreboardController = fxmlLoader.getController();
             fxmlLoader.setController(scoreboardController);*/
             scoreboardStage.setScene(scoreboardScene);
-            scoreboardStage.show();
+            if (scoreboardStage.isShowing()){
+                app_utils.warningAlertDialog("AVERTISSEMENT","UN SEULE SCOREBOARD AUTORISE");
+            } else {
+                scoreboardStage.show();
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
